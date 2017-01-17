@@ -10,7 +10,7 @@ let kBottomNCubes = 6,
 
 var nCubesInRow = kBottomNCubes;
 var layout = [];
-var reverseOrder = true,
+var reverseOrder = false,
 	topToBottom = true;
 
 function makeRow(yOffset, nCubesInRow, reverseOrder) {
