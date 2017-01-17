@@ -35,7 +35,10 @@ void LampEffect::shader(Vec3& rgb, const PixelInfo &p) const
 	float h = 0.7, s = 0.3, v = 1.0;
 	float noiseOffset = noise3(noisePt) * 0.1;
 	
+	int timeCube = (int)(floorf(mTimeDelta * 50) / 6);
+	
 	if (!isCheckerCubeId(p.get("cubeId").GetInt())) {
+
 		rgb[0] = 0.6;
 		rgb[1] = fminf(1.0, 0.4 + noise3(noisePt));
 		rgb[2] = 0.2;
