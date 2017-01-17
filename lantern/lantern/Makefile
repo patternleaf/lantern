@@ -1,25 +1,26 @@
-PROGRAMS = lantern
+appname := lantern
 
-# Important optimization options
-CFLAGS = -O3 -ffast-math -fno-rtti
+CXX := clang++
+CXXFLAGS := -std=c++11
 
-# Standard libraries
-LFLAGS = -lm -lstdc++ -lpthread
+srcfiles := $(shell find . -name "*.cpp")
+objects  := $(patsubst %.cpp, %.o, $(srcfiles))
 
-# Debugging
-CFLAGS += -g -Wall
-LFLAGS += -g
+all: $(appname)
 
-# Annoying warnings on by default on Mac OS
-CFLAGS += -Wno-tautological-constant-out-of-range-compare -Wno-gnu-static-float-init
+$(appname): $(objects)
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $(appname) $(objects) $(LDLIBS)
 
+depend: .depend
 
-all: $(PROGRAMS)
-
-.cpp:
-	$(CC) $(CFLAGS) $< -o $@ $(LFLAGS)
-
-.PHONY: clean all
+.depend: $(srcfiles)
+	rm -f ./.depend
+	$(CXX) $(CXXFLAGS) -MM $^>>./.depend;
 
 clean:
-	rm -f $(PROGRAMS)
+	rm -f $(objects)
+
+dist-clean: clean
+	rm -f *~ .depend
+
+include .depend

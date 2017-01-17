@@ -10,7 +10,7 @@
 #define LampEffect_hpp
 
 #include <stdio.h>
-#include "lib/effect.h"
+#include "../lib/effect.h"
 
 class LampEffect : public Effect
 {

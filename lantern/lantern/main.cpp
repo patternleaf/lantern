@@ -7,11 +7,11 @@
 //
 
 #include <math.h>
-#include "lib/color.h"
-#include "lib/effect.h"
-#include "lib/effect_runner.h"
-#include "lib/effect_mixer.h"
-#include "lib/noise.h"
+#include "../lib/color.h"
+#include "../lib/effect.h"
+#include "../lib/effect_runner.h"
+#include "../lib/effect_mixer.h"
+#include "../lib/noise.h"
 
 #include "LampEffect.hpp"
 
