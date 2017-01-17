@@ -8,6 +8,8 @@ objects  := $(patsubst %.cpp, %.o, $(srcfiles))
 
 all: $(appname)
 
+LDLIBS += -pthread
+
 $(appname): $(objects)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $(appname) $(objects) $(LDLIBS)
 
