@@ -1,6 +1,6 @@
 appname := lantern
 
-CXX := clang++
+#CXX := clang++
 CXXFLAGS := -std=c++11
 
 srcfiles := $(shell find . -name "*.cpp")
