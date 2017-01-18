@@ -13,6 +13,7 @@
 		07E674281E2D65B60040ECD3 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 07E674271E2D65B60040ECD3 /* Makefile */; };
 		07E674291E2D65BC0040ECD3 /* layout.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07E674251E2D65B60040ECD3 /* layout.json */; };
 		07E6742C1E2D7D690040ECD3 /* LampEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E6742A1E2D7D690040ECD3 /* LampEffect.cpp */; };
+		07E674311E2DD78F0040ECD3 /* RippleEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E6742F1E2DD78F0040ECD3 /* RippleEffect.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,7 +30,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07E673EE1E2D63950040ECD3 /* lantern */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = lantern; sourceTree = BUILT_PRODUCTS_DIR; };
+		07E673EE1E2D63950040ECD3 /* lantern-server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "lantern-server"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07E673F11E2D63950040ECD3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		07E673F91E2D63C10040ECD3 /* brightness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = brightness.h; sourceTree = "<group>"; };
 		07E673FA1E2D63C10040ECD3 /* color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
@@ -77,6 +78,8 @@
 		07E6742B1E2D7D690040ECD3 /* LampEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LampEffect.hpp; sourceTree = "<group>"; };
 		07E6742D1E2D87320040ECD3 /* CheckerCubeIds.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckerCubeIds.h; sourceTree = "<group>"; };
 		07E6742E1E2D8DE80040ECD3 /* Mode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mode.h; sourceTree = "<group>"; };
+		07E6742F1E2DD78F0040ECD3 /* RippleEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RippleEffect.cpp; sourceTree = "<group>"; };
+		07E674301E2DD78F0040ECD3 /* RippleEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RippleEffect.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +96,7 @@
 		07E673E51E2D63950040ECD3 = {
 			isa = PBXGroup;
 			children = (
-				07E673F01E2D63950040ECD3 /* lantern */,
+				07E673F01E2D63950040ECD3 /* lantern-server */,
 				07E673EF1E2D63950040ECD3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,12 +104,12 @@
 		07E673EF1E2D63950040ECD3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				07E673EE1E2D63950040ECD3 /* lantern */,
+				07E673EE1E2D63950040ECD3 /* lantern-server */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		07E673F01E2D63950040ECD3 /* lantern */ = {
+		07E673F01E2D63950040ECD3 /* lantern-server */ = {
 			isa = PBXGroup;
 			children = (
 				07E674251E2D65B60040ECD3 /* layout.json */,
@@ -118,7 +121,10 @@
 				07E6742B1E2D7D690040ECD3 /* LampEffect.hpp */,
 				07E6742D1E2D87320040ECD3 /* CheckerCubeIds.h */,
 				07E6742E1E2D8DE80040ECD3 /* Mode.h */,
+				07E6742F1E2DD78F0040ECD3 /* RippleEffect.cpp */,
+				07E674301E2DD78F0040ECD3 /* RippleEffect.hpp */,
 			);
+			name = "lantern-server";
 			path = lantern;
 			sourceTree = "<group>";
 		};
@@ -195,9 +201,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		07E673ED1E2D63950040ECD3 /* lantern */ = {
+		07E673ED1E2D63950040ECD3 /* lantern-server */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07E673F51E2D63950040ECD3 /* Build configuration list for PBXNativeTarget "lantern" */;
+			buildConfigurationList = 07E673F51E2D63950040ECD3 /* Build configuration list for PBXNativeTarget "lantern-server" */;
 			buildPhases = (
 				07E673EA1E2D63950040ECD3 /* Sources */,
 				07E673EB1E2D63950040ECD3 /* Frameworks */,
@@ -207,9 +213,9 @@
 			);
 			dependencies = (
 			);
-			name = lantern;
+			name = "lantern-server";
 			productName = lantern;
-			productReference = 07E673EE1E2D63950040ECD3 /* lantern */;
+			productReference = 07E673EE1E2D63950040ECD3 /* lantern-server */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -240,7 +246,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				07E673ED1E2D63950040ECD3 /* lantern */,
+				07E673ED1E2D63950040ECD3 /* lantern-server */,
 			);
 		};
 /* End PBXProject section */
@@ -252,6 +258,7 @@
 			files = (
 				07E674241E2D63C10040ECD3 /* README.md in Sources */,
 				07E674231E2D63C10040ECD3 /* README.md in Sources */,
+				07E674311E2DD78F0040ECD3 /* RippleEffect.cpp in Sources */,
 				07E6742C1E2D7D690040ECD3 /* LampEffect.cpp in Sources */,
 				07E674281E2D65B60040ECD3 /* Makefile in Sources */,
 				07E673F21E2D63950040ECD3 /* main.cpp in Sources */,
@@ -378,13 +385,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		07E673F51E2D63950040ECD3 /* Build configuration list for PBXNativeTarget "lantern" */ = {
+		07E673F51E2D63950040ECD3 /* Build configuration list for PBXNativeTarget "lantern-server" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07E673F61E2D63950040ECD3 /* Debug */,
 				07E673F71E2D63950040ECD3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

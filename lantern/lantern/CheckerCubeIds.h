@@ -13,13 +13,13 @@
 
 //static int ids[] = { 0, 2, 3, 5, 7, 9, 10, 12, 14, 16, 18, 20 };
 static int ids[] = { 0, 1, 3, 5 };
-std::vector<int> kCheckerCubeIds(ids, ids + sizeof(ids) / sizeof(ids[0]));
+static std::vector<int> kCheckerCubeIds(ids, ids + sizeof(ids) / sizeof(ids[0]));
 
 //bool isCheckerCubeId(int cubeId) {
 //	return std::find(kCheckerCubeIds.begin(), kCheckerCubeIds.end(), cubeId) == kCheckerCubeIds.end();
 //}
 
-bool isCheckerCubeId(int cubeId) {
+inline bool isCheckerCubeId(int cubeId) {
 	return std::find(kCheckerCubeIds.begin(), kCheckerCubeIds.end(), cubeId) == kCheckerCubeIds.end();
 }
 
