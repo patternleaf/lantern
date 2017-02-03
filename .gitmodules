@@ -1,0 +1,3 @@
+[submodule "lantern-server/lib/websocketpp"]
+	path = lantern-server/lib/websocketpp
+	url = https://github.com/zaphoyd/websocketpp.git
