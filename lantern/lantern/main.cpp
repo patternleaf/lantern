@@ -13,8 +13,13 @@
 #include "../lib/effect_mixer.h"
 #include "../lib/noise.h"
 
+
+#include "LanternState.hpp"
 #include "LampEffect.hpp"
 #include "RippleEffect.hpp"
+#include "LanternServer.hpp"
+#include "LanternMixer.hpp"
+
 
 class MyEffect : public Effect
 {
@@ -41,23 +46,27 @@ public:
 
 int main(int argc, char **argv)
 {
-	srand(clock());
-	EffectMixer mixer;
-	EffectRunner r;
+	srand((unsigned int)clock());
+	
+	LanternMixer mixer;
+	EffectRunner runner;
+	LanternState state(&runner, &mixer);
+	
+	LanternServer server(&state);
 	
 	MyEffect defaultEffect;
 	LampEffect lampEffect;
 	RippleEffect rippleEffect;
 	
-	r.setEffect(&mixer);
+	runner.setEffect(&mixer);
 	
 	// Defaults, overridable with command line options
-	r.setMaxFrameRate(100);
-	r.setLayout("./layout.json");
+	runner.setMaxFrameRate(100);
+	runner.setLayout("./layout.json");
 	
 	mixer.add(&defaultEffect, 0.0f);
 	mixer.add(&lampEffect, 0.0f);
 	mixer.add(&rippleEffect, 0.5f);
 	
-	return r.main(argc, argv);
+	return runner.main(argc, argv);
 }

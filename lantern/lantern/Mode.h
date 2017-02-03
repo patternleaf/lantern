@@ -12,6 +12,7 @@
 typedef enum Mode {
 	mode_lamp,
 	mode_lavaLamp,
+	mode_ripple,
 	mode_audio
 } Mode;
 

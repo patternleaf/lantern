@@ -10,9 +10,10 @@
 #define RippleEffect_hpp
 
 #include <stdio.h>
-#include "../lib/effect.h"
+#include "LanternEffect.hpp"
+#include "JsonConversions.hpp"
 
-class RippleEffect : public Effect
+class RippleEffect : public LanternEffect
 {
 public:
 	RippleEffect();
@@ -20,9 +21,14 @@ public:
 	virtual void beginFrame(const FrameInfo &f);
 	virtual void shader(Vec3& rgb, const PixelInfo &p) const;
 	virtual void postProcess(const Vec3& rgb, const PixelInfo& p);
+
+	virtual nlohmann::json getState();
+	virtual void setState(nlohmann::json state);
+	virtual nlohmann::json getParameterDescription();
 	
 	float mMaxDistance;
 	float mCycle;
+	float mSpeed;
 	std::vector<Vec3> mRippleOrigins;
 //	Vec3 mRippleOrigin;
 };

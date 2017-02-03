@@ -66,7 +66,7 @@ public:
     virtual void endFrame(const FrameInfo& f);
     virtual void debug(const DebugInfo& d);
 
-private:
+protected:
     struct Channel {
         Effect *effect;
         float fader;
