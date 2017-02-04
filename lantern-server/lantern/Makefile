@@ -1,7 +1,7 @@
 appname := lantern
 
-#CXX := clang++
-CXXFLAGS := -std=c++11
+CXX := g++-5
+CXXFLAGS := -std=c++11 -I.. -I../lib -I../lib/websocketpp
 
 srcfiles := $(shell find . -name "*.cpp")
 objects  := $(patsubst %.cpp, %.o, $(srcfiles))
@@ -9,6 +9,8 @@ objects  := $(patsubst %.cpp, %.o, $(srcfiles))
 all: $(appname)
 
 LDLIBS += -pthread
+
+LDFLAGS += -luuid -lboost_system -lssl -lcrypto
 
 $(appname): $(objects)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $(appname) $(objects) $(LDLIBS)

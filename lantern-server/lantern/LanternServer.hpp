@@ -11,9 +11,9 @@
 
 #include <stdio.h>
 #include <set>
-#include <websocketpp/server.hpp>
-#include <websocketpp/config/core.hpp>
-#include <websocketpp/config/asio.hpp>
+#include "websocketpp/server.hpp"
+#include "websocketpp/config/core.hpp"
+#include "websocketpp/config/asio.hpp"
 #include "lib/tinythread.h"
 
 #include "LanternState.hpp"

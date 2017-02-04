@@ -20,9 +20,6 @@ namespace JsonConversions {
 	
 	template <class T>
 	T fromJson(const nlohmann::json& json);
-	
-	template <class T>
-	T fromJson(const nlohmann::json& json);
 };
 
 #endif /* JsonConversions_hpp */

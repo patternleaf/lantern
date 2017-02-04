@@ -13,7 +13,7 @@
 LanternEffect::LanternEffect()
 {
 	uuid_t uuid;
-	uuid_string_t s;
+	char s[37];
 	uuid_generate_random(uuid);
 	uuid_unparse(uuid, s);
 	mId = std::string(s);

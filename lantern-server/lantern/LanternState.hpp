@@ -10,6 +10,7 @@
 #define LanternState_hpp
 
 #include <stdio.h>
+#include <mutex>
 #include "lib/effect_runner.h"
 
 #include "JsonConversions.hpp"
