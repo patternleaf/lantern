@@ -1,6 +1,6 @@
 appname := lantern
 
-CXX := g++-5
+#CXX := g++-5
 CXXFLAGS := -std=c++11 -I.. -I../lib -I../lib/websocketpp
 
 srcfiles := $(shell find . -name "*.cpp")

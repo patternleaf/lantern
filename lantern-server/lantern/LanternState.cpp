@@ -26,7 +26,7 @@ LanternState::~LanternState()
 
 void LanternState::setWith(json json)
 {
-	std::lock_guard<std::mutex> lock(mStateMutex);
+	lock_guard<mutex> lock(mStateMutex);
 	
 	auto mixer = json["mixer"];
 	auto faders = mixer["faders"];
@@ -64,7 +64,7 @@ void LanternState::setWith(json json)
 
 json LanternState::toJson()
 {
-	std::lock_guard<std::mutex> lock(mStateMutex);
+	lock_guard<mutex> lock(mStateMutex);
 	
 	json faders = json::array();
 	json states = json::array();

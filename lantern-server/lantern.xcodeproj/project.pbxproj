@@ -87,7 +87,7 @@
 		07E674221E2D63C10040ECD3 /* tinythread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinythread.h; sourceTree = "<group>"; };
 		07E674251E2D65B60040ECD3 /* layout.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = layout.json; sourceTree = SOURCE_ROOT; };
 		07E674261E2D65B60040ECD3 /* make-layout.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "make-layout.js"; sourceTree = SOURCE_ROOT; };
-		07E674271E2D65B60040ECD3 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = SOURCE_ROOT; };
+		07E674271E2D65B60040ECD3 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = lantern/Makefile; sourceTree = SOURCE_ROOT; };
 		07E6742A1E2D7D690040ECD3 /* LampEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LampEffect.cpp; sourceTree = "<group>"; };
 		07E6742B1E2D7D690040ECD3 /* LampEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LampEffect.hpp; sourceTree = "<group>"; };
 		07E6742D1E2D87320040ECD3 /* CheckerCubeIds.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckerCubeIds.h; sourceTree = "<group>"; };

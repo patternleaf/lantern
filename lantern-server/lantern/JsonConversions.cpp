@@ -13,20 +13,20 @@ using namespace nlohmann;
 
 namespace JsonConversions {
 
-template <>
-json toJson<Vec3>(const Vec3& v)
-{
-	return json::array({ v[0], v[1], v[2] });
-}
+	template <>
+	json toJson<Vec3>(const Vec3& v)
+	{
+		return json::array({ v[0], v[1], v[2] });
+	}
 
-template <>
-Vec3 fromJson<Vec3>(const json& json)
-{
-	Vec3 result;
-	result[0] = json[0];
-	result[1] = json[1];
-	result[2] = json[2];
-	return result;
-}
+	template <>
+	Vec3 fromJson<Vec3>(const json& json)
+	{
+		Vec3 result;
+		result[0] = json[0];
+		result[1] = json[1];
+		result[2] = json[2];
+		return result;
+	}
 
 }
