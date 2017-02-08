@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include "LanternEffect.hpp"
 
-class DripEffect: LanternEffect {
+class DripEffect: public LanternEffect {
 public:
 	DripEffect();
 	
