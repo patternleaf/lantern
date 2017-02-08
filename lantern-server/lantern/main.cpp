@@ -17,32 +17,9 @@
 #include "LanternState.hpp"
 #include "LampEffect.hpp"
 #include "RippleEffect.hpp"
+#include "DripEffect.hpp"
 #include "LanternServer.hpp"
 #include "LanternMixer.hpp"
-
-
-class MyEffect : public Effect
-{
-public:
-	MyEffect()
-	: cycle (0) {}
-	
-	float cycle;
-	
-	virtual void beginFrame(const FrameInfo &f)
-	{
-		const float speed = 1.0;
-		cycle = fmodf(cycle + f.timeDelta * speed, 2 * M_PI);
-	}
-	
-	virtual void shader(Vec3& rgb, const PixelInfo &p) const
-	{
-		float distance = len(p.point);
-//		float wave = sinf(3.0 * distance - cycle) + noise3(p.point);
-		float wave = sinf(3 * distance + cycle);
-		hsv2rgb(rgb, 0.2, 0.3, fminf(0.6, abs(wave)));
-	}
-};
 
 int main(int argc, char **argv)
 {
@@ -54,7 +31,7 @@ int main(int argc, char **argv)
 	
 	LanternServer server(&state);
 	
-	MyEffect defaultEffect;
+	DripEffect dripEffect;
 	LampEffect lampEffect;
 	RippleEffect rippleEffect;
 	
@@ -64,7 +41,7 @@ int main(int argc, char **argv)
 	runner.setMaxFrameRate(100);
 	runner.setLayout("./layout.json");
 	
-	mixer.add(&defaultEffect, 0.0f);
+	mixer.add(&dripEffect, 0.0f);
 	mixer.add(&lampEffect, 0.0f);
 	mixer.add(&rippleEffect, 0.5f);
 	

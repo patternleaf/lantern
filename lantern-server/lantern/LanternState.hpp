@@ -24,6 +24,9 @@ public:
 		
 	void setWith(nlohmann::json json);
 	
+	void setFader(int channel, float value);
+	
+	
 	nlohmann::json toJson();
 	
 private:

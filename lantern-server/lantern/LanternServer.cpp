@@ -45,6 +45,12 @@ void LanternServer::onMessage(websocketpp::connection_hdl hdl, WSServer::message
 		else if (parsedMsg["command"] == "setBroadcastSleepDuration") {
 			mBroadcastSleepDuration = parsedMsg["duration"];
 		}
+		else if (parsedMsg["command"] == "setFader") {
+			int channel = parsedMsg["channel"];
+			float value = parsedMsg["value"];
+			
+			mState->setFader(channel, value);
+		}
 	}
 }
 
@@ -93,8 +99,10 @@ void LanternServer::serverThreadFunc(void* ctx)
 	
 	try {
 		// Set logging settings
-		server->mWSServer.set_access_channels(websocketpp::log::alevel::all);
-		server->mWSServer.clear_access_channels(websocketpp::log::alevel::frame_payload);
+//		server->mWSServer.set_access_channels(websocketpp::log::alevel::all);
+//		server->mWSServer.clear_access_channels(websocketpp::log::alevel::frame_payload);
+		
+		server->mWSServer.clear_access_channels(websocketpp::log::alevel::all);
 		
 		// Initialize Asio
 		server->mWSServer.init_asio();

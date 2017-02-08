@@ -23,6 +23,10 @@ LanternState::~LanternState()
 {
 	
 }
+void LanternState::setFader(int channel, float value)
+{
+	mMixer->setFader(channel, value);
+}
 
 void LanternState::setWith(json json)
 {
@@ -66,26 +70,24 @@ json LanternState::toJson()
 {
 	lock_guard<mutex> lock(mStateMutex);
 	
-	json faders = json::array();
-	json states = json::array();
+	json channels = json::array();
+	
 	LanternEffect* effect = nullptr;
 	for (int i = 0; i < mMixer->numChannels(); i++) {
-		faders.push_back(mMixer->getFader(i));
+		json channel = json::object();
+		
+		channel["fader"] = mMixer->getFader(i);
+		
 		effect = dynamic_cast<LanternEffect*>(mMixer->getEffect(i));
-		if (effect != nullptr) {
-			states.push_back(effect->getState());
+		if (effect != nullptr) {	
+			channel["effect"] = effect->getState();
 		}
 		else {
-			states.push_back({{ "id", "unknown-effect" }});
+			channel["effect"] = {{ "id", "unknown-effect" }};
 		}
+		
+		channels.push_back(channel);
 	}
 	
-	return {
-		{ "mixer", {{ "faders", faders }} },
-		{ "effects",
-			{
-				{ "states", states }
-			}
-		}
-	};
+	return {{ "channels", channels }};
 }

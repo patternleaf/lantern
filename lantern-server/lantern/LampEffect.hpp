@@ -10,9 +10,9 @@
 #define LampEffect_hpp
 
 #include <stdio.h>
-#include "../lib/effect.h"
+#include "LanternEffect.hpp"
 
-class LampEffect : public Effect
+class LampEffect : public LanternEffect
 {
 public:
 	LampEffect();
@@ -20,8 +20,11 @@ public:
 	virtual void beginFrame(const FrameInfo &f);
 	virtual void shader(Vec3& rgb, const PixelInfo &p) const;
 	
-	float mCycle;
-	float mTimeDelta;
+	virtual nlohmann::json getState();
+	virtual void setState(nlohmann::json state);
+	virtual nlohmann::json getParameterDescription();
+	
+	Vec3 mColor;
 };
 
 

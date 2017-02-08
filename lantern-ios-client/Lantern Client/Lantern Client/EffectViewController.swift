@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  EffectViewController.swift
 //  Lantern Client
 //
 //  Created by Eric Miller on 2/3/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class EffectViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()

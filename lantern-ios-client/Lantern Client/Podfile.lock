@@ -1,0 +1,38 @@
+PODS:
+  - Freddy (3.0.0)
+  - HGCircularSlider (1.0.3)
+  - PromiseKit (4.1.7):
+    - PromiseKit/Foundation (= 4.1.7)
+    - PromiseKit/QuartzCore (= 4.1.7)
+    - PromiseKit/UIKit (= 4.1.7)
+  - PromiseKit/CorePromise (4.1.7)
+  - PromiseKit/Foundation (4.1.7):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.1.7):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.1.7):
+    - PromiseKit/CorePromise
+  - RxCocoa (3.2.0):
+    - RxSwift (~> 3.1)
+  - RxSwift (3.2.0)
+  - Starscream (2.0.3)
+
+DEPENDENCIES:
+  - Freddy
+  - HGCircularSlider (~> 1.0.3)
+  - PromiseKit (~> 4.0)
+  - RxCocoa (~> 3.0)
+  - RxSwift (~> 3.0)
+  - Starscream (~> 2.0.3)
+
+SPEC CHECKSUMS:
+  Freddy: 367f994c88a90dd3987293b4b1bec94a4530745a
+  HGCircularSlider: f3a941d52bae7833b7213b8d89c6264c5506d9ad
+  PromiseKit: 779f2e41faf62d854e7593026ddbcb0bb5c5002d
+  RxCocoa: ccdf43101a70407097a29082f648ba1676075b30
+  RxSwift: 46574f70d416b7923c237195939cc488a7fbf3a0
+  Starscream: 3fdd5c277e57cca6b5c406d274e3f34a7c88f2ce
+
+PODFILE CHECKSUM: bd3007ad31dd1baf19906329bc541455554c8a7d
+
+COCOAPODS: 1.1.1

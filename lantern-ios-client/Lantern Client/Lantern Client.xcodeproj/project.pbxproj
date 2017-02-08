@@ -9,25 +9,45 @@
 /* Begin PBXBuildFile section */
 		07A97B1D1E4555B200034474 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B1C1E4555B200034474 /* AppDelegate.swift */; };
 		07A97B1F1E4555B200034474 /* MixerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B1E1E4555B200034474 /* MixerViewController.swift */; };
-		07A97B211E4555B200034474 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B201E4555B200034474 /* SecondViewController.swift */; };
+		07A97B211E4555B200034474 /* EffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B201E4555B200034474 /* EffectViewController.swift */; };
 		07A97B241E4555B200034474 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07A97B221E4555B200034474 /* Main.storyboard */; };
 		07A97B261E4555B300034474 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07A97B251E4555B200034474 /* Assets.xcassets */; };
 		07A97B291E4555B300034474 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07A97B271E4555B300034474 /* LaunchScreen.storyboard */; };
 		07A97B321E45578000034474 /* MixerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B311E45578000034474 /* MixerView.swift */; };
-		07A97B341E45578C00034474 /* ChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B331E45578C00034474 /* ChannelView.swift */; };
+		07A97B341E45578C00034474 /* ChannelStripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B331E45578C00034474 /* ChannelStripView.swift */; };
+		07A97B391E48F93300034474 /* Mixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B381E48F93300034474 /* Mixer.swift */; };
+		07A97B3B1E48F93B00034474 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B3A1E48F93B00034474 /* Channel.swift */; };
+		07A97B3D1E48FB2A00034474 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B3C1E48FB2A00034474 /* Effect.swift */; };
+		07A97B3F1E48FD9700034474 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B3E1E48FD9700034474 /* Model.swift */; };
+		07A97B421E48FE3300034474 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B411E48FE3300034474 /* State.swift */; };
+		07A97B441E48FEC100034474 /* LanternClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B431E48FEC100034474 /* LanternClient.swift */; };
+		07A97B461E48FF5300034474 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A97B451E48FF5300034474 /* Starscream.framework */; };
+		07A97B491E49138B00034474 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B481E49138B00034474 /* Observable.swift */; };
+		A0F18A1F0E9161819F3E48F0 /* Pods_Lantern_Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52840CF54C16D48419723DF8 /* Pods_Lantern_Client.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		07A97B191E4555B200034474 /* Lantern Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lantern Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07A97B1C1E4555B200034474 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07A97B1E1E4555B200034474 /* MixerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerViewController.swift; sourceTree = "<group>"; };
-		07A97B201E4555B200034474 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		07A97B201E4555B200034474 /* EffectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectViewController.swift; sourceTree = "<group>"; };
 		07A97B231E4555B200034474 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07A97B251E4555B200034474 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07A97B281E4555B300034474 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07A97B2A1E4555B300034474 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07A97B311E45578000034474 /* MixerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixerView.swift; sourceTree = "<group>"; };
-		07A97B331E45578C00034474 /* ChannelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelView.swift; sourceTree = "<group>"; };
+		07A97B331E45578C00034474 /* ChannelStripView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelStripView.swift; sourceTree = "<group>"; };
+		07A97B381E48F93300034474 /* Mixer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mixer.swift; sourceTree = "<group>"; };
+		07A97B3A1E48F93B00034474 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		07A97B3C1E48FB2A00034474 /* Effect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
+		07A97B3E1E48FD9700034474 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		07A97B411E48FE3300034474 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		07A97B431E48FEC100034474 /* LanternClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanternClient.swift; sourceTree = "<group>"; };
+		07A97B451E48FF5300034474 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Lantern_Client-afdoegiyisgqatgqesoruiuttcwd/Build/Products/Debug-iphonesimulator/Starscream/Starscream.framework"; sourceTree = "<group>"; };
+		07A97B481E49138B00034474 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		52840CF54C16D48419723DF8 /* Pods_Lantern_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lantern_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8060188C1B71F42D64977101 /* Pods-Lantern Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lantern Client.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lantern Client/Pods-Lantern Client.debug.xcconfig"; sourceTree = "<group>"; };
+		DA83CFB896410B01C0383971 /* Pods-Lantern Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lantern Client.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lantern Client/Pods-Lantern Client.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07A97B461E48FF5300034474 /* Starscream.framework in Frameworks */,
+				A0F18A1F0E9161819F3E48F0 /* Pods_Lantern_Client.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +68,8 @@
 			children = (
 				07A97B1B1E4555B200034474 /* Lantern Client */,
 				07A97B1A1E4555B200034474 /* Products */,
+				4A88DFFDC2E933FDC8946731 /* Pods */,
+				EDA8EFDB0CBDA7CC3751FA04 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +84,9 @@
 		07A97B1B1E4555B200034474 /* Lantern Client */ = {
 			isa = PBXGroup;
 			children = (
+				07A97B471E49137E00034474 /* Utilities */,
+				07A97B401E48FDCC00034474 /* Networking */,
+				07A97B371E48F84100034474 /* Model */,
 				07A97B301E45576500034474 /* Views */,
 				07A97B1C1E4555B200034474 /* AppDelegate.swift */,
 				07A97B221E4555B200034474 /* Main.storyboard */,
@@ -74,11 +101,57 @@
 			isa = PBXGroup;
 			children = (
 				07A97B1E1E4555B200034474 /* MixerViewController.swift */,
-				07A97B201E4555B200034474 /* SecondViewController.swift */,
+				07A97B201E4555B200034474 /* EffectViewController.swift */,
 				07A97B311E45578000034474 /* MixerView.swift */,
-				07A97B331E45578C00034474 /* ChannelView.swift */,
+				07A97B331E45578C00034474 /* ChannelStripView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		07A97B371E48F84100034474 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				07A97B381E48F93300034474 /* Mixer.swift */,
+				07A97B3A1E48F93B00034474 /* Channel.swift */,
+				07A97B3C1E48FB2A00034474 /* Effect.swift */,
+				07A97B3E1E48FD9700034474 /* Model.swift */,
+				07A97B411E48FE3300034474 /* State.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		07A97B401E48FDCC00034474 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				07A97B431E48FEC100034474 /* LanternClient.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		07A97B471E49137E00034474 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				07A97B481E49138B00034474 /* Observable.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		4A88DFFDC2E933FDC8946731 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8060188C1B71F42D64977101 /* Pods-Lantern Client.debug.xcconfig */,
+				DA83CFB896410B01C0383971 /* Pods-Lantern Client.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EDA8EFDB0CBDA7CC3751FA04 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				07A97B451E48FF5300034474 /* Starscream.framework */,
+				52840CF54C16D48419723DF8 /* Pods_Lantern_Client.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -88,9 +161,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07A97B2D1E4555B300034474 /* Build configuration list for PBXNativeTarget "Lantern Client" */;
 			buildPhases = (
+				C210EC515B9AE897DB812D09 /* [CP] Check Pods Manifest.lock */,
 				07A97B151E4555B200034474 /* Sources */,
 				07A97B161E4555B200034474 /* Frameworks */,
 				07A97B171E4555B200034474 /* Resources */,
+				73ADE7C4B75A004E972CEE1E /* [CP] Embed Pods Frameworks */,
+				169A79090D0BAC33E4296C11 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,15 +225,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		169A79090D0BAC33E4296C11 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lantern Client/Pods-Lantern Client-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		73ADE7C4B75A004E972CEE1E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lantern Client/Pods-Lantern Client-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C210EC515B9AE897DB812D09 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		07A97B151E4555B200034474 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07A97B211E4555B200034474 /* SecondViewController.swift in Sources */,
+				07A97B3F1E48FD9700034474 /* Model.swift in Sources */,
+				07A97B211E4555B200034474 /* EffectViewController.swift in Sources */,
+				07A97B3B1E48F93B00034474 /* Channel.swift in Sources */,
+				07A97B421E48FE3300034474 /* State.swift in Sources */,
+				07A97B491E49138B00034474 /* Observable.swift in Sources */,
+				07A97B441E48FEC100034474 /* LanternClient.swift in Sources */,
 				07A97B1D1E4555B200034474 /* AppDelegate.swift in Sources */,
 				07A97B321E45578000034474 /* MixerView.swift in Sources */,
-				07A97B341E45578C00034474 /* ChannelView.swift in Sources */,
+				07A97B3D1E48FB2A00034474 /* Effect.swift in Sources */,
+				07A97B391E48F93300034474 /* Mixer.swift in Sources */,
+				07A97B341E45578C00034474 /* ChannelStripView.swift in Sources */,
 				07A97B1F1E4555B200034474 /* MixerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,6 +410,7 @@
 		};
 		07A97B2E1E4555B300034474 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8060188C1B71F42D64977101 /* Pods-Lantern Client.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 78M52WT8Z9;
@@ -292,6 +424,7 @@
 		};
 		07A97B2F1E4555B300034474 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA83CFB896410B01C0383971 /* Pods-Lantern Client.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 78M52WT8Z9;
@@ -322,6 +455,7 @@
 				07A97B2F1E4555B300034474 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
