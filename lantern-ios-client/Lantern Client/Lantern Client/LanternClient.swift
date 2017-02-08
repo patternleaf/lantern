@@ -10,8 +10,8 @@ import Foundation
 import Starscream
 import Freddy
 
-let hostname: String = "localhost"
-//let hostname: String = "10.0.0.191"
+//let hostname: String = "localhost"
+let hostname: String = "10.0.0.191"
 let port: Int = 9002
 
 class LanternClient: WebSocketDelegate {
