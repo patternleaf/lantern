@@ -11,7 +11,8 @@ import Starscream
 import Freddy
 
 //let hostname: String = "localhost"
-let hostname: String = "10.0.0.191"
+//let hostname: String = "10.0.0.191"
+let hostname: String = "10.0.0.89"
 let port: Int = 9002
 
 class LanternClient: WebSocketDelegate {
@@ -29,18 +30,41 @@ class LanternClient: WebSocketDelegate {
 //	var latestStateJson: String?
 	var latestStateJson: JSON?
 	
+	var connectPoll: Timer?
+	
 	private init() {
 		socket = WebSocket(url: URL(string: "ws://\(hostname):\(port)")!)
 		socket?.delegate = self
+		startPolling()
 	}
+	
+	deinit {
+		stopPolling()
+	}
+	
+	private func startPolling() {
+		connectPoll = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { timer in
+			if self.socket != nil && !(self.socket!.isConnected) {
+				self.socket!.connect()
+			}
+		});
+	}
+	
+	private func stopPolling() {
+		connectPoll?.invalidate()
+		connectPoll = nil
+	}
+	
 	
 	func listen() {
 		if let socket = socket, !socket.isConnected {
 			socket.connect()
 		}
+		startPolling()
 	}
 	
 	func pause() {
+		stopPolling()
 		if let socket = socket, socket.isConnected {
 			socket.disconnect()
 		}

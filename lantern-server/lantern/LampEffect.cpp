@@ -35,21 +35,29 @@ json LampEffect::getState()
 	return {
 		{ "id", mId },
 		{ "name", "Lamp" },
-		{ "parameters", getParameterDescription() }
+		{ "parameters", getParameters() }
 	};
 }
 
 void LampEffect::setState(json state)
 {
-	mColor = JsonConversions::fromJson<Vec3>(state["color"]);
+	json parameters = state["parameters"];
+	
+	mColor = JsonConversions::fromJson<Vec3>(parameters[0]["value"]);
 }
 
-json LampEffect::getParameterDescription()
+json LampEffect::getParameters()
 {
+	if (mParameterIds.size() == 0) {
+		createParameterIds(1);
+	}
+
 	return {
-		{ "color", {
+		{
+			{ "id", mParameterIds[0] },
 			{ "name", "Color" },
-			{ "type", "color" }
-		} },
+			{ "type", "color" },
+			{ "value", JsonConversions::toJson(mColor) }
+		},
 	};
 }

@@ -15,6 +15,7 @@ class Effect: Model, JSONDecodable, Equatable {
 	
 	var id: String?
 	var name: Variable<String> = Variable<String>("")
+	var parameters: Variable<[EffectParameter]> = Variable<[EffectParameter]>([])
 	
 	required init(json: JSON) throws {
 		id = try json.getString(at: "id")
@@ -23,8 +24,11 @@ class Effect: Model, JSONDecodable, Equatable {
 		}
 		else {
 			name.value = try json.getString(at: "name")
+			let jsonParameters = try json.getArray(at: "parameters")
+			for parameterJson in jsonParameters {
+				parameters.value.append(try ParameterType.create(json: parameterJson))
+			}
 		}
-		
 	}
 	
 	override func update(json: JSON) throws {
@@ -33,6 +37,20 @@ class Effect: Model, JSONDecodable, Equatable {
 		}
 		else {
 			name.value = try json.getString(at: "name")
+			let jsonParameters = try json.getArray(at: "parameters")
+			if jsonParameters.count != parameters.value.count {
+				throw Model.ErrorType.mismatchedParameterCount(name.value, jsonParameters.count, parameters.value.count)
+			}
+			var i: Int = 0
+			for parameterJson in jsonParameters {
+				let incomingId = try parameterJson.getString(at: "id")
+				let existingParam = parameters.value[i]
+				if incomingId != existingParam.id {
+					throw Model.ErrorType.mismatchedParameterId(name.value, try parameterJson.getString(at: "name"))
+				}
+				try existingParam.update(json: parameterJson)
+				i += 1
+			}
 		}
 	}
 	

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		070495831E4BECA000270BA9 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070495821E4BECA000270BA9 /* ColorPickerView.swift */; };
 		070495851E4BECA900270BA9 /* FloatPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070495841E4BECA900270BA9 /* FloatPickerView.swift */; };
+		070495871E4C95A800270BA9 /* EffectParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070495861E4C95A800270BA9 /* EffectParameter.swift */; };
+		070495891E4C97EF00270BA9 /* ParameterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070495881E4C97EF00270BA9 /* ParameterType.swift */; };
 		07A97B1D1E4555B200034474 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B1C1E4555B200034474 /* AppDelegate.swift */; };
 		07A97B1F1E4555B200034474 /* MixerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B1E1E4555B200034474 /* MixerViewController.swift */; };
 		07A97B211E4555B200034474 /* EffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B201E4555B200034474 /* EffectViewController.swift */; };
@@ -31,6 +33,8 @@
 /* Begin PBXFileReference section */
 		070495821E4BECA000270BA9 /* ColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		070495841E4BECA900270BA9 /* FloatPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatPickerView.swift; sourceTree = "<group>"; };
+		070495861E4C95A800270BA9 /* EffectParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectParameter.swift; sourceTree = "<group>"; };
+		070495881E4C97EF00270BA9 /* ParameterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterType.swift; sourceTree = "<group>"; };
 		07A97B191E4555B200034474 /* Lantern Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lantern Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07A97B1C1E4555B200034474 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07A97B1E1E4555B200034474 /* MixerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 				07A97B3C1E48FB2A00034474 /* Effect.swift */,
 				07A97B3E1E48FD9700034474 /* Model.swift */,
 				07A97B411E48FE3300034474 /* State.swift */,
+				070495861E4C95A800270BA9 /* EffectParameter.swift */,
+				070495881E4C97EF00270BA9 /* ParameterType.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -293,7 +299,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				07A97B3F1E48FD9700034474 /* Model.swift in Sources */,
+				070495891E4C97EF00270BA9 /* ParameterType.swift in Sources */,
 				07A97B211E4555B200034474 /* EffectViewController.swift in Sources */,
+				070495871E4C95A800270BA9 /* EffectParameter.swift in Sources */,
 				07A97B3B1E48F93B00034474 /* Channel.swift in Sources */,
 				07A97B421E48FE3300034474 /* State.swift in Sources */,
 				07A97B491E49138B00034474 /* Observable.swift in Sources */,

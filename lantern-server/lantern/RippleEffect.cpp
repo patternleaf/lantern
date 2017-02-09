@@ -75,45 +75,55 @@ void RippleEffect::postProcess(const Vec3& rgb, const PixelInfo& p)
 
 json RippleEffect::getState()
 {
-	json origins = json::array();
 	
-	for (auto it = mRippleOrigins.begin(); it != mRippleOrigins.end(); it++) {
-		origins.push_back(JsonConversions::toJson(*it));
-	}
 	
 	return {
 		{ "id", mId },
 		{ "name", "Ripple" },
-		{ "speed", mSpeed },
-		{ "rippleOrigins", origins },
-		{ "parameters", getParameterDescription() }
+		{ "parameters", getParameters() }
 	};
 }
 
 void RippleEffect::setState(json state)
 {
-	mSpeed = state["speed"];
+	json parameters = state["parameters"];
+
+	mSpeed = parameters[0]["value"];
 
 	mRippleOrigins.clear();
 	
-	auto origins = state["rippleOrigins"];
+	auto origins = parameters[1]["value"];
 	
 	for (auto origin: origins) {
 		mRippleOrigins.push_back(JsonConversions::fromJson<Vec3>(origin));
 	}
 }
 
-json RippleEffect::getParameterDescription()
+json RippleEffect::getParameters()
 {
+	json origins = json::array();
+	
+	for (auto it = mRippleOrigins.begin(); it != mRippleOrigins.end(); it++) {
+		origins.push_back(JsonConversions::toJson(*it));
+	}
+	
+	if (mParameterIds.size() == 0) {
+		createParameterIds(2);
+	}
+	
 	return {
-		{ "speed", {
+		{
+			{ "id", mParameterIds[0] },
 			{ "name", "Speed" },
-			{ "type", "float" },
-			{ "range", { 0, 10 } }
-		} },
-		{ "rippleOrigins", {
+			{ "type", "real" },
+			{ "range", { 0, 10 } },
+			{ "value", mSpeed }
+		},
+		{
+			{ "id", mParameterIds[1] },
 			{ "name", "Ripple Origins" },
-			{ "type", "points" }
-		} }
+			{ "type", "points" },
+			{ "value", origins }
+		}
 	};
 }

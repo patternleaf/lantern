@@ -40,8 +40,12 @@ class Mixer : Model {
 						toUpdate.append((matchingChannel!, incomingChannel))
 					}
 					else {
-						if let newChannel = try? Channel(json: incomingChannel) {
+						do {
+							let newChannel = try Channel(json: incomingChannel)
 							toAdd.append(newChannel)
+						}
+						catch {
+							print("Error creating channel: \(error.localizedDescription)")
 						}
 					}
 				}

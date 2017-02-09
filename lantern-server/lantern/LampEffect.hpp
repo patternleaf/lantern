@@ -22,7 +22,7 @@ public:
 	
 	virtual nlohmann::json getState();
 	virtual void setState(nlohmann::json state);
-	virtual nlohmann::json getParameterDescription();
+	virtual nlohmann::json getParameters();
 	
 	Vec3 mColor;
 };

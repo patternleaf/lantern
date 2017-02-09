@@ -37,7 +37,7 @@ json DripEffect::getState()
 	return {
 		{ "id", mId },
 		{ "name", "Drip" },
-		{ "parameters", getParameterDescription() }
+		{ "parameters", getParameters() }
 	};
 }
 
@@ -46,7 +46,7 @@ void DripEffect::setState(json state)
 	
 }
 
-json DripEffect::getParameterDescription()
+json DripEffect::getParameters()
 {
-	return {{}};
+	return json::array();
 }
