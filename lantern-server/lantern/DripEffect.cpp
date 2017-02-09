@@ -27,10 +27,8 @@ void DripEffect::beginFrame(const FrameInfo &f)
 void DripEffect::shader(Vec3& rgb, const PixelInfo &p) const
 {
 	float distance = len(p.point);
-	//		float wave = sinf(3.0 * distance - cycle) + noise3(p.point);
 	float wave = sin(3 * distance + mCycle);
-//	hsv2rgb(rgb, 0.2, 0.3, fmin(1.0, wave));
-	rgb[0] = wave;
+	hsv2rgb(rgb, 0.2, 0.3, wave);
 }
 
 

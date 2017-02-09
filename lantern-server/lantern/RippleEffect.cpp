@@ -46,15 +46,13 @@ void RippleEffect::shader(Vec3& rgb, const PixelInfo &p) const
 			Vec3 contribution;
 			float distance = len(*it - p.point);
 			
-			if (isCheckerCubeId(p.get("cubeId").GetInt())) {
+			if (p.get("checker").GetBool()) {
 				hsv2rgb(contribution, 0.3, 0.5, (sinf(mCycle + (distance * (32 * wavelength) / mMaxDistance)) * 0.6));
 			}
 			else {
 				hsv2rgb(contribution, 0.6, 0.5, (sinf(mCycle + (distance * (32 * wavelength) / mMaxDistance)) * 0.6));
 			}
-			
-//			hsv2rgb(contribution, 0.6, 0.5, (sinf(mCycle + (distance * (32 * wavelength) / mMaxDistance)) * 0.6));
-			
+						
 			rgb[0] += contribution[0];
 			rgb[1] += contribution[1];
 			rgb[2] += contribution[2];
