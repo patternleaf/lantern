@@ -30,6 +30,7 @@ int main(int argc, char **argv)
 	LanternServer server;
 	
 	LanternState state(&server, &mixer);
+	server.setState(&state);
 	
 	DripEffect dripEffect;
 	LampEffect lampEffect;
