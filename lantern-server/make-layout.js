@@ -46,7 +46,7 @@ for (var rowNum = 0; rowNum < cubeOrder.length; rowNum++) {
 		if (cubeVal != null) {
 			cubes.push({ 
 				cubeId: cubeVal, 
-				ltr: (ltrCubes.indexOf(cubeVal) != -1), 
+				ltr: (ltrCubes.indexOf(cubeVal) == -1), 
 				coordinates: { x: colNum, y: rowNum },
 				checker: (checkerCubes.indexOf(cubeVal) != -1)
 			});
