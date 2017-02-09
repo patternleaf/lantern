@@ -7,6 +7,7 @@
 //
 
 #include "LanternServer.hpp"
+#include "LanternState.hpp"
 #include "lib/json.hpp"
 
 using websocketpp::lib::placeholders::_1;
@@ -17,8 +18,8 @@ using websocketpp::lib::bind;
 using namespace nlohmann;
 using namespace std;
 
-LanternServer::LanternServer(LanternState* state, int port)
-: mState(state), mPort(port), mIsStopping(false), mBroadcastSleepDuration(100)
+LanternServer::LanternServer(int port)
+: mPort(port), mIsStopping(false), mBroadcastSleepDuration(100), mState(nullptr)
 {
 	mServerThread = new tthread::thread(&serverThreadFunc, this);
 	mBroadcastThread = new tthread::thread(&broadcastThreadFunc, this);
@@ -34,22 +35,29 @@ LanternServer::~LanternServer()
 	delete mBroadcastThread;
 }
 
+void LanternServer::setState(LanternState* state)
+{
+	mState = state;
+}
+
 void LanternServer::onMessage(websocketpp::connection_hdl hdl, WSServer::message_ptr msg)
 {
-	std::cout << msg->get_payload() << std::endl;
-	json parsedMsg = json::parse(msg->get_payload());
-	if (parsedMsg.is_object()) {
-		if (parsedMsg["command"] == "setState") {
-			mState->setWith(parsedMsg["state"]);
-		}
-		else if (parsedMsg["command"] == "setBroadcastSleepDuration") {
-			mBroadcastSleepDuration = parsedMsg["duration"];
-		}
-		else if (parsedMsg["command"] == "setFader") {
-			int channel = parsedMsg["channel"];
-			float value = parsedMsg["value"];
-			
-			mState->setFader(channel, value);
+	if (mState) {
+		std::cout << msg->get_payload() << std::endl;
+		json parsedMsg = json::parse(msg->get_payload());
+		if (parsedMsg.is_object()) {
+			if (parsedMsg["command"] == "setState") {
+				mState->setWith(parsedMsg["state"]);
+			}
+			else if (parsedMsg["command"] == "setBroadcastSleepDuration") {
+				mBroadcastSleepDuration = parsedMsg["duration"];
+			}
+			else if (parsedMsg["command"] == "setFader") {
+				int channel = parsedMsg["channel"];
+				float value = parsedMsg["value"];
+				
+				mState->setFader(channel, value);
+			}
 		}
 	}
 }
@@ -68,10 +76,11 @@ void LanternServer::onClose(websocketpp::connection_hdl hdl)
 
 void LanternServer::broadcastState()
 {
-	stringstream ss;
-	ss << mState->toJson();
-//	cout << ss.str() << endl;
-	broadcast(ss.str());
+	if (mState) {
+		stringstream ss;
+		ss << mState->toJson();
+		broadcast(ss.str());
+	}
 }
 
 void LanternServer::broadcast(const std::string& message)

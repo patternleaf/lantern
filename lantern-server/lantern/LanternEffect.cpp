@@ -23,3 +23,16 @@ std::string LanternEffect::getId()
 {
 	return mId;
 }
+
+
+void LanternEffect::subscribe(LanternEffect::EventHandler handler)
+{
+	mHandlers.push_back(handler);
+}
+
+void LanternEffect::broadcast(nlohmann::json event)
+{
+	for (auto handler: mHandlers) {
+		handler(event);
+	}
+}

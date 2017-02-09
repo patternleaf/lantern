@@ -27,9 +27,9 @@ int main(int argc, char **argv)
 	
 	LanternMixer mixer;
 	EffectRunner runner;
-	LanternState state(&runner, &mixer);
+	LanternServer server;
 	
-	LanternServer server(&state);
+	LanternState state(&server, &mixer);
 	
 	DripEffect dripEffect;
 	LampEffect lampEffect;
@@ -41,9 +41,9 @@ int main(int argc, char **argv)
 	runner.setMaxFrameRate(100);
 	runner.setLayout("./layout.json");
 	
-	mixer.add(&dripEffect, 0.0f);
+	mixer.add(&dripEffect, 1.0f);
 	mixer.add(&lampEffect, 0.0f);
-	mixer.add(&rippleEffect, 0.5f);
+	mixer.add(&rippleEffect, 0.0f);
 	
 	return runner.main(argc, argv);
 }

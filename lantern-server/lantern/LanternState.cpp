@@ -13,10 +13,21 @@
 using namespace nlohmann;
 using namespace std;
 
-LanternState::LanternState(EffectRunner* runner, LanternMixer* mixer)
-: mRunner(runner), mMixer(mixer)
+LanternState::LanternState(LanternServer* server, LanternMixer* mixer)
+: mServer(server), mMixer(mixer)
 {
-	
+	for (int i = 0; i < mMixer->numChannels(); i++) {
+		LanternEffect* effect = dynamic_cast<LanternEffect*>(mMixer->getEffect(i));
+		if (effect) {
+			effect->subscribe([this, i](json event) {
+				json message;
+				message["event"] = "effectEvent";
+				message["channel"] = i;
+				message["effect"] = event;
+				mServer->broadcast(message);
+			});
+		}
+	}
 }
 
 LanternState::~LanternState()

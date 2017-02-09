@@ -12,7 +12,7 @@
 using namespace nlohmann;
 
 DripEffect::DripEffect()
-: mCycle(0)
+: mCycle(0), mBaseColor(0.3, 0.5, 0.9)
 {
 	
 }
@@ -21,15 +21,15 @@ DripEffect::DripEffect()
 void DripEffect::beginFrame(const FrameInfo &f)
 {
 	const float speed = 1.0;
-	mCycle = fmodf(mCycle + f.timeDelta * speed, 2 * M_PI);
+	mCycle = fmod(mCycle + f.timeDelta * speed, 2 * M_PI);
 }
 
 void DripEffect::shader(Vec3& rgb, const PixelInfo &p) const
 {
 	float distance = len(p.point);
 	//		float wave = sinf(3.0 * distance - cycle) + noise3(p.point);
-	float wave = sinf(3 * distance + mCycle);
-	hsv2rgb(rgb, 0.2, 0.3, fminf(0.6, abs(wave)));
+	float wave = sin(3 * distance + mCycle);
+	hsv2rgb(rgb, 0.2, 0.3, fmin(0.6, abs(wave)));
 }
 
 

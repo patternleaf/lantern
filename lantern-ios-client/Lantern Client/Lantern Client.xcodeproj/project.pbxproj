@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070495831E4BECA000270BA9 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070495821E4BECA000270BA9 /* ColorPickerView.swift */; };
+		070495851E4BECA900270BA9 /* FloatPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070495841E4BECA900270BA9 /* FloatPickerView.swift */; };
 		07A97B1D1E4555B200034474 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B1C1E4555B200034474 /* AppDelegate.swift */; };
 		07A97B1F1E4555B200034474 /* MixerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B1E1E4555B200034474 /* MixerViewController.swift */; };
 		07A97B211E4555B200034474 /* EffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B201E4555B200034474 /* EffectViewController.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		070495821E4BECA000270BA9 /* ColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		070495841E4BECA900270BA9 /* FloatPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatPickerView.swift; sourceTree = "<group>"; };
 		07A97B191E4555B200034474 /* Lantern Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lantern Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07A97B1C1E4555B200034474 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07A97B1E1E4555B200034474 /* MixerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +67,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		070495811E4BE66E00270BA9 /* ControlViews */ = {
+			isa = PBXGroup;
+			children = (
+				070495821E4BECA000270BA9 /* ColorPickerView.swift */,
+				070495841E4BECA900270BA9 /* FloatPickerView.swift */,
+			);
+			name = ControlViews;
+			sourceTree = "<group>";
+		};
 		07A97B101E4555B200034474 = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +113,7 @@
 		07A97B301E45576500034474 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				070495811E4BE66E00270BA9 /* ControlViews */,
 				07A97B1E1E4555B200034474 /* MixerViewController.swift */,
 				07A97B201E4555B200034474 /* EffectViewController.swift */,
 				07A97B311E45578000034474 /* MixerView.swift */,
@@ -287,8 +301,10 @@
 				07A97B1D1E4555B200034474 /* AppDelegate.swift in Sources */,
 				07A97B321E45578000034474 /* MixerView.swift in Sources */,
 				07A97B3D1E48FB2A00034474 /* Effect.swift in Sources */,
+				070495851E4BECA900270BA9 /* FloatPickerView.swift in Sources */,
 				07A97B391E48F93300034474 /* Mixer.swift in Sources */,
 				07A97B341E45578C00034474 /* ChannelStripView.swift in Sources */,
+				070495831E4BECA000270BA9 /* ColorPickerView.swift in Sources */,
 				07A97B1F1E4555B200034474 /* MixerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

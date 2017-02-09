@@ -14,6 +14,10 @@ class MixerViewController: UITableViewController {
 
 	var disposeBag: DisposeBag = DisposeBag()
 
+	var selectedChannel: ControlEvent<IndexPath> {
+		return tableView.rx.itemSelected
+	}
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
@@ -31,9 +35,9 @@ class MixerViewController: UITableViewController {
 			}
 			.addDisposableTo(disposeBag)
 		
-		tableView.rx.itemSelected.subscribe(onNext: { value in
-			
-		}).addDisposableTo(disposeBag)
+//		tableView.rx.itemSelected.subscribe(onNext: { value in
+//			
+//		}).addDisposableTo(disposeBag)
 	}
 
 	override func didReceiveMemoryWarning() {

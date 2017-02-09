@@ -16,12 +16,13 @@
 #include "JsonConversions.hpp"
 
 #include "LanternMixer.hpp"
+#include "LanternServer.hpp"
 
 class LanternState {
 public:
-	LanternState(EffectRunner* runner, LanternMixer* mixer);
+	LanternState(LanternServer* server, LanternMixer* mixer);
 	~LanternState();
-		
+	
 	void setWith(nlohmann::json json);
 	
 	void setFader(int channel, float value);
@@ -30,7 +31,7 @@ public:
 	nlohmann::json toJson();
 	
 private:
-	EffectRunner* mRunner;
+	LanternServer* mServer;
 	LanternMixer* mMixer;
 	
 	std::mutex mStateMutex;

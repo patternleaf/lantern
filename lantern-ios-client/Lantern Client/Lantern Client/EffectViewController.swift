@@ -20,6 +20,14 @@ class EffectViewController: UIViewController {
 		// Dispose of any resources that can be recreated.
 	}
 
+	var controlViews: [UIView] = []
+
+	func showEffect(atIndex: Int) {
+		for view in controlViews {
+			view.removeFromSuperview()
+		}
+		controlViews = []
+	}
 
 }
 

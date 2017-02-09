@@ -18,7 +18,7 @@ using namespace nlohmann;
 using namespace std;
 
 RippleEffect::RippleEffect()
-: LanternEffect(), mMaxDistance(0), mSpeed(1)
+: LanternEffect(), mMaxDistance(0), mSpeed(1), mCycle(0)
 {
 	for (int i = 0; i < 3; i++) {
 		mRippleOrigins.push_back(Vec3(rand() / (float)RAND_MAX, rand() / (float)RAND_MAX, 0));
@@ -105,7 +105,7 @@ void RippleEffect::setState(json state)
 	}
 }
 
-nlohmann::json RippleEffect::getParameterDescription()
+json RippleEffect::getParameterDescription()
 {
 	return {
 		{ "speed", {

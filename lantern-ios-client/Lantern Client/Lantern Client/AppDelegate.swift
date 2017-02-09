@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,9 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var client: LanternClient?
 
+	var disposeBag: DisposeBag = DisposeBag()
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
+		
+		let splitViewController = self.window!.rootViewController as! UISplitViewController
+		let leftNavController = splitViewController.viewControllers.first as! UINavigationController
+		let mixerViewController = leftNavController.topViewController as! MixerViewController
+		let effectViewController = splitViewController.viewControllers.last as! EffectViewController
+		
+		mixerViewController.selectedChannel.subscribe(onNext: { indexPath in
+			effectViewController.showEffect(atIndex: indexPath.row)
+		}).addDisposableTo(disposeBag)
 		
 		return true
 	}

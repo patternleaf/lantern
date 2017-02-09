@@ -22,8 +22,18 @@ public:
 	virtual nlohmann::json getParameterDescription() = 0;
 	
 	std::string getId();
+	
+	typedef std::function<void(nlohmann::json event)> EventHandler;
+	
+	void subscribe(EventHandler handler);
+	
 protected:
+
+	void broadcast(nlohmann::json event);
+
 	std::string mId;
+	
+	std::vector<EventHandler> mHandlers;
 };
 
 #endif /* LanternEffect_hpp */

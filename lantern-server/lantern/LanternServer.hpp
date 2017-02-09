@@ -16,15 +16,18 @@
 #include "websocketpp/config/asio.hpp"
 #include "lib/tinythread.h"
 
-#include "LanternState.hpp"
+
+class LanternState;
 
 typedef websocketpp::server<websocketpp::config::asio> WSServer;
 
 class LanternServer {
 	
 public:
-	LanternServer(LanternState* state, int port = 9002);
+	LanternServer(int port = 9002);
 	~LanternServer();
+	
+	void setState(LanternState* state);
 	
 	void broadcastState();
 	void broadcast(const std::string& message);
