@@ -20,7 +20,6 @@ class Mixer : Model {
 		super.init()
 	}
 	
-	
 	override func update(json: JSON) {
 		
 		if let incomingChannels = try? json.getArray(at: "channels") {

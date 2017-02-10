@@ -11,7 +11,7 @@ import Freddy
 import RxSwift
 import RxCocoa
 
-class Effect: Model, JSONDecodable, Equatable {
+class Effect: Model, JSONDecodable, JSONEncodable, Equatable {
 	
 	var id: String?
 	var name: Variable<String> = Variable<String>("")
@@ -19,6 +19,7 @@ class Effect: Model, JSONDecodable, Equatable {
 	
 	required init(json: JSON) throws {
 		id = try json.getString(at: "id")
+		super.init()
 		if id == "unknown-effect" {
 			name.value = "Unknown Effect"
 		}
@@ -26,7 +27,8 @@ class Effect: Model, JSONDecodable, Equatable {
 			name.value = try json.getString(at: "name")
 			let jsonParameters = try json.getArray(at: "parameters")
 			for parameterJson in jsonParameters {
-				parameters.value.append(try ParameterType.create(json: parameterJson))
+				let parameter = try ParameterType.create(json: parameterJson, effect: self)
+				parameters.value.append(parameter)
 			}
 		}
 	}
@@ -43,15 +45,24 @@ class Effect: Model, JSONDecodable, Equatable {
 			}
 			var i: Int = 0
 			for parameterJson in jsonParameters {
-				let incomingId = try parameterJson.getString(at: "id")
+				//let incomingId = try parameterJson.getString(at: "id")
 				let existingParam = parameters.value[i]
-				if incomingId != existingParam.id {
-					throw Model.ErrorType.mismatchedParameterId(name.value, try parameterJson.getString(at: "name"))
-				}
+//				if incomingId != existingParam.id {
+//					throw Model.ErrorType.mismatchedParameterId(name.value, try parameterJson.getString(at: "name"))
+//				}
 				try existingParam.update(json: parameterJson)
 				i += 1
 			}
 		}
+	}
+	
+	func toJSON() -> JSON {
+		let parametersJson = JSON.array(parameters.value.map { $0.toJSON() })
+		return .dictionary([
+			"id": .string(id!),
+			"name": .string(name.value),
+			"parameters": parametersJson
+		])
 	}
 	
 	static func ==(lhs: Effect, rhs: Effect) -> Bool {

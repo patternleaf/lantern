@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070495921E4D43EB00270BA9 /* EffectParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070495901E4D43EB00270BA9 /* EffectParameter.cpp */; };
+		070495951E4D46B200270BA9 /* EffectRegistry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070495931E4D46B200270BA9 /* EffectRegistry.cpp */; };
 		074E3BF81E4A8E9C0077BF8D /* DripEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 074E3BF61E4A8E9C0077BF8D /* DripEffect.cpp */; };
 		0789DE0E1E3814A2006F4C65 /* LanternState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0789DE0C1E3814A2006F4C65 /* LanternState.cpp */; };
 		0789DE111E3817C6006F4C65 /* LanternEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0789DE0F1E3817C6006F4C65 /* LanternEffect.cpp */; };
@@ -36,6 +38,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		070495901E4D43EB00270BA9 /* EffectParameter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectParameter.cpp; sourceTree = "<group>"; };
+		070495911E4D43EB00270BA9 /* EffectParameter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EffectParameter.hpp; sourceTree = "<group>"; };
+		070495931E4D46B200270BA9 /* EffectRegistry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectRegistry.cpp; sourceTree = "<group>"; };
+		070495941E4D46B200270BA9 /* EffectRegistry.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EffectRegistry.hpp; sourceTree = "<group>"; };
 		074E3BF61E4A8E9C0077BF8D /* DripEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DripEffect.cpp; sourceTree = "<group>"; };
 		074E3BF71E4A8E9C0077BF8D /* DripEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DripEffect.hpp; sourceTree = "<group>"; };
 		0789DE0C1E3814A2006F4C65 /* LanternState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LanternState.cpp; sourceTree = "<group>"; };
@@ -217,6 +223,10 @@
 				07E6742B1E2D7D690040ECD3 /* LampEffect.hpp */,
 				074E3BF61E4A8E9C0077BF8D /* DripEffect.cpp */,
 				074E3BF71E4A8E9C0077BF8D /* DripEffect.hpp */,
+				070495901E4D43EB00270BA9 /* EffectParameter.cpp */,
+				070495911E4D43EB00270BA9 /* EffectParameter.hpp */,
+				070495931E4D46B200270BA9 /* EffectRegistry.cpp */,
+				070495941E4D46B200270BA9 /* EffectRegistry.hpp */,
 			);
 			name = Effects;
 			sourceTree = "<group>";
@@ -672,6 +682,7 @@
 				07E674241E2D63C10040ECD3 /* README.md in Sources */,
 				07E674A91E2F0ECD0040ECD3 /* LanternServer.cpp in Sources */,
 				07E674231E2D63C10040ECD3 /* README.md in Sources */,
+				070495921E4D43EB00270BA9 /* EffectParameter.cpp in Sources */,
 				07E674311E2DD78F0040ECD3 /* RippleEffect.cpp in Sources */,
 				07E6742C1E2D7D690040ECD3 /* LampEffect.cpp in Sources */,
 				07E674281E2D65B60040ECD3 /* Makefile in Sources */,
@@ -679,6 +690,7 @@
 				074E3BF81E4A8E9C0077BF8D /* DripEffect.cpp in Sources */,
 				0789DE0E1E3814A2006F4C65 /* LanternState.cpp in Sources */,
 				07E673F21E2D63950040ECD3 /* main.cpp in Sources */,
+				070495951E4D46B200270BA9 /* EffectRegistry.cpp in Sources */,
 				0789DE111E3817C6006F4C65 /* LanternEffect.cpp in Sources */,
 				0789DE141E395F82006F4C65 /* JsonConversions.cpp in Sources */,
 			);

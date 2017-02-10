@@ -18,6 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var disposeBag: DisposeBag = DisposeBag()
 
+	func printFonts() {
+		for familyName in UIFont.familyNames {
+			print("------------------------------")
+			print("Font Family Name = [\(familyName)]")
+			let names = UIFont.fontNames(forFamilyName: familyName)
+			print("Font Names = [\(names)]")
+		}
+	}
+
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		
@@ -29,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		mixerViewController.selectedChannel.subscribe(onNext: { indexPath in
 			effectViewController.showEffect(atIndex: indexPath.row)
 		}).addDisposableTo(disposeBag)
+		
+//		printFonts()
 		
 		return true
 	}

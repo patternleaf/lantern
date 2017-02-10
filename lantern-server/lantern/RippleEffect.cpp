@@ -13,6 +13,7 @@
 #include "../lib/noise.h"
 #include "CheckerCubeIds.h"
 #include "LanternState.hpp"
+#include "EffectRegistry.hpp"
 
 using namespace nlohmann;
 using namespace std;
@@ -24,13 +25,17 @@ RippleEffect::RippleEffect()
 		mRippleOrigins.push_back(Vec3(rand() / (float)RAND_MAX, rand() / (float)RAND_MAX, 0));
 		std::cout << mRippleOrigins[i][0] << ", " << mRippleOrigins[i][1] << std::endl;
 	}
-	
 }
 
 
 void RippleEffect::beginFrame(const FrameInfo &f)
 {
+	LanternEffect::beginFrame(f);
+	
 	mCycle += f.timeDelta * mSpeed;
+	if (mCycle > MAXFLOAT) {
+		mCycle = 0;
+	}
 //	for (auto it = mRippleOrigins.begin(); it != mRippleOrigins.end(); it++) {
 //		(*it)[0] += noise3((*it)) * 0.6;
 //		(*it)[1] += noise2(Vec2((*it)[0], (*it)[1])) * 0.6;
@@ -75,8 +80,6 @@ void RippleEffect::postProcess(const Vec3& rgb, const PixelInfo& p)
 
 json RippleEffect::getState()
 {
-	
-	
 	return {
 		{ "id", mId },
 		{ "name", "Ripple" },
@@ -88,13 +91,14 @@ void RippleEffect::setState(json state)
 {
 	json parameters = state["parameters"];
 
-	mSpeed = parameters[0]["value"];
+	mSpeed = parameters[0]["real"];
 
 	mRippleOrigins.clear();
 	
 	auto origins = parameters[1]["value"];
 	
 	for (auto origin: origins) {
+		cout << "origin: " << origin << endl;
 		mRippleOrigins.push_back(JsonConversions::fromJson<Vec3>(origin));
 	}
 }
@@ -107,20 +111,14 @@ json RippleEffect::getParameters()
 		origins.push_back(JsonConversions::toJson(*it));
 	}
 	
-	if (mParameterIds.size() == 0) {
-		createParameterIds(2);
-	}
-	
 	return {
 		{
-			{ "id", mParameterIds[0] },
 			{ "name", "Speed" },
 			{ "type", "real" },
 			{ "range", { 0, 10 } },
 			{ "value", mSpeed }
 		},
 		{
-			{ "id", mParameterIds[1] },
 			{ "name", "Ripple Origins" },
 			{ "type", "points" },
 			{ "value", origins }

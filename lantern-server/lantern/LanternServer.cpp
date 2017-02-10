@@ -58,6 +58,9 @@ void LanternServer::onMessage(websocketpp::connection_hdl hdl, WSServer::message
 				
 				mState->setFader(channel, value);
 			}
+			else if (parsedMsg["command"] == "setEffect") {
+				mState->setEffect(parsedMsg["effectId"], parsedMsg["effect"]);
+			}
 		}
 	}
 }

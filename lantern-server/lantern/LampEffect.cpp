@@ -21,6 +21,7 @@ LampEffect::LampEffect()
 
 void LampEffect::beginFrame(const FrameInfo &f)
 {
+	LanternEffect::beginFrame(f);
 }
 
 void LampEffect::shader(Vec3& rgb, const PixelInfo &p) const
@@ -48,13 +49,8 @@ void LampEffect::setState(json state)
 
 json LampEffect::getParameters()
 {
-	if (mParameterIds.size() == 0) {
-		createParameterIds(1);
-	}
-
 	return {
 		{
-			{ "id", mParameterIds[0] },
 			{ "name", "Color" },
 			{ "type", "color" },
 			{ "value", JsonConversions::toJson(mColor) }

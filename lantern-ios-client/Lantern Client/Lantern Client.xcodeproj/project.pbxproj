@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		070495831E4BECA000270BA9 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070495821E4BECA000270BA9 /* ColorPickerView.swift */; };
-		070495851E4BECA900270BA9 /* FloatPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070495841E4BECA900270BA9 /* FloatPickerView.swift */; };
+		070495831E4BECA000270BA9 /* ColorParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070495821E4BECA000270BA9 /* ColorParameterView.swift */; };
+		070495851E4BECA900270BA9 /* RealParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070495841E4BECA900270BA9 /* RealParameterView.swift */; };
 		070495871E4C95A800270BA9 /* EffectParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070495861E4C95A800270BA9 /* EffectParameter.swift */; };
 		070495891E4C97EF00270BA9 /* ParameterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070495881E4C97EF00270BA9 /* ParameterType.swift */; };
+		0704958B1E4CAD2C00270BA9 /* ParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704958A1E4CAD2C00270BA9 /* ParameterView.swift */; };
+		0704958D1E4CB0CE00270BA9 /* PointsParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704958C1E4CB0CE00270BA9 /* PointsParameterView.swift */; };
+		0704958F1E4CF15A00270BA9 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704958E1E4CF15A00270BA9 /* Style.swift */; };
 		07A97B1D1E4555B200034474 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B1C1E4555B200034474 /* AppDelegate.swift */; };
 		07A97B1F1E4555B200034474 /* MixerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B1E1E4555B200034474 /* MixerViewController.swift */; };
 		07A97B211E4555B200034474 /* EffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B201E4555B200034474 /* EffectViewController.swift */; };
@@ -31,10 +34,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		070495821E4BECA000270BA9 /* ColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
-		070495841E4BECA900270BA9 /* FloatPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatPickerView.swift; sourceTree = "<group>"; };
+		070495821E4BECA000270BA9 /* ColorParameterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorParameterView.swift; sourceTree = "<group>"; };
+		070495841E4BECA900270BA9 /* RealParameterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealParameterView.swift; sourceTree = "<group>"; };
 		070495861E4C95A800270BA9 /* EffectParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectParameter.swift; sourceTree = "<group>"; };
 		070495881E4C97EF00270BA9 /* ParameterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterType.swift; sourceTree = "<group>"; };
+		0704958A1E4CAD2C00270BA9 /* ParameterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterView.swift; sourceTree = "<group>"; };
+		0704958C1E4CB0CE00270BA9 /* PointsParameterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsParameterView.swift; sourceTree = "<group>"; };
+		0704958E1E4CF15A00270BA9 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		07A97B191E4555B200034474 /* Lantern Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lantern Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07A97B1C1E4555B200034474 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07A97B1E1E4555B200034474 /* MixerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerViewController.swift; sourceTree = "<group>"; };
@@ -71,13 +77,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		070495811E4BE66E00270BA9 /* ControlViews */ = {
+		070495811E4BE66E00270BA9 /* ParameterViews */ = {
 			isa = PBXGroup;
 			children = (
-				070495821E4BECA000270BA9 /* ColorPickerView.swift */,
-				070495841E4BECA900270BA9 /* FloatPickerView.swift */,
+				0704958A1E4CAD2C00270BA9 /* ParameterView.swift */,
+				070495821E4BECA000270BA9 /* ColorParameterView.swift */,
+				070495841E4BECA900270BA9 /* RealParameterView.swift */,
+				0704958C1E4CB0CE00270BA9 /* PointsParameterView.swift */,
 			);
-			name = ControlViews;
+			name = ParameterViews;
 			sourceTree = "<group>";
 		};
 		07A97B101E4555B200034474 = {
@@ -117,7 +125,7 @@
 		07A97B301E45576500034474 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				070495811E4BE66E00270BA9 /* ControlViews */,
+				070495811E4BE66E00270BA9 /* ParameterViews */,
 				07A97B1E1E4555B200034474 /* MixerViewController.swift */,
 				07A97B201E4555B200034474 /* EffectViewController.swift */,
 				07A97B311E45578000034474 /* MixerView.swift */,
@@ -152,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				07A97B481E49138B00034474 /* Observable.swift */,
+				0704958E1E4CF15A00270BA9 /* Style.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -299,20 +308,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				07A97B3F1E48FD9700034474 /* Model.swift in Sources */,
+				0704958F1E4CF15A00270BA9 /* Style.swift in Sources */,
 				070495891E4C97EF00270BA9 /* ParameterType.swift in Sources */,
 				07A97B211E4555B200034474 /* EffectViewController.swift in Sources */,
 				070495871E4C95A800270BA9 /* EffectParameter.swift in Sources */,
 				07A97B3B1E48F93B00034474 /* Channel.swift in Sources */,
+				0704958D1E4CB0CE00270BA9 /* PointsParameterView.swift in Sources */,
 				07A97B421E48FE3300034474 /* State.swift in Sources */,
 				07A97B491E49138B00034474 /* Observable.swift in Sources */,
+				0704958B1E4CAD2C00270BA9 /* ParameterView.swift in Sources */,
 				07A97B441E48FEC100034474 /* LanternClient.swift in Sources */,
 				07A97B1D1E4555B200034474 /* AppDelegate.swift in Sources */,
 				07A97B321E45578000034474 /* MixerView.swift in Sources */,
 				07A97B3D1E48FB2A00034474 /* Effect.swift in Sources */,
-				070495851E4BECA900270BA9 /* FloatPickerView.swift in Sources */,
+				070495851E4BECA900270BA9 /* RealParameterView.swift in Sources */,
 				07A97B391E48F93300034474 /* Mixer.swift in Sources */,
 				07A97B341E45578C00034474 /* ChannelStripView.swift in Sources */,
-				070495831E4BECA000270BA9 /* ColorPickerView.swift in Sources */,
+				070495831E4BECA000270BA9 /* ColorParameterView.swift in Sources */,
 				07A97B1F1E4555B200034474 /* MixerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

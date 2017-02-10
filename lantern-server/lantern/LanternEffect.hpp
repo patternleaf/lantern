@@ -11,15 +11,20 @@
 
 #include <stdio.h>
 #include "lib/effect.h"
+#include "EffectParameter.hpp"
 #include "JsonConversions.hpp"
 
 class LanternEffect : public Effect {
 public:
 	LanternEffect();
+	~LanternEffect();
 
 	virtual nlohmann::json getState() = 0;
 	virtual void setState(nlohmann::json state) = 0;
 	virtual nlohmann::json getParameters() = 0;
+	
+	void cacheStateUpdate(nlohmann::json state);
+	virtual void beginFrame(const FrameInfo &f);
 	
 	std::string getId();
 	
@@ -29,11 +34,9 @@ public:
 	
 protected:
 
-	// cheesy work-around until first-class parameter types?
-	std::vector<std::string> mParameterIds;
-	void createParameterIds(int count);
-
 	void broadcast(nlohmann::json event);
+
+	nlohmann::json mLatestUpdate;
 
 	std::string mId;
 	

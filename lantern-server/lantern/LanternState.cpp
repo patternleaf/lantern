@@ -9,6 +9,7 @@
 #include <sstream>
 #include "LanternState.hpp"
 #include "LanternEffect.hpp"
+#include "EffectRegistry.hpp"
 
 using namespace nlohmann;
 using namespace std;
@@ -34,9 +35,25 @@ LanternState::~LanternState()
 {
 	
 }
+
 void LanternState::setFader(int channel, float value)
 {
+	lock_guard<mutex> lock(mStateMutex);
+	
 	mMixer->setFader(channel, value);
+}
+
+void LanternState::setEffect(string id, json effectJson)
+{
+	lock_guard<mutex> lock(mStateMutex);
+	
+	LanternEffect* effect = EffectRegistry::shared()->findEffect(id);
+	if (effect) {
+		effect->cacheStateUpdate(effectJson);
+	}
+	else {
+		cout << "No effect found with id " << id << endl;
+	}
 }
 
 void LanternState::setWith(json json)

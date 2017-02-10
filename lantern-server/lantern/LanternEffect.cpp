@@ -7,21 +7,21 @@
 //
 
 #include "LanternEffect.hpp"
+#include "EffectRegistry.hpp"
 #include <uuid/uuid.h>
 
 using namespace std;
-
-static string makeUuid() {
-	uuid_t uuid;
-	char s[37];
-	uuid_generate_random(uuid);
-	uuid_unparse(uuid, s);
-	return string(s);
-}
+using namespace nlohmann;
 
 LanternEffect::LanternEffect()
 {
-	mId = makeUuid();
+	mId = EffectRegistry::makeUuid();
+	EffectRegistry::shared()->registerEffect(this);
+}
+
+LanternEffect::~LanternEffect()
+{
+	EffectRegistry::shared()->unregisterEffect(this);
 }
 
 string LanternEffect::getId()
@@ -29,6 +29,18 @@ string LanternEffect::getId()
 	return mId;
 }
 
+void LanternEffect::cacheStateUpdate(json state)
+{
+	mLatestUpdate = state;
+}
+
+void LanternEffect::beginFrame(const FrameInfo &f)
+{
+	if (mLatestUpdate.is_object()) {
+		this->setState(mLatestUpdate);
+		mLatestUpdate = "null"_json;
+	}
+}
 
 void LanternEffect::subscribe(LanternEffect::EventHandler handler)
 {
@@ -39,12 +51,5 @@ void LanternEffect::broadcast(nlohmann::json event)
 {
 	for (auto handler: mHandlers) {
 		handler(event);
-	}
-}
-
-void LanternEffect::createParameterIds(int count)
-{
-	for (int i = 0; i < count; i++) {
-		mParameterIds.push_back(makeUuid());
 	}
 }

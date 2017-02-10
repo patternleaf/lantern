@@ -26,7 +26,7 @@ public:
 	void setWith(nlohmann::json json);
 	
 	void setFader(int channel, float value);
-	
+	void setEffect(std::string id, nlohmann::json effect);
 	
 	nlohmann::json toJson();
 	

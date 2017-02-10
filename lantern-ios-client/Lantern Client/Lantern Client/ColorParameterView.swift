@@ -1,5 +1,5 @@
 //
-//  FloatPickerView.swift
+//  ColorParameterView.swift
 //  Lantern Client
 //
 //  Created by Eric Miller on 2/8/17.

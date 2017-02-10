@@ -20,6 +20,8 @@ DripEffect::DripEffect()
 
 void DripEffect::beginFrame(const FrameInfo &f)
 {
+	LanternEffect::beginFrame(f);
+	
 	const float speed = 1.0;
 	mCycle = fmod(mCycle + f.timeDelta * speed, 2 * M_PI);
 }
