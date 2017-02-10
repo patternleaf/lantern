@@ -7,6 +7,7 @@
 //
 
 #include <sstream>
+#include <limits>
 
 #include "RippleEffect.hpp"
 #include "../lib/color.h"
@@ -33,7 +34,7 @@ void RippleEffect::beginFrame(const FrameInfo &f)
 	LanternEffect::beginFrame(f);
 	
 	mCycle += f.timeDelta * mSpeed;
-	if (mCycle > MAXFLOAT) {
+	if (mCycle > std::numeric_limits<float>::max()) {
 		mCycle = 0;
 	}
 //	for (auto it = mRippleOrigins.begin(); it != mRippleOrigins.end(); it++) {
