@@ -17,7 +17,7 @@ class RealParameterView: ParameterView {
 	
 	init(parameter: RealParameter) {
 	
-		label = UILabel(frame: CGRect(x: 280, y: 70, width: 200, height: 200))
+		label = UILabel(frame: CGRect(x: 300, y: 70, width: 200, height: 200))
 		slider = CircularSlider(frame: CGRect(x: 20, y: 80, width: 200, height: 200))
 		slider.backgroundColor = UIColor.clear
 		slider.diskColor = UIColor.clear
@@ -28,7 +28,7 @@ class RealParameterView: ParameterView {
 		slider.endThumbStrokeHighlightedColor = Style.Color.highlight
 		slider.lineWidth = 5
 	
-		label.textColor = Style.Color.mid
+		label.textColor = Style.Color.highlight
 		label.font = Style.Font.bigControl
 	
 		super.init(parameter: parameter)

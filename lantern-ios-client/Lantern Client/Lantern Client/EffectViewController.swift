@@ -12,19 +12,12 @@ class EffectViewController: UIViewController {
 
 	var stackView: UIStackView!
 	var scrollView: UIScrollView!
-//	var contentView: UIView!
+	var noParametersLabel: UILabel!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
-//		stackView.backgroundColor = UIColor.purple
-		
-//		stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-////		stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
-//		stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-//		stackView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-
 		scrollView = UIScrollView()
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(scrollView)
@@ -39,16 +32,21 @@ class EffectViewController: UIViewController {
 		print("width: ", view.frame.width)
 		scrollView.contentSize.width = view.frame.width / 2
 		
-//		stackView = UIStackView()
-//		stackView.translatesAutoresizingMaskIntoConstraints = false
-//		stackView.axis = .vertical
-////		stackView.distribution = .equalSpacing
-//		stackView.spacing = 8
-//		scrollView.addSubview(stackView)
-//		
-//		stackView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-//		stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-//		stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
+		noParametersLabel = UILabel()
+		noParametersLabel.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(noParametersLabel)
+		
+		
+		noParametersLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+		noParametersLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
+		noParametersLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+		noParametersLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+		
+		noParametersLabel.font = Style.Font.bigControl
+		noParametersLabel.textColor = Style.Color.light
+		noParametersLabel.text = "No Parameters (Yet)"
+		noParametersLabel.textAlignment = .center
+		noParametersLabel.isHidden = true
 		
 	}
 
@@ -58,9 +56,7 @@ class EffectViewController: UIViewController {
 	}
 
 	func showEffect(atIndex effectIndex: Int) {
-//		for view in stackView.arrangedSubviews {
-//			view.removeFromSuperview()
-//		}
+
 		for view in scrollView.subviews {
 			view.removeFromSuperview()
 		}
@@ -90,6 +86,14 @@ class EffectViewController: UIViewController {
 
 				}
 			}
+			
+			if effect.parameters.value.count == 0 {
+				noParametersLabel.isHidden = false
+			}
+			else {
+				noParametersLabel.isHidden = true
+			}
+			
 			scrollView.contentSize.height = height
 		}
 		
@@ -99,7 +103,7 @@ class EffectViewController: UIViewController {
 	func makeParameterView(for parameter: EffectParameter) -> ParameterView? {
 		if let type = parameter.type {
 			switch type {
-			case .color: return ParameterView(parameter: parameter)
+			case .color: return ColorParameterView(parameter: parameter as! ColorParameter)
 			case .real: return RealParameterView(parameter: parameter as! RealParameter)
 			case .points: return ParameterView(parameter: parameter)
 			}

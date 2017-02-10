@@ -44,7 +44,7 @@ void LampEffect::setState(json state)
 {
 	json parameters = state["parameters"];
 	
-	mColor = JsonConversions::fromJson<Vec3>(parameters[0]["value"]);
+	mColor = JsonConversions::fromJson<Vec3>(parameters[0]["color"]);
 }
 
 json LampEffect::getParameters()
