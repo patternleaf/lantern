@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		070495921E4D43EB00270BA9 /* EffectParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070495901E4D43EB00270BA9 /* EffectParameter.cpp */; };
 		070495951E4D46B200270BA9 /* EffectRegistry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070495931E4D46B200270BA9 /* EffectRegistry.cpp */; };
+		070495981E4D6DB400270BA9 /* ParticleTrailEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070495961E4D6DB400270BA9 /* ParticleTrailEffect.cpp */; };
+		0704959B1E4D704D00270BA9 /* RingsEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070495991E4D704D00270BA9 /* RingsEffect.cpp */; };
 		074E3BF81E4A8E9C0077BF8D /* DripEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 074E3BF61E4A8E9C0077BF8D /* DripEffect.cpp */; };
 		0789DE0E1E3814A2006F4C65 /* LanternState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0789DE0C1E3814A2006F4C65 /* LanternState.cpp */; };
 		0789DE111E3817C6006F4C65 /* LanternEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0789DE0F1E3817C6006F4C65 /* LanternEffect.cpp */; };
@@ -42,6 +44,13 @@
 		070495911E4D43EB00270BA9 /* EffectParameter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EffectParameter.hpp; sourceTree = "<group>"; };
 		070495931E4D46B200270BA9 /* EffectRegistry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectRegistry.cpp; sourceTree = "<group>"; };
 		070495941E4D46B200270BA9 /* EffectRegistry.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EffectRegistry.hpp; sourceTree = "<group>"; };
+		070495961E4D6DB400270BA9 /* ParticleTrailEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleTrailEffect.cpp; sourceTree = "<group>"; };
+		070495971E4D6DB400270BA9 /* ParticleTrailEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParticleTrailEffect.hpp; sourceTree = "<group>"; };
+		070495991E4D704D00270BA9 /* RingsEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RingsEffect.cpp; sourceTree = "<group>"; };
+		0704959A1E4D704D00270BA9 /* RingsEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RingsEffect.hpp; sourceTree = "<group>"; };
+		0704959D1E4D740D00270BA9 /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot.png; sourceTree = "<group>"; };
+		0704959E1E4D740D00270BA9 /* glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glass.png; sourceTree = "<group>"; };
+		0704959F1E4D740D00270BA9 /* sky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sky.png; sourceTree = "<group>"; };
 		074E3BF61E4A8E9C0077BF8D /* DripEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DripEffect.cpp; sourceTree = "<group>"; };
 		074E3BF71E4A8E9C0077BF8D /* DripEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DripEffect.hpp; sourceTree = "<group>"; };
 		0789DE0C1E3814A2006F4C65 /* LanternState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LanternState.cpp; sourceTree = "<group>"; };
@@ -212,6 +221,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0704959C1E4D740D00270BA9 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				0704959D1E4D740D00270BA9 /* dot.png */,
+				0704959E1E4D740D00270BA9 /* glass.png */,
+				0704959F1E4D740D00270BA9 /* sky.png */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
 		074E3BF51E4A8E740077BF8D /* Effects */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +246,10 @@
 				070495911E4D43EB00270BA9 /* EffectParameter.hpp */,
 				070495931E4D46B200270BA9 /* EffectRegistry.cpp */,
 				070495941E4D46B200270BA9 /* EffectRegistry.hpp */,
+				070495961E4D6DB400270BA9 /* ParticleTrailEffect.cpp */,
+				070495971E4D6DB400270BA9 /* ParticleTrailEffect.hpp */,
+				070495991E4D704D00270BA9 /* RingsEffect.cpp */,
+				0704959A1E4D704D00270BA9 /* RingsEffect.hpp */,
 			);
 			name = Effects;
 			sourceTree = "<group>";
@@ -250,6 +273,7 @@
 		07E673F01E2D63950040ECD3 /* lantern-server */ = {
 			isa = PBXGroup;
 			children = (
+				0704959C1E4D740D00270BA9 /* data */,
 				07E674251E2D65B60040ECD3 /* layout.json */,
 				07E674261E2D65B60040ECD3 /* make-layout.js */,
 				07E674271E2D65B60040ECD3 /* Makefile */,
@@ -631,6 +655,7 @@
 				07E673EA1E2D63950040ECD3 /* Sources */,
 				07E673EB1E2D63950040ECD3 /* Frameworks */,
 				07E673EC1E2D63950040ECD3 /* CopyFiles */,
+				070495A31E4D756E00270BA9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -674,13 +699,31 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		070495A31E4D756E00270BA9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#mkdir -p $BUILT_PRODUCTS_DIR/data\ncp -R $PROJECT_DIR/lantern/data $BUILT_PRODUCTS_DIR/data";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		07E673EA1E2D63950040ECD3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0704959B1E4D704D00270BA9 /* RingsEffect.cpp in Sources */,
 				07E674241E2D63C10040ECD3 /* README.md in Sources */,
 				07E674A91E2F0ECD0040ECD3 /* LanternServer.cpp in Sources */,
+				070495981E4D6DB400270BA9 /* ParticleTrailEffect.cpp in Sources */,
 				07E674231E2D63C10040ECD3 /* README.md in Sources */,
 				070495921E4D43EB00270BA9 /* EffectParameter.cpp in Sources */,
 				07E674311E2DD78F0040ECD3 /* RippleEffect.cpp in Sources */,

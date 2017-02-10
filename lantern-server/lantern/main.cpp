@@ -14,10 +14,13 @@
 #include "../lib/noise.h"
 
 
-#include "LanternState.hpp"
+
 #include "LampEffect.hpp"
 #include "RippleEffect.hpp"
 #include "DripEffect.hpp"
+#include "RingsEffect.hpp"
+
+#include "LanternState.hpp"
 #include "LanternServer.hpp"
 #include "LanternMixer.hpp"
 
@@ -35,6 +38,7 @@ int main(int argc, char **argv)
 	DripEffect dripEffect;
 	LampEffect lampEffect;
 	RippleEffect rippleEffect;
+	RingsEffect ringsEffect("data/sky.png");
 	
 	runner.setEffect(&mixer);
 	
@@ -45,6 +49,7 @@ int main(int argc, char **argv)
 	mixer.add(&dripEffect, 0.0f);
 	mixer.add(&lampEffect, 0.0f);
 	mixer.add(&rippleEffect, 1.0f);
+	mixer.add(&ringsEffect, 1.0f);
 	
 	return runner.main(argc, argv);
 }

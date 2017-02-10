@@ -11,9 +11,9 @@ import Starscream
 import Freddy
 
 //let hostname: String = "localhost"
-//let hostname: String = "10.0.0.191"
-let hostname: String = "10.0.0.89"
-//let hostname: String = "10.2.254.176"
+//let hostname: String = "10.0.0.191" // pi
+let hostname: String = "10.0.0.89" // mac home
+//let hostname: String = "10.2.254.176" // mac cpb
 let port: Int = 9002
 
 class LanternClient: WebSocketDelegate {
