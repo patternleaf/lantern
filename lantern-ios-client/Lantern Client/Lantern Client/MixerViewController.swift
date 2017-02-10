@@ -25,19 +25,20 @@ class MixerViewController: UITableViewController {
 		tableView.delegate = nil
 		tableView.dataSource = nil
 		
-		tableView.rowHeight = 80
+		tableView.rowHeight = 100
 		
 		State.current.mixer.channels
 			.asObservable()
 			.bindTo(tableView.rx.items(cellIdentifier: "ChannelCell")) { (row, element, cell) in
 				let view = ChannelStripView(channel: element, index: row)
+				let bgColorView = UIView()
+				bgColorView.backgroundColor = Style.Color.dark
+				cell.selectedBackgroundView = bgColorView
 				cell.addSubview(view)
 			}
 			.addDisposableTo(disposeBag)
-		
-//		tableView.rx.itemSelected.subscribe(onNext: { value in
-//			
-//		}).addDisposableTo(disposeBag)
+
+		tableView.backgroundColor = Style.Color.shadow
 	}
 
 	override func didReceiveMemoryWarning() {

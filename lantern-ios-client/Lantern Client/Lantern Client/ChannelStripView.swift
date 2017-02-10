@@ -34,6 +34,12 @@ class ChannelStripView: UIView {
 		addSubview(slider)
 		addSubview(effectName)
 
+		effectName.font = Style.Font.channelStripName
+		effectName.textColor = Style.Color.highlight
+		
+		
+		backgroundColor = Style.Color.shadow
+
 		channel.fader.asDriver().drive(onNext: { value in
 			self.slider.value = value
 		}).addDisposableTo(disposeBag)
@@ -59,12 +65,12 @@ class ChannelStripView: UIView {
 			frame.size.height = parent.frame.height
 			
 			effectName.frame = CGRect(
-				origin: CGPoint(x: 8, y: 8),
-				size: CGSize(width: parent.frame.width - 8, height: 20)
+				origin: CGPoint(x: 12, y: 12),
+				size: CGSize(width: parent.frame.width - 12, height: 30)
 			)
 			slider.frame = CGRect(
-				origin: CGPoint(x: 8, y: 40),
-				size: CGSize(width: parent.frame.width - 8, height: 40)
+				origin: CGPoint(x: 12, y: 40),
+				size: CGSize(width: parent.frame.width - 40, height: 40)
 			)
 		}
 	}
