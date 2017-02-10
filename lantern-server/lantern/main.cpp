@@ -46,9 +46,9 @@ int main(int argc, char **argv)
 	runner.setMaxFrameRate(100);
 	runner.setLayout("./layout.json");
 	
-	mixer.add(&dripEffect, 0.0f);
-	mixer.add(&lampEffect, 0.0f);
-	mixer.add(&rippleEffect, 1.0f);
+	mixer.add(&dripEffect, 0.1f);
+	mixer.add(&lampEffect, 0.5f);
+	mixer.add(&rippleEffect, 0.0f);
 	mixer.add(&ringsEffect, 1.0f);
 	
 	return runner.main(argc, argv);
