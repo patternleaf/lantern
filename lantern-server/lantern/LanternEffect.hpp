@@ -10,6 +10,7 @@
 #define LanternEffect_hpp
 
 #include <stdio.h>
+#include <mutex>
 #include "lib/effect.h"
 #include "EffectParameter.hpp"
 #include "JsonConversions.hpp"
@@ -35,12 +36,12 @@ public:
 protected:
 
 	void broadcast(nlohmann::json event);
-
 	nlohmann::json mLatestUpdate;
-
 	std::string mId;
-	
 	std::vector<EventHandler> mHandlers;
+	
+	std::mutex mStateMutex;
+	
 };
 
 #endif /* LanternEffect_hpp */

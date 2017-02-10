@@ -31,14 +31,20 @@ string LanternEffect::getId()
 
 void LanternEffect::cacheStateUpdate(json state)
 {
+	lock_guard<mutex> lock(mStateMutex);
+	cout << "--> caching state" << endl;
 	mLatestUpdate = state;
 }
 
 void LanternEffect::beginFrame(const FrameInfo &f)
 {
+	lock_guard<mutex> lock(mStateMutex);
+	
 	if (mLatestUpdate.is_object()) {
+		cout << "--> setting state" << endl;
 		this->setState(mLatestUpdate);
 		mLatestUpdate = "null"_json;
+		cout << "<-- state was set" << endl;
 	}
 }
 
