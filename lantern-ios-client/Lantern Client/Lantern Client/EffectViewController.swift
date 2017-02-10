@@ -12,6 +12,8 @@ class EffectViewController: UIViewController {
 
 	var stackView: UIStackView!
 	var scrollView: UIScrollView!
+	var contentView: UIView!
+	var contentViewHeightConstraint: NSLayoutConstraint!
 	var noParametersLabel: UILabel!
 
 	override func viewDidLoad() {
@@ -27,10 +29,21 @@ class EffectViewController: UIViewController {
 		scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
 		scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 		
-		view.backgroundColor = Style.Color.dark
+		contentView = UIView()
+		scrollView.addSubview(contentView)
+		contentView.translatesAutoresizingMaskIntoConstraints = false
 		
-		print("width: ", view.frame.width)
-		scrollView.contentSize.width = view.frame.width / 2
+//		contentView.backgroundColor = UIColor.red
+//		scrollView.backgroundColor = UIColor.green
+		
+		contentView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+		contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+		contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+
+		contentViewHeightConstraint = contentView.heightAnchor.constraint(equalToConstant: 0)
+		contentViewHeightConstraint.isActive = true
+		
+		view.backgroundColor = Style.Color.dark
 		
 		noParametersLabel = UILabel()
 		noParametersLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -42,9 +55,9 @@ class EffectViewController: UIViewController {
 		noParametersLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 		noParametersLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
 		
-		noParametersLabel.font = Style.Font.bigControl
+		noParametersLabel.font = Style.Font.noParametersLabel
 		noParametersLabel.textColor = Style.Color.light
-		noParametersLabel.text = "No Parameters (Yet)"
+		noParametersLabel.text = "No Parameters"
 		noParametersLabel.textAlignment = .center
 		noParametersLabel.isHidden = true
 		
@@ -57,7 +70,7 @@ class EffectViewController: UIViewController {
 
 	func showEffect(atIndex effectIndex: Int) {
 
-		for view in scrollView.subviews {
+		for view in contentView.subviews {
 			view.removeFromSuperview()
 		}
 		
@@ -68,7 +81,7 @@ class EffectViewController: UIViewController {
 			for parameter in effect.parameters.value {
 				if let parameterView = makeParameterView(for: parameter) {
 				
-					scrollView.addSubview(parameterView)
+					contentView.addSubview(parameterView)
 					
 					parameterView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
 										
@@ -76,12 +89,12 @@ class EffectViewController: UIViewController {
 						parameterView.topAnchor.constraint(equalTo: lastParameterView!.bottomAnchor, constant: 8).isActive = true
 					}
 					else {
-						parameterView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+						parameterView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
 					}
 					
-					parameterView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+					parameterView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
 					
-					height += parameterView.frame.height
+					height += parameterView.requiredHeight
 					lastParameterView = parameterView
 
 				}
@@ -93,10 +106,28 @@ class EffectViewController: UIViewController {
 			else {
 				noParametersLabel.isHidden = true
 			}
-			
-			scrollView.contentSize.height = height
+			print("setting height constant", height)
+			contentViewHeightConstraint.constant = height
+			view.setNeedsLayout()
+			view.setNeedsUpdateConstraints()
+			print("content view frame height", contentView.frame.height)
 		}
 		
+	}
+	
+	override func viewDidLayoutSubviews() {
+		var height:CGFloat = 0
+		for view in contentView.subviews {
+			if let parameterView = view as? ParameterView {
+				print("   view frame", view.frame)
+				print("   view required height", parameterView.requiredHeight)
+				height += parameterView.requiredHeight
+			}
+		}
+		
+		contentViewHeightConstraint.constant = height
+		print("height (again)", contentView.frame.height)
+		print("scrollview height:", scrollView.frame.height)
 	}
 	
 	// where should this knowledge live?
@@ -105,7 +136,7 @@ class EffectViewController: UIViewController {
 			switch type {
 			case .color: return ColorParameterView(parameter: parameter as! ColorParameter)
 			case .real: return RealParameterView(parameter: parameter as! RealParameter)
-			case .points: return ParameterView(parameter: parameter)
+			case .points: return PointsParameterView(parameter: parameter as! PointsParameter)
 			}
 		}
 		return nil

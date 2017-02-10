@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="-16" y="-808"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Effects-->
         <scene sceneID="Csc-e4-bhU">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="tPb-77-c8I" customClass="MixerViewController" customModule="Lantern_Client" customModuleProvider="target" sceneMemberID="viewController">
@@ -50,7 +50,7 @@
                             <outlet property="delegate" destination="tPb-77-c8I" id="Svo-LQ-2xW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="D7q-Ch-2dL"/>
+                    <navigationItem key="navigationItem" title="Effects" id="D7q-Ch-2dL"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ia-JC-vqA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

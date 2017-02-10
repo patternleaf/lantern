@@ -26,7 +26,8 @@ class Style {
 	*/
 	struct Font {
 		static let parameterLabel = UIFont(name: "HelveticaNeue-Bold", size: 30)
-		static let bigControl = UIFont(name: "HelveticaNeue-Thin", size: 80)
+		static let bigControl = UIFont(name: "HelveticaNeue-Thin", size: 100)
+		static let noParametersLabel = UIFont(name: "HelveticaNeue-Thin", size: 80)
 		static let channelStripName = UIFont(name: "HelveticaNeue-Bold", size: 20)
 	}
 	

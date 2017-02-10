@@ -27,6 +27,8 @@ class MixerViewController: UITableViewController {
 		
 		tableView.rowHeight = 100
 		
+//		tableView.tableHeaderView.
+		
 		State.current.mixer.channels
 			.asObservable()
 			.bindTo(tableView.rx.items(cellIdentifier: "ChannelCell")) { (row, element, cell) in

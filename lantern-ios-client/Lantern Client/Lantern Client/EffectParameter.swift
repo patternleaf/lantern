@@ -80,7 +80,7 @@ class ColorParameter: EffectParameter {
 	override func toJSON() -> JSON {
 		var serialized = try! super.toJSON().getDictionary()
 		let components = color.value.components
-		serialized["color"] = .array([
+		serialized["value"] = .array([
 			.double(Double(components.red)), .double(Double(components.green)), .double(Double(components.blue))
 		])
 		return .dictionary(serialized)

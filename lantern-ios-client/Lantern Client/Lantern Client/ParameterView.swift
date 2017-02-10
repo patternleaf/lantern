@@ -26,10 +26,12 @@ class ParameterView: UIView {
 		
 		translatesAutoresizingMaskIntoConstraints = false
 		
-		backgroundColor = Style.Color.shadow
+//		backgroundColor = Style.Color.shadow
+		backgroundColor = UIColor(colorLiteralRed: 0.2, green: 0.2, blue: 0.4, alpha: 0.5)
 		
 		addSubview(nameLabel)
 		
+		heightAnchor.constraint(equalToConstant: requiredHeight).isActive = true
 		
 		nameLabel.translatesAutoresizingMaskIntoConstraints = false
 		
@@ -47,8 +49,11 @@ class ParameterView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	var requiredHeight: CGFloat {
+		return 50
+	}
+	
 	override func didMoveToSuperview() {
-		
 		
 		nameLabel.frame.origin = CGPoint(x: 40, y: 8)
 		nameLabel.frame.size = CGSize(width: self.frame.width, height: 30)

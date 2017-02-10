@@ -32,11 +32,14 @@ class ColorParameterView: ParameterView, HSBColorPickerDelegate {
 		
 		colorWell.backgroundColor = parameter.color.value
 		
-		heightAnchor.constraint(equalToConstant: 330).isActive = true
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+	
+	override var requiredHeight: CGFloat {
+		return 330
 	}
 	
 	func HSBColorColorPickerTouched(sender: HSBColorPicker, color: UIColor, point: CGPoint, state: UIGestureRecognizerState) {

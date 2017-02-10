@@ -10,9 +10,10 @@
 #include "../lib/color.h"
 
 using namespace nlohmann;
+using namespace std;
 
 DripEffect::DripEffect()
-: mCycle(0), mBaseColor(0.3, 0.5, 0.9)
+: mSpeed(1), mCycle(0), mColor(0.3, 0.5, 0.9), mOrigin(0, 0, 0)
 {
 	
 }
@@ -22,15 +23,17 @@ void DripEffect::beginFrame(const FrameInfo &f)
 {
 	LanternEffect::beginFrame(f);
 	
-	const float speed = 1.0;
-	mCycle = fmod(mCycle + f.timeDelta * speed, 2 * M_PI);
+	mCycle = fmod(mCycle + f.timeDelta * -mSpeed, 2 * M_PI);
 }
 
 void DripEffect::shader(Vec3& rgb, const PixelInfo &p) const
 {
-	float distance = len(p.point);
+	float distance = len(p.point - mOrigin);
 	float wave = sin(3 * distance + mCycle);
-	hsv2rgb(rgb, 0.2, 0.3, wave);
+	
+	rgb[0] = mColor[0] * wave;
+	rgb[1] = mColor[1] * wave;
+	rgb[2] = mColor[2] * wave;
 }
 
 
@@ -45,10 +48,36 @@ json DripEffect::getState()
 
 void DripEffect::setState(json state)
 {
+	json parameters = state["parameters"];
 	
+	auto origins = parameters[0]["value"];
+	mOrigin = JsonConversions::fromJson<Vec3>(origins[0]);
+	mColor = JsonConversions::fromJson<Vec3>(parameters[1]["value"]);
+	mSpeed = parameters[2]["real"];	
 }
 
 json DripEffect::getParameters()
 {
-	return json::array();
+	json origins = json::array();
+	
+	origins.push_back(JsonConversions::toJson(mOrigin));
+	
+	return {
+		{
+			{ "name", "Origin" },
+			{ "type", "points" },
+			{ "value", origins }
+		},
+		{
+			{ "name", "Color" },
+			{ "type", "color" },
+			{ "value", JsonConversions::toJson(mColor) }
+		},
+		{
+			{ "name", "Speed" },
+			{ "type", "real" },
+			{ "range", { 0, 100 } },
+			{ "value", mSpeed }
+		}
+	};
 }

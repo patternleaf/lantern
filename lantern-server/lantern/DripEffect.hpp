@@ -24,7 +24,9 @@ public:
 	virtual nlohmann::json getParameters();
 	
 	float mCycle;
-	Vec3 mBaseColor;
+	float mSpeed;
+	Vec3 mColor;
+	Vec3 mOrigin;
 
 };
 

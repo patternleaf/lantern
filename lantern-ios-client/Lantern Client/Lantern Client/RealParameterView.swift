@@ -14,10 +14,11 @@ import HGCircularSlider
 class RealParameterView: ParameterView {
 	var label: UILabel!
 	var slider: CircularSlider!
+	var numberFormatter: NumberFormatter!
 	
 	init(parameter: RealParameter) {
 	
-		label = UILabel(frame: CGRect(x: 300, y: 70, width: 200, height: 200))
+		label = UILabel(frame: CGRect(x: 380, y: 70, width: 200, height: 200))
 		slider = CircularSlider(frame: CGRect(x: 20, y: 80, width: 200, height: 200))
 		slider.backgroundColor = UIColor.clear
 		slider.diskColor = UIColor.clear
@@ -31,6 +32,11 @@ class RealParameterView: ParameterView {
 		label.textColor = Style.Color.highlight
 		label.font = Style.Font.bigControl
 	
+		numberFormatter = NumberFormatter()
+		numberFormatter.numberStyle = .decimal
+		numberFormatter.minimumFractionDigits = 1
+		numberFormatter.maximumFractionDigits = 1
+	
 		super.init(parameter: parameter)
 	
 		parameter.rangeEnd.asDriver().asObservable().subscribe(onNext: { (value: Float) -> Void in
@@ -43,7 +49,7 @@ class RealParameterView: ParameterView {
 		
 		parameter.real.asDriver().asObservable().subscribe(onNext: { (value: Float) -> Void in
 			self.slider.endPointValue = CGFloat(value)
-			self.label.text = "\(value)"
+			self.label.text = self.numberFormatter.string(from: NSNumber(value: value))
 		}).addDisposableTo(disposeBag)
 
 		slider.addTarget(self, action: #selector(sliderDidChange), for: .valueChanged)
@@ -51,11 +57,14 @@ class RealParameterView: ParameterView {
 		addSubview(slider)
 		addSubview(label)
 		
-		heightAnchor.constraint(equalToConstant: 300).isActive = true
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+	
+	override var requiredHeight: CGFloat {
+		return 300
 	}
 	
 	func sliderDidChange() {
