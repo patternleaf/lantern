@@ -29,6 +29,8 @@ class EffectViewController: UIViewController {
 		scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
 		scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 		
+		scrollView.canCancelContentTouches = false
+		
 		contentView = UIView()
 		scrollView.addSubview(contentView)
 		contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -106,11 +108,11 @@ class EffectViewController: UIViewController {
 			else {
 				noParametersLabel.isHidden = true
 			}
-			print("setting height constant", height)
+//			print("setting height constant", height)
 			contentViewHeightConstraint.constant = height
 			view.setNeedsLayout()
 			view.setNeedsUpdateConstraints()
-			print("content view frame height", contentView.frame.height)
+//			print("content view frame height", contentView.frame.height)
 		}
 		
 	}
@@ -119,15 +121,17 @@ class EffectViewController: UIViewController {
 		var height:CGFloat = 0
 		for view in contentView.subviews {
 			if let parameterView = view as? ParameterView {
-				print("   view frame", view.frame)
-				print("   view required height", parameterView.requiredHeight)
+//				print("   view frame", view.frame)
+//				print("   view required height", parameterView.requiredHeight)
 				height += parameterView.requiredHeight
 			}
 		}
 		
+		scrollView.contentSize.height = height // this shouldn't be necessary ... ?!?
+		
 		contentViewHeightConstraint.constant = height
-		print("height (again)", contentView.frame.height)
-		print("scrollview height:", scrollView.frame.height)
+//		print("height (again)", contentView.frame.height)
+//		print("scrollview height:", scrollView.frame.height)
 	}
 	
 	// where should this knowledge live?

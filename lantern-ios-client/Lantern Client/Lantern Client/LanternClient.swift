@@ -73,6 +73,8 @@ class LanternClient: WebSocketDelegate {
 	
 	func websocketDidConnect(socket: WebSocket) {
 		print("websocket is connected")
+		requestState()
+		
 	}
 	
 	func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
@@ -92,6 +94,13 @@ class LanternClient: WebSocketDelegate {
 		print("got some data: \(data.count)")
 	}
 	
+	func requestState() {
+		let json = JSON.dictionary(["command": "sendState"])
+		if let data = try? json.serialize() {
+			socket?.write(data: data)
+		}
+	}
+	
 	func sendFader(channel: Int, value: Float) {
 		let json = JSON.dictionary([
 			"command": "setFader",
@@ -101,6 +110,7 @@ class LanternClient: WebSocketDelegate {
 		if let data = try? json.serialize() {
 			socket?.write(data: data)
 		}
+		requestState()
 	}
 	
 	func sendEffect(_ effect: Effect) {
@@ -112,6 +122,7 @@ class LanternClient: WebSocketDelegate {
 		if let data = try? json.serialize() {
 			socket?.write(data: data)
 		}
+		requestState()
 	}
 
 }

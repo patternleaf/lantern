@@ -26,8 +26,8 @@ class ParameterView: UIView {
 		
 		translatesAutoresizingMaskIntoConstraints = false
 		
-//		backgroundColor = Style.Color.shadow
-		backgroundColor = UIColor(colorLiteralRed: 0.2, green: 0.2, blue: 0.4, alpha: 0.5)
+		backgroundColor = Style.Color.shadow
+//		backgroundColor = UIColor(colorLiteralRed: 0.2, green: 0.2, blue: 0.4, alpha: 0.5)
 		
 		addSubview(nameLabel)
 		

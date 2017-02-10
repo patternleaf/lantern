@@ -30,7 +30,14 @@ class PointsParameterView: ParameterView {
 		
 		super.init(parameter: parameter)
 		
+		let touchGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.touchRecognized(gestureRecognizer:)))
+		touchGesture.minimumPressDuration = 0
+		touchGesture.allowableMovement = CGFloat.greatestFiniteMagnitude
+		self.addGestureRecognizer(touchGesture)
+		
 		addSubview(outlinesView)
+		
+		isExclusiveTouch = true
 		
 		outlinesView.frame = CGRect(x: frameOffset.x, y: frameOffset.y, width: outlinesDimension, height: outlinesDimension)
 		
@@ -66,13 +73,43 @@ class PointsParameterView: ParameterView {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	func touchRecognized(gestureRecognizer: UILongPressGestureRecognizer) {
+		let point = gestureRecognizer.location(in: self)
+		
+		if gestureRecognizer.state == .began && !outlinesView.frame.contains(point) {
+			gestureRecognizer.cancelsTouchesInView = false
+		}
+		else {
+			gestureRecognizer.cancelsTouchesInView = true
+		
+			if movingPoint == nil {
+				movingPoint = getClosestPointView(to: point)
+			}
+			else {
+				if let pt = movingPoint {
+					pt.frame.origin = point
+					setNeedsLayout()
+					print("setting origin to", pt.frame.origin)
+				}
+			}
+			
+			
+			
+			if gestureRecognizer.state == .ended {
+				movingPoint = nil
+				updateParameter()
+			}
+		}
+		
+	}
+	/*
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		isMovingPoint = true
 		if let firstTouch = touches.first {
 			let loc = firstTouch.location(in: self)
 			movingPoint = getClosestPointView(to: loc)
 		}
-		
+		super.touchesBegan(touches, with: event)
 	}
 	
 	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -81,13 +118,15 @@ class PointsParameterView: ParameterView {
 			print("setting origin to", pt.frame.origin)
 			setNeedsLayout()
 		}
+		super.touchesMoved(touches, with: event)
 	}
 	
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		updateParameter()
 		isMovingPoint = false
+		super.touchesEnded(touches, with: event)
 	}
-	
+	*/
 	func getClosestPointView(to otherPoint: CGPoint) -> UIImageView? {
 		var closestView: UIImageView?
 		var smallestDistance: CGFloat = 100000

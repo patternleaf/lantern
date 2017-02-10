@@ -61,6 +61,9 @@ void LanternServer::onMessage(websocketpp::connection_hdl hdl, WSServer::message
 			else if (parsedMsg["command"] == "setEffect") {
 				mState->setEffect(parsedMsg["effectId"], parsedMsg["effect"]);
 			}
+			else if (parsedMsg["command"] == "sendState") {
+				broadcastState();
+			}
 		}
 	}
 }
@@ -101,7 +104,7 @@ void LanternServer::broadcastThreadFunc(void* ctx)
 	
 	while (!server->mIsStopping) {
 		tthread::this_thread::sleep_for(tthread::chrono::milliseconds(server->mBroadcastSleepDuration));
-		server->broadcastState();
+//		server->broadcastState();
 	}
 }
 
