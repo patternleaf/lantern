@@ -31,6 +31,7 @@ class RealParameterView: ParameterView {
 	
 		label.textColor = Style.Color.highlight
 		label.font = Style.Font.bigControl
+		label.adjustsFontSizeToFitWidth = true
 	
 		numberFormatter = NumberFormatter()
 		numberFormatter.numberStyle = .decimal
@@ -56,6 +57,21 @@ class RealParameterView: ParameterView {
 	
 		addSubview(slider)
 		addSubview(label)
+		
+		translatesAutoresizingMaskIntoConstraints = false
+		slider.translatesAutoresizingMaskIntoConstraints = false
+		label.translatesAutoresizingMaskIntoConstraints = false
+		
+		slider.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
+		slider.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+		slider.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Style.Dim.parameterViewPadding).isActive = true
+		slider.heightAnchor.constraint(equalToConstant: 200).isActive = true
+		
+		label.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3).isActive = true
+		label.heightAnchor.constraint(equalToConstant: 200).isActive = true
+		label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+		label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Style.Dim.parameterViewPadding).isActive = true
+		label.textAlignment = .right
 		
 	}
 	

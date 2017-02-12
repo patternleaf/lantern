@@ -145,7 +145,5 @@ void LanternServer::serverThreadFunc(void* ctx)
 		
 	} catch (websocketpp::exception const & e) {
 		std::cout << e.what() << std::endl;
-	} catch (...) {
-		std::cout << "other exception" << std::endl;
 	}
 }

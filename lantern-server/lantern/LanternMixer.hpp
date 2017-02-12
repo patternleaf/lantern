@@ -12,10 +12,13 @@
 #include <stdio.h>
 #include "lib/effect_mixer.h"
 
+class LanternEffect;
+
 class LanternMixer: public EffectMixer {
 public:
 	float getFader(int channel);
 	Effect* getEffect(int channel);
+	int add(LanternEffect *effect, float fader = 1.0);
 };
 
 #endif /* LanternMixer_hpp */

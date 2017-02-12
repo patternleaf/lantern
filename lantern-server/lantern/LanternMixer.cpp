@@ -7,7 +7,9 @@
 //
 
 #include "LanternMixer.hpp"
+#include "LanternEffect.hpp"
 
+using namespace std;
 
 float LanternMixer::getFader(int channel)
 {
@@ -17,4 +19,10 @@ float LanternMixer::getFader(int channel)
 Effect* LanternMixer::getEffect(int channel)
 {
 	return channels[channel].effect;
+}
+
+int LanternMixer::add(LanternEffect *effect, float fader)
+{
+	cout << "mixer adding effect " << effect->getId() << endl;
+	return EffectMixer::add(effect, fader);
 }

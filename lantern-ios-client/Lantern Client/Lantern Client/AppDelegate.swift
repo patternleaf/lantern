@@ -33,13 +33,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let splitViewController = self.window!.rootViewController as! UISplitViewController
 		let leftNavController = splitViewController.viewControllers.first as! UINavigationController
 		let mixerViewController = leftNavController.topViewController as! MixerViewController
-		let effectViewController = splitViewController.viewControllers.last as! EffectViewController
-		
+		let effectNavController = splitViewController.viewControllers.last as! UINavigationController
+		let effectViewController = effectNavController.topViewController as! EffectViewController
+				
 		mixerViewController.selectedChannel.subscribe(onNext: { indexPath in
+			splitViewController.showDetailViewController(effectNavController, sender: nil)
 			effectViewController.showEffect(atIndex: indexPath.row)
 		}).addDisposableTo(disposeBag)
 		
 //		printFonts()
+		
+		effectViewController.navigationItem.leftItemsSupplementBackButton = true
+		effectViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
 		
 		return true
 	}

@@ -14,10 +14,14 @@ class ColorParameterView: ParameterView, HSBColorPickerDelegate {
 	var colorWell: UIView!
 	
 	init(parameter: ColorParameter) {
-		colorPicker = HSBColorPicker(frame: CGRect(x: 20, y: 80, width: 400, height: 200))
-		colorWell = UIView(frame: CGRect(x: 450, y: 80, width: 200, height: 200))
+		colorPicker = HSBColorPicker()
+		colorWell = UIView()
 		
 		super.init(parameter: parameter)
+		
+		translatesAutoresizingMaskIntoConstraints = false
+		colorPicker.translatesAutoresizingMaskIntoConstraints = false
+		colorWell.translatesAutoresizingMaskIntoConstraints	= false
 		
 		addSubview(colorPicker)
 		addSubview(colorWell)
@@ -31,6 +35,16 @@ class ColorParameterView: ParameterView, HSBColorPickerDelegate {
 		colorPicker.layer.masksToBounds = true
 		
 		colorWell.backgroundColor = parameter.color.value
+		
+		colorPicker.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Style.Dim.parameterViewPadding).isActive = true
+		colorPicker.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Style.Dim.parameterViewSpacing).isActive = true
+		colorPicker.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6).isActive = true
+		colorPicker.heightAnchor.constraint(equalToConstant: 200).isActive = true
+		
+		colorWell.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Style.Dim.parameterViewSpacing).isActive = true
+		colorWell.leadingAnchor.constraint(equalTo: colorPicker.trailingAnchor, constant: Style.Dim.parameterViewPadding).isActive = true
+		colorWell.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.2).isActive = true
+		colorWell.heightAnchor.constraint(equalToConstant: 200).isActive = true
 		
 	}
 	

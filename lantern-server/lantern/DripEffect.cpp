@@ -76,7 +76,7 @@ json DripEffect::getParameters()
 		{
 			{ "name", "Speed" },
 			{ "type", "real" },
-			{ "range", { 0, 100 } },
+			{ "range", { 0, 80 } },
 			{ "value", mSpeed }
 		}
 	};

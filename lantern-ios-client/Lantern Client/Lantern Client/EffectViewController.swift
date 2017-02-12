@@ -10,11 +10,14 @@ import UIKit
 
 class EffectViewController: UIViewController {
 
+	var displayedEffect: Effect?
+	var displayedEffectIndex: Int = -1
+
 	var stackView: UIStackView!
 	var scrollView: UIScrollView!
 	var contentView: UIView!
 	var contentViewHeightConstraint: NSLayoutConstraint!
-	var noParametersLabel: UILabel!
+	var nothingToShowLabel: UILabel!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -29,7 +32,7 @@ class EffectViewController: UIViewController {
 		scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
 		scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 		
-		scrollView.canCancelContentTouches = false
+//		scrollView.canCancelContentTouches = false
 		
 		contentView = UIView()
 		scrollView.addSubview(contentView)
@@ -47,21 +50,32 @@ class EffectViewController: UIViewController {
 		
 		view.backgroundColor = Style.Color.dark
 		
-		noParametersLabel = UILabel()
-		noParametersLabel.translatesAutoresizingMaskIntoConstraints = false
-		view.addSubview(noParametersLabel)
+		nothingToShowLabel = UILabel()
+		nothingToShowLabel.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(nothingToShowLabel)
 		
 		
-		noParametersLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-		noParametersLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
-		noParametersLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-		noParametersLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+		nothingToShowLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+		nothingToShowLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
+		nothingToShowLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+		nothingToShowLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
 		
-		noParametersLabel.font = Style.Font.noParametersLabel
-		noParametersLabel.textColor = Style.Color.light
-		noParametersLabel.text = "No Parameters"
-		noParametersLabel.textAlignment = .center
-		noParametersLabel.isHidden = true
+		nothingToShowLabel.font = Style.Font.nothingToShowLabel
+		nothingToShowLabel.textColor = Style.Color.shadow
+		nothingToShowLabel.text = "No Parameters"
+		nothingToShowLabel.textAlignment = .center
+		nothingToShowLabel.isHidden = true
+		nothingToShowLabel.minimumScaleFactor = 0.1
+		nothingToShowLabel.adjustsFontSizeToFitWidth = true
+	
+		
+		if displayedEffectIndex != -1 {
+			showEffect(atIndex: displayedEffectIndex)
+		}
+		else {
+			nothingToShowLabel.text = "Select an Effect"
+			nothingToShowLabel.isHidden = false
+		}
 		
 	}
 
@@ -70,12 +84,16 @@ class EffectViewController: UIViewController {
 		// Dispose of any resources that can be recreated.
 	}
 
+
 	func showEffect(atIndex effectIndex: Int) {
+
+		displayedEffectIndex = effectIndex
+
+		guard contentView != nil else { return }
 
 		for view in contentView.subviews {
 			view.removeFromSuperview()
 		}
-		
 		
 		if let effect = State.current.mixer.channels.value[effectIndex].effect {
 			var lastParameterView: ParameterView? = nil
@@ -103,15 +121,19 @@ class EffectViewController: UIViewController {
 			}
 			
 			if effect.parameters.value.count == 0 {
-				noParametersLabel.isHidden = false
+				nothingToShowLabel.text = "No Parameters"
+				nothingToShowLabel.isHidden = false
 			}
 			else {
-				noParametersLabel.isHidden = true
+				nothingToShowLabel.isHidden = true
 			}
 //			print("setting height constant", height)
 			contentViewHeightConstraint.constant = height
 			view.setNeedsLayout()
 			view.setNeedsUpdateConstraints()
+			
+			displayedEffect = effect
+			
 //			print("content view frame height", contentView.frame.height)
 		}
 		

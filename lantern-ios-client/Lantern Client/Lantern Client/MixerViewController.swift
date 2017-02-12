@@ -25,7 +25,7 @@ class MixerViewController: UITableViewController {
 		tableView.delegate = nil
 		tableView.dataSource = nil
 		
-		tableView.rowHeight = 100
+		tableView.rowHeight = 120
 		
 //		tableView.tableHeaderView.
 		
@@ -36,17 +36,33 @@ class MixerViewController: UITableViewController {
 				let bgColorView = UIView()
 				bgColorView.backgroundColor = Style.Color.dark
 				cell.selectedBackgroundView = bgColorView
-				cell.addSubview(view)
+				cell.accessoryType = .disclosureIndicator
+				cell.contentView.addSubview(view)
+				cell.backgroundColor = Style.Color.shadow
 			}
 			.addDisposableTo(disposeBag)
 
+
 		tableView.backgroundColor = Style.Color.shadow
 	}
+
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "showEffect" {
+			if let indexPath = self.tableView.indexPathForSelectedRow {
+				let controller = (segue.destination as! UINavigationController).topViewController as! EffectViewController
+				print(indexPath, controller)
+			}
+		}
+	}
+	
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
+
+	
 
 }
 

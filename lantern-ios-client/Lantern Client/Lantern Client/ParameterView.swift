@@ -40,6 +40,9 @@ class ParameterView: UIView {
 		nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
 		nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
 		
+		nameLabel.font = Style.Font.parameterLabel
+		nameLabel.textColor = Style.Color.light
+		
 		parameter.name.asDriver().asObservable().subscribe(onNext: { value in
 			self.nameLabel.text = value
 		}).addDisposableTo(disposeBag)
@@ -55,9 +58,5 @@ class ParameterView: UIView {
 	
 	override func didMoveToSuperview() {
 		
-		nameLabel.frame.origin = CGPoint(x: 40, y: 8)
-		nameLabel.frame.size = CGSize(width: self.frame.width, height: 30)
-		nameLabel.font = Style.Font.parameterLabel
-		nameLabel.textColor = Style.Color.light
 	}
 }

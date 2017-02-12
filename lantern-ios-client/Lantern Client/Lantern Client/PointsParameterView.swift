@@ -13,55 +13,50 @@ class PointsParameterView: ParameterView {
 
 	var outlinesView: UIImageView!
 	var pointViews: [UIImageView] = []
-	var movingPoint: UIImageView?
+	
+	// assumes that the number of points won't change!
+	var movingPointIndex: Int?
 
-	let frameOffset = CGPoint(x: 150, y: 80)
-	let outlinesDimension:CGFloat = 300
+	let lanternWidth: CGFloat = 1.83		// meters; points sent to server expressed in meters
+	var frameOffset = CGPoint.zero
 	var pointScale: CGFloat
 	
-	var isMovingPoint: Bool
-
 	init(parameter: PointsParameter) {
 		outlinesView = UIImageView(image: UIImage(named: "outlines"))
 		
-		pointScale = outlinesDimension / 2
-		
-		isMovingPoint = false
+		pointScale = 1
 		
 		super.init(parameter: parameter)
 		
-		let touchGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.touchRecognized(gestureRecognizer:)))
+		let touchGesture = UILongPressGestureRecognizer(target: self, action: #selector(touchRecognized(gestureRecognizer:)))
 		touchGesture.minimumPressDuration = 0
 		touchGesture.allowableMovement = CGFloat.greatestFiniteMagnitude
-		self.addGestureRecognizer(touchGesture)
+		addGestureRecognizer(touchGesture)
 		
 		addSubview(outlinesView)
 		
 		isExclusiveTouch = true
 		
-		outlinesView.frame = CGRect(x: frameOffset.x, y: frameOffset.y, width: outlinesDimension, height: outlinesDimension)
+		translatesAutoresizingMaskIntoConstraints = false
+		outlinesView.translatesAutoresizingMaskIntoConstraints = false
+		
+		let widthConstraint = outlinesView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7)
+		
+		outlinesView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+		outlinesView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+		
+		// aspect ratio constraint
+		outlinesView.heightAnchor.constraint(equalTo: outlinesView.widthAnchor).isActive = true
+		
+		// max height
+		outlinesView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8).isActive = true
+		
+		// sacrifice width if needed
+		widthConstraint.priority = 750
+		widthConstraint.isActive = true
 		
 		parameter.points.asDriver().asObservable().subscribe(onNext: { newPoints in
-			if !self.isMovingPoint {
-				for pointView in self.pointViews {
-					pointView.removeFromSuperview()
-				}
-				
-				self.pointViews = []
-				
-				for newPoint in newPoints {
-					let newView = UIImageView(image: UIImage(named: "reticle"))
-					newView.frame.origin = self.frameOffset
-					newView.frame.origin.x += (newPoint.x * self.pointScale)
-					newView.frame.origin.y += (newPoint.y * self.pointScale)
-					newView.frame.size = CGSize(width: 20, height: 20)
-					self.pointViews.append(newView)
-					self.addSubview(newView)
-				}
-			}
-			else {
-				print("holding off on update from server")
-			}
+			self.updatePointViews(withPoints: newPoints)
 		}).addDisposableTo(disposeBag)
 	}
 	
@@ -82,26 +77,50 @@ class PointsParameterView: ParameterView {
 		else {
 			gestureRecognizer.cancelsTouchesInView = true
 		
-			if movingPoint == nil {
-				movingPoint = getClosestPointView(to: point)
-			}
-			else {
-				if let pt = movingPoint {
-					pt.frame.origin = point
-					setNeedsLayout()
-					print("setting origin to", pt.frame.origin)
-				}
+			if movingPointIndex == nil {
+				movingPointIndex = getClosestPointViewIndex(to: point)
 			}
 			
-			
+			if let index = movingPointIndex, index <= pointViews.count {
+				let pt = pointViews[index]
+				pt.frame.origin = (CGVector(point: point) + CGVector(dx: -15, dy: -15)).asPoint()
+				updateParameter()
+			}
 			
 			if gestureRecognizer.state == .ended {
-				movingPoint = nil
+				movingPointIndex = nil
 				updateParameter()
 			}
 		}
 		
 	}
+	
+	func updatePointViews(withPoints newPoints: [CGPoint]) {
+		for pointView in self.pointViews {
+			pointView.removeFromSuperview()
+		}
+		
+		self.pointScale = self.outlinesView.frame.width / self.lanternWidth
+		self.frameOffset = self.outlinesView.frame.origin
+		
+		// TODO: don't suck quite so much.
+		self.pointViews = []
+		for newPoint in newPoints {
+			self.createPointView(forPoint: newPoint)
+		}
+
+	}
+	
+	func createPointView(forPoint point: CGPoint) {
+		let newView = UIImageView(image: UIImage(named: "reticle"))
+		newView.frame.origin = frameOffset
+		newView.frame.origin.x += (point.x * pointScale)
+		newView.frame.origin.y += (point.y * pointScale)
+		newView.frame.size = CGSize(width: 30, height: 30)
+		pointViews.append(newView)
+		addSubview(newView)
+	}
+	
 	/*
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		isMovingPoint = true
@@ -127,17 +146,25 @@ class PointsParameterView: ParameterView {
 		super.touchesEnded(touches, with: event)
 	}
 	*/
-	func getClosestPointView(to otherPoint: CGPoint) -> UIImageView? {
-		var closestView: UIImageView?
+	
+	override func layoutSubviews() {
+		super.layoutSubviews()
+		updatePointViews(withPoints: (parameter as! PointsParameter).points.value)
+	}
+	
+	func getClosestPointViewIndex(to otherPoint: CGPoint) -> Int? {
+		var closestViewIndex: Int?
 		var smallestDistance: CGFloat = 100000
-		for pointView in pointViews {
+		for index in (0 ..< pointViews.count) {
+			let pointView = pointViews[index]
 			let d = distance(a: pointView.frame.origin, b: otherPoint)
 			if d < smallestDistance {
 				smallestDistance = d
-				closestView = pointView
+				closestViewIndex = index
 			}
 		}
-		return closestView
+		
+		return closestViewIndex
 	}
 	
 	func distance(a: CGPoint, b: CGPoint) -> CGFloat {
@@ -147,7 +174,10 @@ class PointsParameterView: ParameterView {
 	}
 	
 	func updateParameter() {
-		print("updating parameter")
+		
+		pointScale = outlinesView.frame.width / self.lanternWidth
+		frameOffset = outlinesView.frame.origin
+		
 		let pointsParameter = parameter as! PointsParameter
 		var newPoints: [CGPoint] = []
 		for pointView in pointViews {
@@ -158,6 +188,6 @@ class PointsParameterView: ParameterView {
 		}
 		pointsParameter.points.value = newPoints
 		LanternClient.current.sendEffect(parameter.effect)
-		print("parameter updated", pointsParameter.points.value)
+//		print("parameter updated", pointsParameter.points.value)
 	}
 }
