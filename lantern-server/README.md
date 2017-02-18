@@ -25,8 +25,8 @@ lantern also uses [Gist](https://github.com/adamstark/Gist)
 
 ## Building / Installation
 
-Intended to compile on OSX via the XCode project, or on a Raspberry 
-Pi 3 (Raspbian Jessie w/Pixel kernel 4.4).
+Intended to compile on OSX (oh, sorry—macOS) via the XCode project, 
+or on a Raspberry Pi 3 (Raspbian Jessie w/Pixel kernel 4.4).
 
 A few things you may need to install (assuming raspbian or other 
 linux-y device):
