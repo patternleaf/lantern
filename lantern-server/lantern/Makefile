@@ -1,7 +1,9 @@
 appname := lantern
 
 #CXX := g++-5
-CXXFLAGS := -std=c++11 -I.. -I../lib -I../lib/websocketpp
+CXXFLAGS := -std=c++11 -I.. -I../lib -I../lib/websocketpp -I../lib/shairplay/include -I../lib/Gist/src/ -I../lib/Gist/libs/kiss_fft130
+
+CXXFLAGS += -DUSE_KISSFFT
 
 srcfiles := $(shell find . -name "*.cpp")
 objects  := $(patsubst %.cpp, %.o, $(srcfiles))
@@ -10,7 +12,7 @@ all: $(appname)
 
 LDLIBS += -pthread
 
-LDFLAGS += -luuid -lboost_system -lssl -lcrypto
+LDFLAGS += -luuid -lboost_system -lssl -lcrypto -lshairplay -laubio
 
 $(appname): $(objects)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $(appname) $(objects) $(LDLIBS)

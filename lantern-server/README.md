@@ -10,3 +10,15 @@ sudo apt-get install libboost-system-dev
 sudo apt-get install libssl-dev
 ```
 
+A few things you will definitely need to install. cd to the project directory and:
+
+```
+git submodule init
+git submodule update
+```
+
+Follow the instructions to build and install dependent libraries:
+
+- [/lib/shairplay](https://github.com/juhovh/shairplay)
+- [/lib/aubio](https://github.com/aubio/aubio)
+

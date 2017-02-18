@@ -43,7 +43,7 @@ void LanternServer::setState(LanternState* state)
 void LanternServer::onMessage(websocketpp::connection_hdl hdl, WSServer::message_ptr msg)
 {
 	if (mState) {
-		std::cout << msg->get_payload() << std::endl;
+		cout << msg->get_payload() << endl;
 		json parsedMsg = json::parse(msg->get_payload());
 		if (parsedMsg.is_object()) {
 			if (parsedMsg["command"] == "setState") {
@@ -70,13 +70,13 @@ void LanternServer::onMessage(websocketpp::connection_hdl hdl, WSServer::message
 
 void LanternServer::onOpen(websocketpp::connection_hdl hdl)
 {
-	std::lock_guard<std::mutex> lock(mConnectionMutex);
+	lock_guard<mutex> lock(mConnectionMutex);
 	mConnections.insert(hdl);
 }
 
 void LanternServer::onClose(websocketpp::connection_hdl hdl)
 {
-	std::lock_guard<std::mutex> lock(mConnectionMutex);
+	lock_guard<mutex> lock(mConnectionMutex);
 	mConnections.erase(hdl);
 }
 
@@ -89,9 +89,9 @@ void LanternServer::broadcastState()
 	}
 }
 
-void LanternServer::broadcast(const std::string& message)
+void LanternServer::broadcast(const string& message)
 {
-	std::lock_guard<std::mutex> lock(mConnectionMutex);
+	lock_guard<mutex> lock(mConnectionMutex);
 	
 	for (auto it : mConnections) {
 		mWSServer.send(it, message, websocketpp::frame::opcode::text);
@@ -144,6 +144,6 @@ void LanternServer::serverThreadFunc(void* ctx)
 		server->mWSServer.run();
 		
 	} catch (websocketpp::exception const & e) {
-		std::cout << e.what() << std::endl;
+		cout << e.what() << endl;
 	}
 }

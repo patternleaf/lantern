@@ -11,10 +11,22 @@
 		070495951E4D46B200270BA9 /* EffectRegistry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070495931E4D46B200270BA9 /* EffectRegistry.cpp */; };
 		070495981E4D6DB400270BA9 /* ParticleTrailEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070495961E4D6DB400270BA9 /* ParticleTrailEffect.cpp */; };
 		0704959B1E4D704D00270BA9 /* RingsEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070495991E4D704D00270BA9 /* RingsEffect.cpp */; };
+		070BC8811E50AE50006F02FE /* RaopService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070BC87F1E50AE50006F02FE /* RaopService.cpp */; };
+		070BC8871E5110AC006F02FE /* PulseEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070BC8851E5110AC006F02FE /* PulseEffect.cpp */; };
+		070BC88A1E511B98006F02FE /* AudioService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070BC8881E511B98006F02FE /* AudioService.cpp */; };
 		074E3BF81E4A8E9C0077BF8D /* DripEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 074E3BF61E4A8E9C0077BF8D /* DripEffect.cpp */; };
 		0789DE0E1E3814A2006F4C65 /* LanternState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0789DE0C1E3814A2006F4C65 /* LanternState.cpp */; };
 		0789DE111E3817C6006F4C65 /* LanternEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0789DE0F1E3817C6006F4C65 /* LanternEffect.cpp */; };
 		0789DE141E395F82006F4C65 /* JsonConversions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0789DE121E395F82006F4C65 /* JsonConversions.cpp */; };
+		078B10581E57924400C40770 /* Gist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078B10571E57924400C40770 /* Gist.cpp */; };
+		078B105A1E57925900C40770 /* Yin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078B10591E57925900C40770 /* Yin.cpp */; };
+		078B105D1E57926600C40770 /* CoreFrequencyDomainFeatures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078B105B1E57926600C40770 /* CoreFrequencyDomainFeatures.cpp */; };
+		078B105E1E57926600C40770 /* CoreTimeDomainFeatures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078B105C1E57926600C40770 /* CoreTimeDomainFeatures.cpp */; };
+		078B10601E57927000C40770 /* MFCC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078B105F1E57927000C40770 /* MFCC.cpp */; };
+		078B10621E57927700C40770 /* OnsetDetectionFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078B10611E57927700C40770 /* OnsetDetectionFunction.cpp */; };
+		078B10641E57929600C40770 /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = 078B10631E57929600C40770 /* kiss_fft.c */; };
+		078B10661E57935700C40770 /* WindowFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078B10651E57935700C40770 /* WindowFunctions.cpp */; };
+		078B10681E579CB800C40770 /* AudioHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078B10671E579CB800C40770 /* AudioHandler.cpp */; };
 		07A97AEF1E45305000034474 /* LanternMixer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A97AED1E45305000034474 /* LanternMixer.cpp */; };
 		07E673F21E2D63950040ECD3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E673F11E2D63950040ECD3 /* main.cpp */; };
 		07E674231E2D63C10040ECD3 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 07E6740D1E2D63C10040ECD3 /* README.md */; };
@@ -51,6 +63,13 @@
 		0704959D1E4D740D00270BA9 /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot.png; sourceTree = "<group>"; };
 		0704959E1E4D740D00270BA9 /* glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glass.png; sourceTree = "<group>"; };
 		0704959F1E4D740D00270BA9 /* sky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sky.png; sourceTree = "<group>"; };
+		070BC87F1E50AE50006F02FE /* RaopService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RaopService.cpp; sourceTree = "<group>"; };
+		070BC8801E50AE50006F02FE /* RaopService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RaopService.hpp; sourceTree = "<group>"; };
+		070BC8831E50CCB9006F02FE /* AudioHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AudioHandler.hpp; sourceTree = "<group>"; };
+		070BC8851E5110AC006F02FE /* PulseEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PulseEffect.cpp; sourceTree = "<group>"; };
+		070BC8861E5110AC006F02FE /* PulseEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PulseEffect.hpp; sourceTree = "<group>"; };
+		070BC8881E511B98006F02FE /* AudioService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioService.cpp; sourceTree = "<group>"; };
+		070BC8891E511B98006F02FE /* AudioService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AudioService.hpp; sourceTree = "<group>"; };
 		074E3BF61E4A8E9C0077BF8D /* DripEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DripEffect.cpp; sourceTree = "<group>"; };
 		074E3BF71E4A8E9C0077BF8D /* DripEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DripEffect.hpp; sourceTree = "<group>"; };
 		0789DE0C1E3814A2006F4C65 /* LanternState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LanternState.cpp; sourceTree = "<group>"; };
@@ -60,6 +79,15 @@
 		0789DE121E395F82006F4C65 /* JsonConversions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JsonConversions.cpp; sourceTree = "<group>"; };
 		0789DE131E395F82006F4C65 /* JsonConversions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = JsonConversions.hpp; sourceTree = "<group>"; };
 		0789DE151E396C58006F4C65 /* json.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
+		078B10571E57924400C40770 /* Gist.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Gist.cpp; path = lib/Gist/src/Gist.cpp; sourceTree = SOURCE_ROOT; };
+		078B10591E57925900C40770 /* Yin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Yin.cpp; path = lib/Gist/src/pitch/Yin.cpp; sourceTree = SOURCE_ROOT; };
+		078B105B1E57926600C40770 /* CoreFrequencyDomainFeatures.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoreFrequencyDomainFeatures.cpp; path = lib/Gist/src/core/CoreFrequencyDomainFeatures.cpp; sourceTree = SOURCE_ROOT; };
+		078B105C1E57926600C40770 /* CoreTimeDomainFeatures.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CoreTimeDomainFeatures.cpp; path = lib/Gist/src/core/CoreTimeDomainFeatures.cpp; sourceTree = SOURCE_ROOT; };
+		078B105F1E57927000C40770 /* MFCC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MFCC.cpp; path = lib/Gist/src/mfcc/MFCC.cpp; sourceTree = SOURCE_ROOT; };
+		078B10611E57927700C40770 /* OnsetDetectionFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OnsetDetectionFunction.cpp; path = "lib/Gist/src/onset-detection-functions/OnsetDetectionFunction.cpp"; sourceTree = SOURCE_ROOT; };
+		078B10631E57929600C40770 /* kiss_fft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = kiss_fft.c; path = lib/Gist/libs/kiss_fft130/kiss_fft.c; sourceTree = SOURCE_ROOT; };
+		078B10651E57935700C40770 /* WindowFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WindowFunctions.cpp; path = lib/Gist/src/fft/WindowFunctions.cpp; sourceTree = SOURCE_ROOT; };
+		078B10671E579CB800C40770 /* AudioHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioHandler.cpp; sourceTree = "<group>"; };
 		07A97AED1E45305000034474 /* LanternMixer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LanternMixer.cpp; sourceTree = "<group>"; };
 		07A97AEE1E45305000034474 /* LanternMixer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LanternMixer.hpp; sourceTree = "<group>"; };
 		07E673EE1E2D63950040ECD3 /* lantern-server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "lantern-server"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +259,28 @@
 			path = data;
 			sourceTree = "<group>";
 		};
+		070BC87D1E50A963006F02FE /* raop */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = raop;
+			path = ../lantern;
+			sourceTree = "<group>";
+		};
+		070BC87E1E50AE22006F02FE /* Audio/Airplay Support */ = {
+			isa = PBXGroup;
+			children = (
+				078B10561E57921100C40770 /* Gist */,
+				070BC87F1E50AE50006F02FE /* RaopService.cpp */,
+				070BC8801E50AE50006F02FE /* RaopService.hpp */,
+				070BC8831E50CCB9006F02FE /* AudioHandler.hpp */,
+				078B10671E579CB800C40770 /* AudioHandler.cpp */,
+				070BC8881E511B98006F02FE /* AudioService.cpp */,
+				070BC8891E511B98006F02FE /* AudioService.hpp */,
+			);
+			name = "Audio/Airplay Support";
+			sourceTree = "<group>";
+		};
 		074E3BF51E4A8E740077BF8D /* Effects */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,8 +300,25 @@
 				070495971E4D6DB400270BA9 /* ParticleTrailEffect.hpp */,
 				070495991E4D704D00270BA9 /* RingsEffect.cpp */,
 				0704959A1E4D704D00270BA9 /* RingsEffect.hpp */,
+				070BC8851E5110AC006F02FE /* PulseEffect.cpp */,
+				070BC8861E5110AC006F02FE /* PulseEffect.hpp */,
 			);
 			name = Effects;
+			sourceTree = "<group>";
+		};
+		078B10561E57921100C40770 /* Gist */ = {
+			isa = PBXGroup;
+			children = (
+				078B10651E57935700C40770 /* WindowFunctions.cpp */,
+				078B10631E57929600C40770 /* kiss_fft.c */,
+				078B10611E57927700C40770 /* OnsetDetectionFunction.cpp */,
+				078B105F1E57927000C40770 /* MFCC.cpp */,
+				078B105B1E57926600C40770 /* CoreFrequencyDomainFeatures.cpp */,
+				078B105C1E57926600C40770 /* CoreTimeDomainFeatures.cpp */,
+				078B10591E57925900C40770 /* Yin.cpp */,
+				078B10571E57924400C40770 /* Gist.cpp */,
+			);
+			name = Gist;
 			sourceTree = "<group>";
 		};
 		07E673E51E2D63950040ECD3 = {
@@ -273,6 +340,7 @@
 		07E673F01E2D63950040ECD3 /* lantern-server */ = {
 			isa = PBXGroup;
 			children = (
+				070BC87E1E50AE22006F02FE /* Audio/Airplay Support */,
 				0704959C1E4D740D00270BA9 /* data */,
 				07E674251E2D65B60040ECD3 /* layout.json */,
 				07E674261E2D65B60040ECD3 /* make-layout.js */,
@@ -298,6 +366,7 @@
 		07E673F81E2D63C10040ECD3 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				070BC87D1E50A963006F02FE /* raop */,
 				07E674321E2F0D560040ECD3 /* websocketpp */,
 				07E673F91E2D63C10040ECD3 /* brightness.h */,
 				07E673FA1E2D63C10040ECD3 /* color.h */,
@@ -723,18 +792,30 @@
 				0704959B1E4D704D00270BA9 /* RingsEffect.cpp in Sources */,
 				07E674241E2D63C10040ECD3 /* README.md in Sources */,
 				07E674A91E2F0ECD0040ECD3 /* LanternServer.cpp in Sources */,
+				078B105D1E57926600C40770 /* CoreFrequencyDomainFeatures.cpp in Sources */,
+				078B10601E57927000C40770 /* MFCC.cpp in Sources */,
+				070BC88A1E511B98006F02FE /* AudioService.cpp in Sources */,
 				070495981E4D6DB400270BA9 /* ParticleTrailEffect.cpp in Sources */,
+				078B10641E57929600C40770 /* kiss_fft.c in Sources */,
+				078B10581E57924400C40770 /* Gist.cpp in Sources */,
+				070BC8871E5110AC006F02FE /* PulseEffect.cpp in Sources */,
 				07E674231E2D63C10040ECD3 /* README.md in Sources */,
+				078B105E1E57926600C40770 /* CoreTimeDomainFeatures.cpp in Sources */,
+				078B10661E57935700C40770 /* WindowFunctions.cpp in Sources */,
 				070495921E4D43EB00270BA9 /* EffectParameter.cpp in Sources */,
+				078B10621E57927700C40770 /* OnsetDetectionFunction.cpp in Sources */,
 				07E674311E2DD78F0040ECD3 /* RippleEffect.cpp in Sources */,
 				07E6742C1E2D7D690040ECD3 /* LampEffect.cpp in Sources */,
 				07E674281E2D65B60040ECD3 /* Makefile in Sources */,
+				078B10681E579CB800C40770 /* AudioHandler.cpp in Sources */,
 				07A97AEF1E45305000034474 /* LanternMixer.cpp in Sources */,
 				074E3BF81E4A8E9C0077BF8D /* DripEffect.cpp in Sources */,
 				0789DE0E1E3814A2006F4C65 /* LanternState.cpp in Sources */,
+				070BC8811E50AE50006F02FE /* RaopService.cpp in Sources */,
 				07E673F21E2D63950040ECD3 /* main.cpp in Sources */,
 				070495951E4D46B200270BA9 /* EffectRegistry.cpp in Sources */,
 				0789DE111E3817C6006F4C65 /* LanternEffect.cpp in Sources */,
+				078B105A1E57925900C40770 /* Yin.cpp in Sources */,
 				0789DE141E395F82006F4C65 /* JsonConversions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -840,16 +921,23 @@
 					./lib,
 					/usr/local/include,
 					/usr/local/opt/openssl/include/,
+					./lib/shairplay/include,
+					./lib/Gist/src,
+					./lib/Gist/libs/kiss_fft130,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/opt/openssl/lib/,
 					/usr/local/lib/,
 				);
-				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DUSE_KISS_FFT",
+				);
 				OTHER_LDFLAGS = (
 					"-lssl",
 					"-lcrypto",
 					"-lboost_system",
+					"-lshairplay",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -867,16 +955,23 @@
 					./lib,
 					/usr/local/include,
 					/usr/local/opt/openssl/include/,
+					./lib/shairplay/include,
+					./lib/Gist/src,
+					./lib/Gist/libs/kiss_fft130,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/opt/openssl/lib/,
 					/usr/local/lib/,
 				);
-				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DUSE_KISS_FFT",
+				);
 				OTHER_LDFLAGS = (
 					"-lssl",
 					"-lcrypto",
 					"-lboost_system",
+					"-lshairplay",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
