@@ -18,9 +18,9 @@ using namespace std;
 const static int kSampleRate = 44100;
 const static int kSampleSize = 2;		// in bytes natch
 const static int kNChannels = 2;
-const static int kFrameSize = 512;
+const static int kWindowSize = 512;		// suggested by gist
 
-static Gist<float> sGist(kFrameSize, kSampleRate);
+static Gist<float> sGist(kWindowSize, kSampleRate);
 
 AudioService* AudioService::sService = nullptr;
 
@@ -37,7 +37,7 @@ AudioService* AudioService::shared()
 AudioService::AudioService()
 {
 
-	mSummedFrame.reserve(kFrameSize);
+	mSummedFrame.reserve(kWindowSize);
 
 	RaopService::shared()->registerAudioHandler(this);
 //	mTestOut.open("test.pcm");
@@ -60,24 +60,13 @@ const vector<float>& AudioService::getMelFrequencySpectrum()
 
 void AudioService::handleAudio(RaopService::AudioBuffer buffer, float volume)
 {
-//	auto start = buffer.begin()
-//	int window = 1024;
-//	int traversed = 0;
-//	for (auto it = start; it < start + window && it < buffer.end(); it++, traversed++) {
-//		cout << "     " << *it << endl;
-//	}
-//	for (auto sample : buffer) {
-//		mTestOut << sample;
-//	}
 
 	mSummedFrame.clear();
 	
 	int stride = kSampleSize * kNChannels;
 	uint16_t fullCodeSample = -1;
 	
-//	cout << "constructing frame" << endl;
-	
-	for (int i = 0; i < buffer.size() && mSummedFrame.size() < kFrameSize; i += stride) {
+	for (int i = 0; i < buffer.size() && mSummedFrame.size() < kWindowSize; i += stride) {
 		uint16_t lSample = (buffer[i] | buffer[i + 1] << 8);
 		uint16_t rSample = (buffer[i + 2] | buffer[i + 3] << 8);
 		
@@ -91,14 +80,14 @@ void AudioService::handleAudio(RaopService::AudioBuffer buffer, float volume)
 //		cout << "    R: " << rSample << " --- " << (rSample / (float)fullCodeSample) << endl;
 //		cout << "  summed: " << mSummedFrame.back() << endl;
 	}
-	
+
 	sGist.processAudioFrame(mSummedFrame);
 	
 }
 
 void AudioService::handleAudioStreamEnded()
 {
-	mSummedFrame.resize(kFrameSize, 0);
+	mSummedFrame.resize(kWindowSize, 0);
 	fill(mSummedFrame.begin(), mSummedFrame.end(), 0);
 	cout << "zeroing gist buffer (size " << mSummedFrame.size() << ")" << endl;
 //	for (auto it : mSummedFrame) { cout << " " << it; }

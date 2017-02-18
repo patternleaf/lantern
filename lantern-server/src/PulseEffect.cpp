@@ -33,8 +33,8 @@ void PulseEffect::beginFrame(const FrameInfo &f)
 	
 	mLayoutMax = f.modelMax;
 
-	const vector<float>& mag = AudioService::shared()->getMelFrequencySpectrum();
-//	const vector<float>& mag = AudioService::shared()->getMagnitudeSpectrum();
+//	const vector<float>& mag = AudioService::shared()->getMelFrequencySpectrum();
+	const vector<float>& mag = AudioService::shared()->getMagnitudeSpectrum();
 	
 	if (mMagSpectrum.size() != mag.size()) {
 		mMagSpectrum.resize(mag.size());
@@ -68,7 +68,7 @@ void PulseEffect::beginFrame(const FrameInfo &f)
 			}
 		}
 		
-		if (!wasReset) {
+		if (!wasReset || intensity == 0) {
 			mBallistics[i] -= 0.0005;
 		}
 	}

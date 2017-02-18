@@ -52,7 +52,7 @@ private:
 	static RaopService* sService;
 
 	void handleAudioStarted();
-	void handleAudio(AudioBuffer buffer, float volume);
+	void handleAudio(AudioSession* session);
 	void handleAudioEnded();
 
 	std::set<AudioHandler*> mAudioHandlers;
@@ -61,6 +61,8 @@ private:
 	raop_t* mRaopRef;
 
 	AudioSession* mSession;
+	
+	float mBufferTime;
 	
 	friend void raop_service_audio_process(void *cls, void *session, const void *buffer, int buflen);
 	friend void* raop_service_audio_init(void *cls, int bits, int channels, int samplerate);

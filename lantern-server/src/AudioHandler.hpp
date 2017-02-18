@@ -16,6 +16,9 @@ public:
 	virtual void handleAudioStreamStarted();
 	virtual void handleAudio(RaopService::AudioBuffer buffer, float volume) = 0;
 	virtual void handleAudioStreamEnded();
+	
+	// in the event multiple consumers have different window requirements ...
+//	virtual int getWindowSize() = 0;
 };
 
 #endif /* AudioHandler_hpp */

@@ -114,7 +114,7 @@ better performance.
 - Ability to add/remove effects on the fly from remote clients.
 - Separate layout generator / layout files in some reasonable way.
 - Don't crash on layout files lacking lantern-specific properties.
-
+- Optimize effect description vs state over network.
 
 ## Wishlist
 

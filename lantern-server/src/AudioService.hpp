@@ -30,8 +30,7 @@ private:
 	static AudioService* sService;
 	
 	std::vector<float> mSummedFrame;
-	
-	std::ofstream mTestOut;
+
 };
 
 #include <stdio.h>
