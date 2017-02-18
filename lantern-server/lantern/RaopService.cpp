@@ -85,7 +85,7 @@ using time_stamp = std::chrono::time_point<std::chrono::system_clock, std::chron
 typedef struct AudioSession {
 	tthread::thread* consumerThread;
 	tthread::mutex mutex;
-	time_stamp lastCycleTime;
+//	time_stamp lastCycleTime;
 //	duration<microseconds> processPeriod;	// ??
 	
 	bool isRunning = true;
