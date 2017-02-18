@@ -1,7 +1,7 @@
 appname := lantern-server
 
 #CXX := g++-5
-CXXFLAGS := -std=c++11 -I./lib -I./lib/websocketpp -I./lib/shairplay/include -I./lib/Gist/src/
+CXXFLAGS := -std=c++11 -I. -I./lib -I./lib/websocketpp -I./lib/shairplay/include -I./lib/Gist/src/
 
 CXXFLAGS += -DUSE_FFTW
 
