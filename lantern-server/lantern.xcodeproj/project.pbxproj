@@ -52,32 +52,32 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		070495901E4D43EB00270BA9 /* EffectParameter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectParameter.cpp; sourceTree = "<group>"; };
-		070495911E4D43EB00270BA9 /* EffectParameter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EffectParameter.hpp; sourceTree = "<group>"; };
-		070495931E4D46B200270BA9 /* EffectRegistry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectRegistry.cpp; sourceTree = "<group>"; };
-		070495941E4D46B200270BA9 /* EffectRegistry.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EffectRegistry.hpp; sourceTree = "<group>"; };
-		070495961E4D6DB400270BA9 /* ParticleTrailEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleTrailEffect.cpp; sourceTree = "<group>"; };
-		070495971E4D6DB400270BA9 /* ParticleTrailEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParticleTrailEffect.hpp; sourceTree = "<group>"; };
-		070495991E4D704D00270BA9 /* RingsEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RingsEffect.cpp; sourceTree = "<group>"; };
-		0704959A1E4D704D00270BA9 /* RingsEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RingsEffect.hpp; sourceTree = "<group>"; };
+		070495901E4D43EB00270BA9 /* EffectParameter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EffectParameter.cpp; path = ../src/EffectParameter.cpp; sourceTree = "<group>"; };
+		070495911E4D43EB00270BA9 /* EffectParameter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = EffectParameter.hpp; path = ../src/EffectParameter.hpp; sourceTree = "<group>"; };
+		070495931E4D46B200270BA9 /* EffectRegistry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EffectRegistry.cpp; path = ../src/EffectRegistry.cpp; sourceTree = "<group>"; };
+		070495941E4D46B200270BA9 /* EffectRegistry.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = EffectRegistry.hpp; path = ../src/EffectRegistry.hpp; sourceTree = "<group>"; };
+		070495961E4D6DB400270BA9 /* ParticleTrailEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleTrailEffect.cpp; path = ../src/ParticleTrailEffect.cpp; sourceTree = "<group>"; };
+		070495971E4D6DB400270BA9 /* ParticleTrailEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ParticleTrailEffect.hpp; path = ../src/ParticleTrailEffect.hpp; sourceTree = "<group>"; };
+		070495991E4D704D00270BA9 /* RingsEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RingsEffect.cpp; path = ../src/RingsEffect.cpp; sourceTree = "<group>"; };
+		0704959A1E4D704D00270BA9 /* RingsEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = RingsEffect.hpp; path = ../src/RingsEffect.hpp; sourceTree = "<group>"; };
 		0704959D1E4D740D00270BA9 /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot.png; sourceTree = "<group>"; };
 		0704959E1E4D740D00270BA9 /* glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glass.png; sourceTree = "<group>"; };
 		0704959F1E4D740D00270BA9 /* sky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sky.png; sourceTree = "<group>"; };
-		070BC87F1E50AE50006F02FE /* RaopService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RaopService.cpp; sourceTree = "<group>"; };
-		070BC8801E50AE50006F02FE /* RaopService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RaopService.hpp; sourceTree = "<group>"; };
-		070BC8831E50CCB9006F02FE /* AudioHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AudioHandler.hpp; sourceTree = "<group>"; };
-		070BC8851E5110AC006F02FE /* PulseEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PulseEffect.cpp; sourceTree = "<group>"; };
-		070BC8861E5110AC006F02FE /* PulseEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PulseEffect.hpp; sourceTree = "<group>"; };
-		070BC8881E511B98006F02FE /* AudioService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioService.cpp; sourceTree = "<group>"; };
-		070BC8891E511B98006F02FE /* AudioService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AudioService.hpp; sourceTree = "<group>"; };
-		074E3BF61E4A8E9C0077BF8D /* DripEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DripEffect.cpp; sourceTree = "<group>"; };
-		074E3BF71E4A8E9C0077BF8D /* DripEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DripEffect.hpp; sourceTree = "<group>"; };
-		0789DE0C1E3814A2006F4C65 /* LanternState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LanternState.cpp; sourceTree = "<group>"; };
-		0789DE0D1E3814A2006F4C65 /* LanternState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LanternState.hpp; sourceTree = "<group>"; };
-		0789DE0F1E3817C6006F4C65 /* LanternEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LanternEffect.cpp; sourceTree = "<group>"; };
-		0789DE101E3817C6006F4C65 /* LanternEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LanternEffect.hpp; sourceTree = "<group>"; };
-		0789DE121E395F82006F4C65 /* JsonConversions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JsonConversions.cpp; sourceTree = "<group>"; };
-		0789DE131E395F82006F4C65 /* JsonConversions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = JsonConversions.hpp; sourceTree = "<group>"; };
+		070BC87F1E50AE50006F02FE /* RaopService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RaopService.cpp; path = ../src/RaopService.cpp; sourceTree = "<group>"; };
+		070BC8801E50AE50006F02FE /* RaopService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = RaopService.hpp; path = ../src/RaopService.hpp; sourceTree = "<group>"; };
+		070BC8831E50CCB9006F02FE /* AudioHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AudioHandler.hpp; path = ../src/AudioHandler.hpp; sourceTree = "<group>"; };
+		070BC8851E5110AC006F02FE /* PulseEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PulseEffect.cpp; path = ../src/PulseEffect.cpp; sourceTree = "<group>"; };
+		070BC8861E5110AC006F02FE /* PulseEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PulseEffect.hpp; path = ../src/PulseEffect.hpp; sourceTree = "<group>"; };
+		070BC8881E511B98006F02FE /* AudioService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AudioService.cpp; path = ../src/AudioService.cpp; sourceTree = "<group>"; };
+		070BC8891E511B98006F02FE /* AudioService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AudioService.hpp; path = ../src/AudioService.hpp; sourceTree = "<group>"; };
+		074E3BF61E4A8E9C0077BF8D /* DripEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DripEffect.cpp; path = ../src/DripEffect.cpp; sourceTree = "<group>"; };
+		074E3BF71E4A8E9C0077BF8D /* DripEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DripEffect.hpp; path = ../src/DripEffect.hpp; sourceTree = "<group>"; };
+		0789DE0C1E3814A2006F4C65 /* LanternState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LanternState.cpp; path = ../src/LanternState.cpp; sourceTree = "<group>"; };
+		0789DE0D1E3814A2006F4C65 /* LanternState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LanternState.hpp; path = ../src/LanternState.hpp; sourceTree = "<group>"; };
+		0789DE0F1E3817C6006F4C65 /* LanternEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LanternEffect.cpp; path = ../src/LanternEffect.cpp; sourceTree = "<group>"; };
+		0789DE101E3817C6006F4C65 /* LanternEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LanternEffect.hpp; path = ../src/LanternEffect.hpp; sourceTree = "<group>"; };
+		0789DE121E395F82006F4C65 /* JsonConversions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JsonConversions.cpp; path = ../src/JsonConversions.cpp; sourceTree = "<group>"; };
+		0789DE131E395F82006F4C65 /* JsonConversions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = JsonConversions.hpp; path = ../src/JsonConversions.hpp; sourceTree = "<group>"; };
 		0789DE151E396C58006F4C65 /* json.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
 		078B10571E57924400C40770 /* Gist.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Gist.cpp; path = lib/Gist/src/Gist.cpp; sourceTree = SOURCE_ROOT; };
 		078B10591E57925900C40770 /* Yin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Yin.cpp; path = lib/Gist/src/pitch/Yin.cpp; sourceTree = SOURCE_ROOT; };
@@ -87,11 +87,11 @@
 		078B10611E57927700C40770 /* OnsetDetectionFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OnsetDetectionFunction.cpp; path = "lib/Gist/src/onset-detection-functions/OnsetDetectionFunction.cpp"; sourceTree = SOURCE_ROOT; };
 		078B10631E57929600C40770 /* kiss_fft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = kiss_fft.c; path = lib/Gist/libs/kiss_fft130/kiss_fft.c; sourceTree = SOURCE_ROOT; };
 		078B10651E57935700C40770 /* WindowFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WindowFunctions.cpp; path = lib/Gist/src/fft/WindowFunctions.cpp; sourceTree = SOURCE_ROOT; };
-		078B10671E579CB800C40770 /* AudioHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioHandler.cpp; sourceTree = "<group>"; };
-		07A97AED1E45305000034474 /* LanternMixer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LanternMixer.cpp; sourceTree = "<group>"; };
-		07A97AEE1E45305000034474 /* LanternMixer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LanternMixer.hpp; sourceTree = "<group>"; };
+		078B10671E579CB800C40770 /* AudioHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AudioHandler.cpp; path = ../src/AudioHandler.cpp; sourceTree = "<group>"; };
+		07A97AED1E45305000034474 /* LanternMixer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LanternMixer.cpp; path = ../src/LanternMixer.cpp; sourceTree = "<group>"; };
+		07A97AEE1E45305000034474 /* LanternMixer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LanternMixer.hpp; path = ../src/LanternMixer.hpp; sourceTree = "<group>"; };
 		07E673EE1E2D63950040ECD3 /* lantern-server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "lantern-server"; sourceTree = BUILT_PRODUCTS_DIR; };
-		07E673F11E2D63950040ECD3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		07E673F11E2D63950040ECD3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../src/main.cpp; sourceTree = "<group>"; };
 		07E673F91E2D63C10040ECD3 /* brightness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = brightness.h; sourceTree = "<group>"; };
 		07E673FA1E2D63C10040ECD3 /* color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
 		07E673FB1E2D63C10040ECD3 /* effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = effect.h; sourceTree = "<group>"; };
@@ -133,13 +133,13 @@
 		07E674221E2D63C10040ECD3 /* tinythread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinythread.h; sourceTree = "<group>"; };
 		07E674251E2D65B60040ECD3 /* layout.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = layout.json; sourceTree = SOURCE_ROOT; };
 		07E674261E2D65B60040ECD3 /* make-layout.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "make-layout.js"; sourceTree = SOURCE_ROOT; };
-		07E674271E2D65B60040ECD3 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = lantern/Makefile; sourceTree = SOURCE_ROOT; };
-		07E6742A1E2D7D690040ECD3 /* LampEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LampEffect.cpp; sourceTree = "<group>"; };
-		07E6742B1E2D7D690040ECD3 /* LampEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LampEffect.hpp; sourceTree = "<group>"; };
-		07E6742D1E2D87320040ECD3 /* CheckerCubeIds.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckerCubeIds.h; sourceTree = "<group>"; };
-		07E6742E1E2D8DE80040ECD3 /* Mode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mode.h; sourceTree = "<group>"; };
-		07E6742F1E2DD78F0040ECD3 /* RippleEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RippleEffect.cpp; sourceTree = "<group>"; };
-		07E674301E2DD78F0040ECD3 /* RippleEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RippleEffect.hpp; sourceTree = "<group>"; };
+		07E674271E2D65B60040ECD3 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = SOURCE_ROOT; };
+		07E6742A1E2D7D690040ECD3 /* LampEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LampEffect.cpp; path = ../src/LampEffect.cpp; sourceTree = "<group>"; };
+		07E6742B1E2D7D690040ECD3 /* LampEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LampEffect.hpp; path = ../src/LampEffect.hpp; sourceTree = "<group>"; };
+		07E6742D1E2D87320040ECD3 /* CheckerCubeIds.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CheckerCubeIds.h; path = ../src/CheckerCubeIds.h; sourceTree = "<group>"; };
+		07E6742E1E2D8DE80040ECD3 /* Mode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Mode.h; path = ../src/Mode.h; sourceTree = "<group>"; };
+		07E6742F1E2DD78F0040ECD3 /* RippleEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RippleEffect.cpp; path = ../src/RippleEffect.cpp; sourceTree = "<group>"; };
+		07E674301E2DD78F0040ECD3 /* RippleEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = RippleEffect.hpp; path = ../src/RippleEffect.hpp; sourceTree = "<group>"; };
 		07E674341E2F0D560040ECD3 /* base64.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = base64.hpp; sourceTree = "<group>"; };
 		07E674351E2F0D560040ECD3 /* client.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = client.hpp; sourceTree = "<group>"; };
 		07E674361E2F0D560040ECD3 /* close.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = close.hpp; sourceTree = "<group>"; };
@@ -234,8 +234,8 @@
 		07E674A41E2F0D560040ECD3 /* utf8_validator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utf8_validator.hpp; sourceTree = "<group>"; };
 		07E674A51E2F0D560040ECD3 /* utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utilities.hpp; sourceTree = "<group>"; };
 		07E674A61E2F0D560040ECD3 /* version.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = version.hpp; sourceTree = "<group>"; };
-		07E674A71E2F0ECD0040ECD3 /* LanternServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LanternServer.cpp; sourceTree = "<group>"; };
-		07E674A81E2F0ECD0040ECD3 /* LanternServer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LanternServer.hpp; sourceTree = "<group>"; };
+		07E674A71E2F0ECD0040ECD3 /* LanternServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LanternServer.cpp; path = ../src/LanternServer.cpp; sourceTree = "<group>"; };
+		07E674A81E2F0ECD0040ECD3 /* LanternServer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LanternServer.hpp; path = ../src/LanternServer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -780,7 +780,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#mkdir -p $BUILT_PRODUCTS_DIR/data\ncp -R $PROJECT_DIR/lantern/data $BUILT_PRODUCTS_DIR/data";
+			shellScript = "#mkdir -p $BUILT_PRODUCTS_DIR/data\ncp -R $PROJECT_DIR/data $BUILT_PRODUCTS_DIR/data";
 		};
 /* End PBXShellScriptBuildPhase section */
 
