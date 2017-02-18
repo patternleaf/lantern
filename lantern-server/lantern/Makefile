@@ -6,6 +6,13 @@ CXXFLAGS := -std=c++11 -I.. -I../lib -I../lib/websocketpp -I../lib/shairplay/inc
 CXXFLAGS += -DUSE_KISSFFT
 
 srcfiles := $(shell find . -name "*.cpp")
+srcfiles += $(shell find ../lib/Gist/src/core -name "*.cpp")
+srcfiles += ../lib/Gist/src/fft/WindowFunctions.cpp
+srcfiles += $(shell find ../lib/Gist/src/mfcc -name "*.cpp")
+srcfiles += $(shell find ../lib/Gist/src/onset-detection-functions -name "*.cpp")
+srcfiles += $(shell find ../lib/Gist/src/pitch -name "*.cpp")
+srcfiles += $(shell find ../lib/Gist/src -name "*.cpp")
+
 objects  := $(patsubst %.cpp, %.o, $(srcfiles))
 
 all: $(appname)
