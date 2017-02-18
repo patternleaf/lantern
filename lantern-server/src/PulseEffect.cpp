@@ -59,12 +59,16 @@ void PulseEffect::beginFrame(const FrameInfo &f)
 	
 	for (int i = 0; i < mag.size(); i++) {
 		float intensity = mag[i];
-		if (intensity > mBallistics[i]) {
-			if (mSpectrumRange.second - mSpectrumRange.first != 0) {
-				mBallistics[i] = (intensity - mSpectrumRange.first) / (mSpectrumRange.second - mSpectrumRange.first);
+		bool wasReset = false;
+		if (mSpectrumRange.second - mSpectrumRange.first != 0) {
+			intensity = (intensity - mSpectrumRange.first) / (mSpectrumRange.second - mSpectrumRange.first);
+			if (intensity > mBallistics[i]) {
+				mBallistics[i] = intensity;
+				wasReset = true;
 			}
 		}
-		else {
+		
+		if (!wasReset) {
 			mBallistics[i] -= 0.0005;
 		}
 	}
