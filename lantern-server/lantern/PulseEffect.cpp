@@ -44,8 +44,8 @@ void PulseEffect::beginFrame(const FrameInfo &f)
 //	copy(mag.begin(), mag.end(), mMagSpectrum.begin());
 	
 	mMagSpectrum.clear();
-	mSpectrumRange.first = MAXFLOAT;
-	mSpectrumRange.second = -MAXFLOAT;
+	mSpectrumRange.first = numeric_limits<float>::max();
+	mSpectrumRange.second = -numeric_limits<float>::max();
 	
 	for (float intensity : mag) {
 		if (intensity < mSpectrumRange.first) {
