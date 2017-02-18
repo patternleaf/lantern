@@ -5,7 +5,7 @@ CXXFLAGS := -std=c++11 -I./lib -I./lib/websocketpp -I./lib/shairplay/include -I.
 
 CXXFLAGS += -DUSE_FFTW
 
-srcfiles := $(shell find ./lantern -name "*.cpp")
+srcfiles := $(shell find ./src -name "*.cpp")
 
 srcfiles += $(shell find ./lib/Gist/src/core -name "*.cpp")
 srcfiles += ./lib/Gist/src/fft/WindowFunctions.cpp
@@ -23,19 +23,19 @@ LDLIBS += -pthread -lfftw3
 LDFLAGS += -luuid -lboost_system -lssl -lcrypto -lshairplay
 
 $(appname): $(objects)
-        $(CXX) $(CXXFLAGS) $(LDFLAGS) -o $(appname) $(objects) $(LDLIBS)
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $(appname) $(objects) $(LDLIBS)
 
 depend: .depend
 
 .depend: $(srcfiles)
-        rm -f ./.depend
-        $(CXX) $(CXXFLAGS) -MM $^>>./.depend;
+	rm -f ./.depend
+	$(CXX) $(CXXFLAGS) -MM $^>>./.depend;
 
 clean:
-        rm -f $(objects)
+	rm -f $(objects)
 
 dist-clean: clean
-        rm -f *~ .depend
+	rm -f *~ .depend
 
 include .depend
 
