@@ -11,7 +11,7 @@ srcfiles += ../lib/Gist/src/fft/WindowFunctions.cpp
 srcfiles += $(shell find ../lib/Gist/src/mfcc -name "*.cpp")
 srcfiles += $(shell find ../lib/Gist/src/onset-detection-functions -name "*.cpp")
 srcfiles += $(shell find ../lib/Gist/src/pitch -name "*.cpp")
-srcfiles += $(shell find ../lib/Gist/src -name "*.cpp")
+srcfiles += ../lib/Gist/src/Gist.cpp
 
 objects  := $(patsubst %.cpp, %.o, $(srcfiles))
 
