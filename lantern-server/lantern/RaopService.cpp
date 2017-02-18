@@ -80,7 +80,7 @@ RaopService* RaopService::shared()
 
 // MARK: -- raop audio handling
 
-using time_stamp = std::chrono::time_point<std::chrono::system_clock, std::chrono::microseconds>;
+//using time_stamp = std::chrono::time_point<std::chrono::system_clock, std::chrono::microseconds>;
 
 typedef struct AudioSession {
 	tthread::thread* consumerThread;
