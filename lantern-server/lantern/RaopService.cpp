@@ -38,7 +38,7 @@
 #include <math.h>
 
 using namespace std;
-using namespace std::chrono;
+using namespace tthread::chrono;
 
 static raop_callbacks_s sCallbacks;
 
@@ -84,7 +84,7 @@ using time_stamp = std::chrono::time_point<std::chrono::system_clock, std::chron
 
 typedef struct AudioSession {
 	tthread::thread* consumerThread;
-	mutex mutex;
+	tthread::mutex mutex;
 	time_stamp lastCycleTime;
 //	duration<microseconds> processPeriod;	// ??
 	
@@ -112,7 +112,7 @@ void consumerThreadFunc(void* ctx)
 	while (session->isRunning) {
 		size_t bufferSize = 0;
 		{
-			lock_guard<mutex> guard(session->mutex);
+			lock_guard<tthread::mutex> guard(session->mutex);
 			bufferSize = session->buffer.size();
 		}
 		
@@ -124,7 +124,7 @@ void consumerThreadFunc(void* ctx)
 			tthread::this_thread::sleep_for(tthread::chrono::milliseconds(1));
 		}
 		else {
-			lock_guard<mutex> guard(session->mutex);
+			lock_guard<tthread::mutex> guard(session->mutex);
 			service->handleAudio(session->buffer, session->volume);
 			session->buffer.clear();
 		}
@@ -167,7 +167,7 @@ void raop_service_audio_process(void *cls, void *session, const void *buffer, in
 //	RaopService* service = (RaopService*)cls;
 	AudioSession* audioSession = (AudioSession*)session;
 	
-	lock_guard<mutex> guard(audioSession->mutex);
+	lock_guard<tthread::mutex> guard(audioSession->mutex);
 	
 	for (uint i = 0; i < buflen; i++) {
 		audioSession->buffer.push_back(((uint8_t*)buffer)[i]);

@@ -1,7 +1,7 @@
 
 Intended to compile on OSX via the XCode project, or on a raspberry pi 3 (Raspbian Jessie w/Pixel kernel 4.4).
 
-A few things you may need to install:
+A few things you may need to install (assuming raspbian or other linux-y device):
 
 ```
 sudo apt-get install uuid-dev
@@ -20,5 +20,5 @@ git submodule update
 Follow the instructions to build and install dependent libraries:
 
 - [/lib/shairplay](https://github.com/juhovh/shairplay)
-- [/lib/aubio](https://github.com/aubio/aubio)
+
 
