@@ -9,17 +9,19 @@ var kCubeWidth = 0.2857,
 
 var layout = [];
 
-function makeCube(startPoint, reverseOrder, cubeId, checker) {
+function makeCube(startPoint, cube) {
 	var result = [];
 	for (var i = 0; i < kLedsPerCube; i++) {
 		result.push({
 			point: [startPoint.x + (kLedOffset * i), startPoint.y, 0],
-			cubeId: cubeId,
-			checker: checker
+			cubeId: cube.cubeId,
+			checker: cube.checker,
+			row: cube.coordinates.y,
+			col: cube.coordinates.x
 		});
 	}
 
-	if (reverseOrder) {
+	if (cube.ltr) {
 		result.reverse();
 	}
 	return result;
@@ -35,7 +37,7 @@ var cubeOrder = [
 ];
 
 var ltrCubes = [1, 2, 6, 7, 8, 12, 13, 14, 15, 16, 17, 20];
-var checkerCubes = [5, 1, 0, 3, 15, 11, 19, 7, 13, 20, 17, 8, 14];
+var checkerCubes = [5, 1, 0, 3, 15, 11, 19, 7, 13, 20, 17, 9];
 
 var cubes = [];
 
@@ -64,7 +66,7 @@ for (var i = 0; i < cubes.length; i++) {
 		x: cube.coordinates.x * (kCubeWidth + kCubeMargin),
 		y: cube.coordinates.y * (kCubeWidth + kCubeMargin)
 	};
-	layout = layout.concat(makeCube(startPoint, cube.ltr, cube.cubeId, cube.checker));
+	layout = layout.concat(makeCube(startPoint, cube));
 }
 
 fs.writeFileSync('layout.json', JSON.stringify(layout));

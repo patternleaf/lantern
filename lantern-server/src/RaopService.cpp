@@ -142,12 +142,13 @@ void consumerThreadFunc(void* ctx)
 				service->handleAudio(session);
 				didConsume = true;
 			}
-			time_stamp now = system_clock::now();
 			
-			session->elapsedTime = now - session->startTime;
+			nowTime = system_clock::now();
+			
+			session->elapsedTime = nowTime - session->startTime;
 			
 			if (didConsume) {
-				session->nextConsumeTime = now + (session->sampleDuration * kWindowSize);
+				session->nextConsumeTime = nowTime + (session->sampleDuration * kWindowSize);
 			}
 		}
 		
@@ -176,7 +177,7 @@ void* raop_service_audio_init(void *cls, int bits, int channels, int samplerate)
 	
 	service->mSession = session;
 	
-	cout << "initing audio for " << bits << "-bit " << samplerate << ", ";
+	cout << "initing audio for " << bits << "-bit " << samplerate << "kHz, ";
 	cout << service->mBufferTime << " sec buffer (" << bufferSizeBytes << " bytes)" << endl;
 	
 	session->consumerThread = new tthread::thread(&consumerThreadFunc, session);

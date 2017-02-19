@@ -78,7 +78,7 @@ sudo ldconfig
 ```
 
 You should now be ready to build lantern. cd to 
-`lantern-server/lantern` (TODO: fix this) and `make`.
+`lantern-server` and `make`.
 
 Invoke lantern with your layout file.
 

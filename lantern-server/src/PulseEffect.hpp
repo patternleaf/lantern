@@ -11,10 +11,9 @@
 
 #include <iostream>
 #include <fstream>
+#include <chrono>
 #include "LanternEffect.hpp"
-//#include "../lib/particle.h"
 
-//class PulseEffect : public ParticleEffect {
 class PulseEffect : public LanternEffect {
 public:
 	PulseEffect();
@@ -29,10 +28,27 @@ public:
 	
 private:
 
+	typedef std::chrono::system_clock::duration time_duration;
+	typedef std::chrono::time_point<std::chrono::system_clock, time_duration> time_stamp;
+
+	typedef struct Ripple {
+		Ripple();
+		Vec3 origin;
+		float band;
+		float speed;
+		float radius;	// -1 if not alive
+		float intensity;
+		float age;
+		float cycle;
+	} Ripple;
+	
+	void manageRipples(float timeDelta);
+	
 	Vec3 mLayoutMax;
 	std::pair<float, float> mSpectrumRange;
-	std::vector<float> mMagSpectrum;
-	std::vector<float> mBallistics;
+	std::vector<std::pair<float, bool>> mBallistics;
+	std::vector<Ripple> mRipples;
+
 };
 
 #endif /* PulseEffect_hpp */

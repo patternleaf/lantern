@@ -32,15 +32,12 @@ AudioService* AudioService::shared()
 	return sService;
 }
 
-
 // TODO:
 AudioService::AudioService()
 {
-
 	mSummedFrame.reserve(kWindowSize);
 
 	RaopService::shared()->registerAudioHandler(this);
-//	mTestOut.open("test.pcm");
 }
 
 AudioService::~AudioService()
@@ -60,7 +57,6 @@ const vector<float>& AudioService::getMelFrequencySpectrum()
 
 void AudioService::handleAudio(RaopService::AudioBuffer buffer, float volume)
 {
-
 	mSummedFrame.clear();
 	
 	int stride = kSampleSize * kNChannels;
@@ -89,7 +85,5 @@ void AudioService::handleAudioStreamEnded()
 {
 	mSummedFrame.resize(kWindowSize, 0);
 	fill(mSummedFrame.begin(), mSummedFrame.end(), 0);
-	cout << "zeroing gist buffer (size " << mSummedFrame.size() << ")" << endl;
-//	for (auto it : mSummedFrame) { cout << " " << it; }
 	sGist.processAudioFrame(mSummedFrame);
 }
