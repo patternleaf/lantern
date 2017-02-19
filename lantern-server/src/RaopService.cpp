@@ -31,14 +31,15 @@
 
 
 #include <iostream>
+#include <chrono>
+#include <math.h>
 
 #include "RaopService.hpp"
 #include "AudioHandler.hpp"
 
-#include <math.h>
 
 using namespace std;
-using namespace tthread::chrono;
+using namespace std::chrono;
 
 static raop_callbacks_s sCallbacks;
 
@@ -78,10 +79,15 @@ RaopService* RaopService::shared()
 	return sService;
 }
 
+
+// TODO. bound to audioservice's window size. fix this.
+static int kWindowSize = 512;
+
 // MARK: -- raop audio handling
 
-using time_stamp = std::chrono::time_point<std::chrono::system_clock>;
-using time_duration = std::chrono::duration<double>;
+
+using time_duration = system_clock::duration;
+using time_stamp = time_point<system_clock, time_duration>;
 
 typedef struct AudioSession {
 	tthread::thread* consumerThread;
@@ -94,10 +100,15 @@ typedef struct AudioSession {
 	
 	time_stamp startTime;
 	time_duration elapsedTime;
+	time_stamp nextConsumeTime;
+	time_duration sampleDuration;
+	int consumeBiteSize;
+	float latency;
 	
 	float volume;
 
 	RaopService::AudioBuffer buffer;
+	bool bufferFilled = false;
 	
 	RaopService* service;
 } AudioSession;
@@ -110,19 +121,37 @@ void consumerThreadFunc(void* ctx)
 	RaopService* service = session->service;
 
 	while (session->isRunning) {
-		bool bufferIsFull = false;
+		bool didConsume = false;
 		{
 			tthread::lock_guard<tthread::mutex> guard(session->mutex);
 			
-			session->elapsedTime = std::chrono::system_clock::now() - session->startTime;
-			bufferIsFull = session->buffer.full();
+			time_stamp nowTime = system_clock::now();
 			
-			if (bufferIsFull) {
+			if (!session->bufferFilled && session->buffer.full()) {
+				session->bufferFilled = true;
+			}
+			
+			if (session->buffer.size() == 0) {
+				if (session->bufferFilled) {
+					cout << "buffer underrun" << endl;
+				}
+				session->bufferFilled = false;
+			}
+			
+			if (session->bufferFilled && nowTime >= session->nextConsumeTime) {
 				service->handleAudio(session);
+				didConsume = true;
+			}
+			time_stamp now = system_clock::now();
+			
+			session->elapsedTime = now - session->startTime;
+			
+			if (didConsume) {
+				session->nextConsumeTime = now + (session->sampleDuration * kWindowSize);
 			}
 		}
 		
-		if (!bufferIsFull) {
+		if (!didConsume) {
 			tthread::this_thread::sleep_for(tthread::chrono::milliseconds(1));
 		}
 	}
@@ -133,19 +162,22 @@ void* raop_service_audio_init(void *cls, int bits, int channels, int samplerate)
 	RaopService* service = (RaopService*)cls;
 	AudioSession* session = new AudioSession;
 	
-	int bufferSizeSamples = floor((bits / 8) * samplerate * channels * service->mBufferTime);
-	
+	int bufferSizeBytes = floor((bits / 8) * samplerate * channels * service->mBufferTime);
+	int ticksPerSample = floor((1 / (double)samplerate) * system_clock::period::den);
+
 	session->service = (RaopService*)cls;
 	session->sampleSize = bits;
 	session->channels = channels;
 	session->sampleRate = samplerate;
 	session->volume = 0;
-	session->buffer.set_capacity(bufferSizeSamples);
-	session->startTime = std::chrono::system_clock::now();
+	session->buffer.set_capacity(bufferSizeBytes);
+	session->startTime = system_clock::now();
+	session->sampleDuration = time_duration(ticksPerSample);
 	
 	service->mSession = session;
 	
-	cout << "initing audio for " << bits << "-bit " << samplerate << ", " << service->mBufferTime << " sec buffer" << endl;
+	cout << "initing audio for " << bits << "-bit " << samplerate << ", ";
+	cout << service->mBufferTime << " sec buffer (" << bufferSizeBytes << " bytes)" << endl;
 	
 	session->consumerThread = new tthread::thread(&consumerThreadFunc, session);
 	
@@ -161,13 +193,6 @@ void raop_service_audio_process(void *cls, void *session, const void *buffer, in
 	
 	tthread::lock_guard<tthread::mutex> guard(audioSession->mutex);
 	
-	if (audioSession->buffer.full()) {
-		cout << "probable buffer overrun" << endl;
-	}
-	else if (audioSession->buffer.size() == 0) {
-		cout << "probable buffer underrun" << endl;
-	}
-	
 	for (uint i = 0; i < buflen; i++) {
 		audioSession->buffer.push_front(((uint8_t*)buffer)[i]);
 	}
@@ -176,8 +201,11 @@ void raop_service_audio_process(void *cls, void *session, const void *buffer, in
 
 void raop_service_audio_destroy(void *cls, void *session)
 {
+	
 	RaopService* service = (RaopService*)cls;
 	AudioSession* audioSession = (AudioSession*)session;
+
+	tthread::lock_guard<tthread::mutex> guard(audioSession->mutex);
 	
 	audioSession->buffer.clear();
 	audioSession->isRunning = false;
@@ -193,6 +221,9 @@ void raop_service_audio_flush(void *cls, void *session)
 {
 	RaopService* service = (RaopService*)cls;
 	AudioSession* audioSession = (AudioSession*)session;
+	
+	tthread::lock_guard<tthread::mutex> guard(audioSession->mutex);
+	
 	audioSession->buffer.clear();
 	service->handleAudioEnded();
 }
@@ -298,15 +329,14 @@ int RaopService::getSampleRate()
 
 void RaopService::handleAudio(AudioSession* session)
 {
-	// TODO. bound to audioservice's window size. fix this.
-	// would also be nice to not copy unnecessarily ...
-	static int windowSize = 512 * session->channels * session->sampleSize;
+	// TODO: would be nice to not copy unnecessarily ...
+	static int windowSize = kWindowSize * session->channels * (session->sampleSize / 8);
 	static AudioBuffer window(windowSize);
 	
 	window.clear();
 	
 	for (auto handler : mAudioHandlers) {
-		for (int i = 0; i < windowSize * 2; i++) {
+		for (int i = 0; i < windowSize; i++) {
 			window.push_back(session->buffer.back());
 			session->buffer.pop_back();
 		}
