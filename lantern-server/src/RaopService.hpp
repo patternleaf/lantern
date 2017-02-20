@@ -17,7 +17,6 @@
 #include <vector>
 #include <set>
 
-#include "lib/tinythread.h"
 #include "shairplay/raop.h"
 #include "shairplay/dnssd.h"
 

@@ -33,6 +33,8 @@
 #include <iostream>
 #include <chrono>
 #include <math.h>
+#include "lib/tinythread.h"
+
 
 #include "RaopService.hpp"
 #include "AudioHandler.hpp"
@@ -89,9 +91,13 @@ static int kWindowSize = 512;
 using time_duration = system_clock::duration;
 using time_stamp = time_point<system_clock, time_duration>;
 
+inline double toSecs(time_duration d) {
+	return d.count() / (double)system_clock::period::den;
+}
+
 typedef struct AudioSession {
 	tthread::thread* consumerThread;
-	tthread::mutex mutex;
+	tthread::mutex bufferMutex;
 	
 	bool isRunning = true;
 	int sampleSize;
@@ -103,9 +109,14 @@ typedef struct AudioSession {
 	time_stamp nextConsumeTime;
 	time_duration sampleDuration;
 	int consumeBiteSize;
-	float latency;
 	
 	float volume;
+
+	// stat reporting
+	bool reportStats = false;
+	time_duration sleepTime;
+	time_duration audioServiceTime;
+	time_stamp nextReportTime;
 
 	RaopService::AudioBuffer buffer;
 	bool bufferFilled = false;
@@ -122,10 +133,9 @@ void consumerThreadFunc(void* ctx)
 
 	while (session->isRunning) {
 		bool didConsume = false;
+		time_stamp nowTime;
 		{
-			tthread::lock_guard<tthread::mutex> guard(session->mutex);
-			
-			time_stamp nowTime = system_clock::now();
+			tthread::lock_guard<tthread::mutex> guard(session->bufferMutex);
 			
 			if (!session->bufferFilled && session->buffer.full()) {
 				session->bufferFilled = true;
@@ -138,22 +148,43 @@ void consumerThreadFunc(void* ctx)
 				session->bufferFilled = false;
 			}
 			
+			nowTime = system_clock::now();
+			
 			if (session->bufferFilled && nowTime >= session->nextConsumeTime) {
 				service->handleAudio(session);
 				didConsume = true;
-			}
-			
-			nowTime = system_clock::now();
-			
-			session->elapsedTime = nowTime - session->startTime;
-			
-			if (didConsume) {
-				session->nextConsumeTime = nowTime + (session->sampleDuration * kWindowSize);
+				session->audioServiceTime += system_clock::now() - nowTime;
 			}
 		}
 		
-		if (!didConsume) {
+		nowTime = system_clock::now();
+		
+		session->elapsedTime = nowTime - session->startTime;
+		
+		if (didConsume) {
+			session->nextConsumeTime = nowTime + (session->sampleDuration * kWindowSize);
+		}
+		
+		time_duration oneMillisecond(milliseconds(1));
+		if (session->nextConsumeTime > (nowTime - oneMillisecond)) {
+			time_duration sleepTime = (session->nextConsumeTime - nowTime) - oneMillisecond;
+			if (sleepTime.count() < 0) {
+				sleepTime = time_duration(0);
+			}
+			session->sleepTime += sleepTime;
+			tthread::chrono::microseconds threadSleep(duration_cast<microseconds>(sleepTime).count());
+			tthread::this_thread::sleep_for(threadSleep);
+		}
+		else {
+			session->sleepTime += oneMillisecond;
 			tthread::this_thread::sleep_for(tthread::chrono::milliseconds(1));
+		}
+		
+		if (session->reportStats && nowTime > session->nextReportTime) {
+			cout << "consumer thread  (" << toSecs(session->elapsedTime) << " secs):"  << endl;
+			cout << "    sleeping:     " << toSecs(session->sleepTime) << endl;
+			cout << "    servicing:	   " << toSecs(session->audioServiceTime) << endl;
+			session->nextReportTime = nowTime + seconds(1);
 		}
 	}
 }
@@ -173,7 +204,12 @@ void* raop_service_audio_init(void *cls, int bits, int channels, int samplerate)
 	session->volume = 0;
 	session->buffer.set_capacity(bufferSizeBytes);
 	session->startTime = system_clock::now();
+	session->nextConsumeTime = session->startTime + milliseconds(1);
 	session->sampleDuration = time_duration(ticksPerSample);
+	
+	session->nextReportTime = session->startTime + seconds(1);
+	session->sleepTime = seconds(0);
+	session->audioServiceTime = seconds(0);
 	
 	service->mSession = session;
 	
@@ -192,7 +228,7 @@ void raop_service_audio_process(void *cls, void *session, const void *buffer, in
 //	RaopService* service = (RaopService*)cls;
 	AudioSession* audioSession = (AudioSession*)session;
 	
-	tthread::lock_guard<tthread::mutex> guard(audioSession->mutex);
+	tthread::lock_guard<tthread::mutex> guard(audioSession->bufferMutex);
 	
 	for (uint i = 0; i < buflen; i++) {
 		audioSession->buffer.push_front(((uint8_t*)buffer)[i]);
@@ -206,7 +242,7 @@ void raop_service_audio_destroy(void *cls, void *session)
 	RaopService* service = (RaopService*)cls;
 	AudioSession* audioSession = (AudioSession*)session;
 
-	tthread::lock_guard<tthread::mutex> guard(audioSession->mutex);
+	tthread::lock_guard<tthread::mutex> guard(audioSession->bufferMutex);
 	
 	audioSession->buffer.clear();
 	audioSession->isRunning = false;
@@ -223,7 +259,7 @@ void raop_service_audio_flush(void *cls, void *session)
 	RaopService* service = (RaopService*)cls;
 	AudioSession* audioSession = (AudioSession*)session;
 	
-	tthread::lock_guard<tthread::mutex> guard(audioSession->mutex);
+	tthread::lock_guard<tthread::mutex> guard(audioSession->bufferMutex);
 	
 	audioSession->buffer.clear();
 	service->handleAudioEnded();

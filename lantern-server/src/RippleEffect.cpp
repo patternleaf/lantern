@@ -24,7 +24,7 @@ RippleEffect::RippleEffect()
 {
 	for (int i = 0; i < 3; i++) {
 		mRippleOrigins.push_back(Vec3(rand() / (float)RAND_MAX, rand() / (float)RAND_MAX, 0));
-		std::cout << mRippleOrigins[i][0] << ", " << mRippleOrigins[i][1] << std::endl;
+		//std::cout << mRippleOrigins[i][0] << ", " << mRippleOrigins[i][1] << std::endl;
 	}
 }
 
