@@ -169,6 +169,6 @@ void PulseEffect::setState(json state)
 
 json PulseEffect::getParameters()
 {
-	return {{}};
+	return json::array();
 }
 
