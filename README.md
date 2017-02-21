@@ -19,7 +19,7 @@ a known crash and a totally crap audio reactive effect.
 
 The main things I wanted were:
 
-<img src="/images/ipad-interface.png?raw=true" align="right" width="20%" alt="Current iOS client interface."/>
+<img src="/images/ipad-interface.png?raw=true" align="right" width="40%" alt="Current iOS client interface."/>
 
 - simple warm mood/back-lighting for the shelves
 - more colorful lighting effects when desired
@@ -36,7 +36,7 @@ the deadline!
 
 ## Technical Bits / Open-Source Love
 
-<img src="/images/strips.jpg?raw=true" align="right" width="20%" alt="Mounting hardware and connections."/>
+<img src="/images/strips.jpg?raw=true" align="right" width="40%" alt="Mounting hardware and connections."/>
 
 The server should build on ~~OS X~~ macOS and recent versions of 
 Raspbian, though there is a fair bit of set-up required there. 
@@ -70,7 +70,12 @@ For analaysis of the audio stream I am using the wonderfully
 straightforward [Gist](https://github.com/adamstark/Gist/).
 
 The actual audio visualization is currently really boring so there's
-a lot of work to do there. Speaking of todos:
+a lot of work to do there. 
+
+<img src="/images/power-and-pi.jpg?raw=true" align="left" width="28%" alt="Power supplies and Pi."/>
+<img src="/images/moulding.jpg?raw=true" align="center" width="28%" alt="The mounting was built with plastic floor moulding."/>
+<img src="/images/soldering.jpg?raw=true" align="right" width="28%" alt="Lots of soldering!"/>
+
 
 ## TODO / Known Issues
 
