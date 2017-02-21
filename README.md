@@ -1,5 +1,7 @@
 # lantern
 
+![Animated gif of lantern in action.](/images/lantern-gif.gif?raw=true)
+
 lantern is a home WS2812 LED installation. It consists of:
 
 - a few stackable shelving units
