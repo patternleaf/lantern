@@ -76,7 +76,7 @@ a lot of work to do there.
 <img src="/images/power-and-pi.jpg?raw=true" align="left" width="28%" title="Less messy ..."/>
 <img src="/images/soldering.jpg?raw=true" align="left" width="28%" title="Lots of soldering!"/>
 
-<br>
+---
 
 ## TODO / Known Issues
 
