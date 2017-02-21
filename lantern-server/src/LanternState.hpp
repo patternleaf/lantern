@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <mutex>
+#include <thread>
 #include "lib/effect_runner.h"
 
 #include "JsonConversions.hpp"
@@ -30,7 +31,14 @@ public:
 	
 	nlohmann::json toJson();
 	
+	void loadFromFile(std::string fileName = "lantern-state.json");
+	
 private:
+	void persistenceWorker();
+	std::thread mPersistenceThread;
+	bool mRunning;
+	bool mIsDirty;
+
 	LanternServer* mServer;
 	LanternMixer* mMixer;
 	

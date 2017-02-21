@@ -16,7 +16,7 @@
 #include "../lib/effect_mixer.h"
 #include "../lib/noise.h"
 
-
+#include "EffectRegistry.hpp"
 
 #include "LampEffect.hpp"
 #include "RippleEffect.hpp"
@@ -27,6 +27,8 @@
 #include "LanternState.hpp"
 #include "LanternServer.hpp"
 #include "LanternMixer.hpp"
+
+
 
 
 
@@ -41,6 +43,7 @@ int main(int argc, char **argv)
 	RaopService::shared()->expose("lantern");
 	AudioService::shared();
 	
+	
 	LanternState state(&server, &mixer);
 	server.setState(&state);
 	
@@ -49,20 +52,26 @@ int main(int argc, char **argv)
 	RippleEffect rippleEffect;
 	RingsEffect ringsEffect("data/sky.png");
 	PulseEffect pulseEffect;
-	
+
 	runner.setEffect(&mixer);
 	
 	// Defaults, overridable with command line options
 	runner.setMaxFrameRate(100);
 	runner.setLayout("./layout.json");
 
-	mixer.add(&dripEffect, 0.0f);
-	mixer.add(&lampEffect, 0.5f);
-	mixer.add(&rippleEffect, 0.0f);
-	mixer.add(&ringsEffect, 0.8f);
 
-	mixer.add(&pulseEffect, 0.0f);
-	
+	try {
+		state.loadFromFile();
+	}
+	catch(...) {
+		std::cout << "could not load state from file." << std::endl;
+		mixer.add(&dripEffect, 0.0f);
+		mixer.add(&lampEffect, 0.5f);
+		mixer.add(&rippleEffect, 0.0f);
+		mixer.add(&ringsEffect, 0.8f);
+		mixer.add(&pulseEffect, 0.0f);
+	}
+		
 	int result = runner.main(argc, argv);
 	
 	RaopService::shared()->hide();

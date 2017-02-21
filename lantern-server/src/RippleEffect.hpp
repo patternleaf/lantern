@@ -22,6 +22,8 @@ public:
 	virtual void shader(Vec3& rgb, const PixelInfo &p) const;
 	virtual void postProcess(const Vec3& rgb, const PixelInfo& p);
 
+	virtual EffectRegistry::EffectFactory getFactory();
+
 	virtual nlohmann::json getState();
 	virtual void setState(nlohmann::json state);
 	virtual nlohmann::json getParameters();

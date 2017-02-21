@@ -17,6 +17,8 @@ LampEffect::LampEffect()
 {
 	float h = 0.09, s = 0.7, v = 0.6;
 	hsv2rgb(mColor, h, s, v);
+	
+	EffectRegistry::shared()->registerFactory(getFactory());
 }
 
 void LampEffect::beginFrame(const FrameInfo &f)
@@ -30,6 +32,12 @@ void LampEffect::shader(Vec3& rgb, const PixelInfo &p) const
 	rgb[1] = mColor[1];
 	rgb[2] = mColor[2];
 }
+
+EffectRegistry::EffectFactory LampEffect::getFactory()
+{
+	return EffectRegistry::EffectFactory("lamp", []() { return new LampEffect(); });
+}
+
 
 json LampEffect::getState()
 {

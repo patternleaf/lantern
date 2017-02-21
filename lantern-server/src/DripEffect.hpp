@@ -19,6 +19,8 @@ public:
 	virtual void beginFrame(const FrameInfo &f);
 	virtual void shader(Vec3& rgb, const PixelInfo &p) const;
 	
+	virtual EffectRegistry::EffectFactory getFactory();
+	
 	virtual nlohmann::json getState();
 	virtual void setState(nlohmann::json state);
 	virtual nlohmann::json getParameters();

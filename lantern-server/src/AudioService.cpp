@@ -36,7 +36,9 @@ AudioService* AudioService::shared()
 AudioService::AudioService()
 {
 	mSummedFrame.reserve(kWindowSize);
-
+	mOnsetSamples.resize((size_t)(kSampleRate / (float)kWindowSize));
+	mOnsetPeriods.resize(16);
+	
 	RaopService::shared()->registerAudioHandler(this);
 }
 
@@ -54,6 +56,26 @@ const vector<float>& AudioService::getMelFrequencySpectrum()
 {
 	return sGist.getMelFrequencySpectrum();
 }
+
+float AudioService::getSpectralCrest()
+{
+	return sGist.spectralCrest();
+}
+
+float AudioService::getSpectralCentroid()
+{
+	return sGist.spectralCentroid();
+}
+
+float AudioService::getEnergyDifference()
+{
+	return sGist.energyDifference();
+}
+
+//AudioService::time_duration getBeatTime()
+//{
+//	
+//}
 
 void AudioService::handleAudio(RaopService::AudioBuffer buffer, float volume)
 {
@@ -78,6 +100,8 @@ void AudioService::handleAudio(RaopService::AudioBuffer buffer, float volume)
 	}
 
 	sGist.processAudioFrame(mSummedFrame);
+	
+	mOnsetSamples.push_back(sGist.highFrequencyContent());
 	
 }
 

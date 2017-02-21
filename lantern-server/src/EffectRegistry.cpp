@@ -23,7 +23,9 @@ EffectRegistry::EffectRegistry()
 
 EffectRegistry::~EffectRegistry()
 {
-	
+	for (auto it = mEffects.begin(); it != mEffects.end(); it++) {
+		delete it->second;
+	}
 }
 
 EffectRegistry* EffectRegistry::shared()
@@ -33,6 +35,22 @@ EffectRegistry* EffectRegistry::shared()
 	}
 	return EffectRegistry::sSingleton;
 }
+
+LanternEffect* EffectRegistry::createEffect(string effectKey)
+{
+	if (mFactories.count(effectKey)) {
+		return mFactories[effectKey]();
+	}
+	return nullptr;
+}
+
+void EffectRegistry::registerFactory(EffectFactory factory)
+{
+	if (mFactories.count(factory.first) == 0) {
+		mFactories.insert(factory);
+	}
+}
+
 
 string EffectRegistry::makeUuid() {
 	uuid_t uuid;

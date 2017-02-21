@@ -28,15 +28,25 @@
 class RingsEffect : public LanternEffect
 {
 public:
+	RingsEffect(Texture palette)
+	: palette(palette)
+	{
+		reseed();
+		EffectRegistry::shared()->registerFactory(getFactory());
+	}
+
 	virtual nlohmann::json getState();
 	virtual void setState(nlohmann::json state);
 	virtual nlohmann::json getParameters();
+
+	EffectRegistry::EffectFactory getFactory();
 
 public:
 	RingsEffect(const char *palette)
 	: palette(palette)
 	{
 		reseed();
+		EffectRegistry::shared()->registerFactory(getFactory());
 	}
 	
 	static constexpr float xyzSpeed = 0.6;

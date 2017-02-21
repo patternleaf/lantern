@@ -28,3 +28,9 @@ json RingsEffect::getParameters()
 {
 	return json::array();
 }
+
+EffectRegistry::EffectFactory RingsEffect::getFactory()
+{
+	Texture paletteCopy(palette);
+	return EffectRegistry::EffectFactory("rings", [paletteCopy]() { return new RingsEffect(paletteCopy); });
+}

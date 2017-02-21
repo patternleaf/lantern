@@ -19,7 +19,11 @@ using namespace std::chrono;
 PulseEffect::PulseEffect()
 	: LanternEffect()
 {
-
+	mVisibleBandRange.first = 0;
+	mVisibleBandRange.second = 1;
+	mHighFreqContent = 0;
+	mEnergyDiff = 0;
+	EffectRegistry::shared()->registerFactory(getFactory());
 }
 
 PulseEffect::~PulseEffect()
@@ -30,6 +34,11 @@ PulseEffect::~PulseEffect()
 PulseEffect::Ripple::Ripple()
 : intensity(0), speed(0), radius(0), origin(0, 0, 0), band(0), cycle(-1), age(0)
 {
+}
+
+EffectRegistry::EffectFactory PulseEffect::getFactory()
+{
+	return EffectRegistry::EffectFactory("pulse", []() { return new PulseEffect(); });
 }
 
 void PulseEffect::beginFrame(const FrameInfo &f)
@@ -48,6 +57,31 @@ void PulseEffect::beginFrame(const FrameInfo &f)
 	
 	mSpectrumRange.first = numeric_limits<float>::max();
 	mSpectrumRange.second = -numeric_limits<float>::max();
+	
+	float energyDiff = AudioService::shared()->getEnergyDifference();
+	float highFreqContent = AudioService::shared()->getEnergyDifference();
+	
+	if (mEnergyDiff > 255 || mEnergyDiff < 0) {
+		cout << "energy diff outside of expected range: " << mEnergyDiff << endl;
+	}
+	if (mHighFreqContent > 255 || mHighFreqContent < 0) {
+		cout << "energy diff outside of expected range: " << mHighFreqContent << endl;
+	}
+	
+	if (energyDiff > mEnergyDiff * 1.2) {
+		mEnergyDiff = energyDiff / 255.0;
+	}
+	else if (mEnergyDiff > 0) {
+		mEnergyDiff -= 0.001;
+	}
+	
+	if (highFreqContent > mHighFreqContent * 1.2) {
+		mHighFreqContent = highFreqContent / 255.0;
+	}
+	else if (mHighFreqContent > 0) {
+		mHighFreqContent -= 0.001;
+	}
+	
 	
 	for (float intensity : mag) {
 		if (intensity < mSpectrumRange.first) {
@@ -94,14 +128,16 @@ void PulseEffect::manageRipples(float timeDelta)
 		
 		if (mBallistics[i].second || mRipples[i].intensity == -1) {	// was reset or new
 			mRipples[i].band = (i / (float)mRipples.size());
-			mRipples[i].speed = 0.01 + mRipples[i].band;
+			mRipples[i].speed = (1 + mRipples[i].band);
 			mRipples[i].intensity = mBallistics[i].first;
 			mBallistics[i].second = false;
 		}
 		else {
 			mRipples[i].intensity = mBallistics[i].first;
-			mRipples[i].origin[0] = (noise2(mRipples[i].age / (30 + i), 40.2 + i) * 2 * mLayoutMax[0]);
-			mRipples[i].origin[1] = (noise2(mRipples[i].age / (30 + i), 30.4 + i) * 2 * mLayoutMax[1]);
+			mRipples[i].origin[0] = mLayoutMax[0] / 2;
+			mRipples[i].origin[1] = mLayoutMax[1] / 2;
+//			mRipples[i].origin[0] = (noise2(mRipples[i].age / (30 + i), 40.2 + i) * 2 * mLayoutMax[0]);
+//			mRipples[i].origin[1] = (noise2(mRipples[i].age / (30 + i), 30.4 + i) * 2 * mLayoutMax[1]);
 //			cout << "(" << i << ")" <<  mRipples[i].age.count() / (double)system_clock::period::den << endl;
 		}
 		
@@ -114,17 +150,19 @@ void PulseEffect::manageRipples(float timeDelta)
 
 void PulseEffect::shader(Vec3& rgb, const PixelInfo &p) const
 {
-
+/*
+	unsigned firstVisible = floor(mVisibleBandRange.first * mRipples.size());
+	unsigned lastVisible = ceil(mVisibleBandRange.second * mRipples.size());
 	for (unsigned i = 0; i < mRipples.size(); i++) {
-//		if (i != 4) {
-//			continue;
-//		}
+		if (i < firstVisible || i > lastVisible) {
+			continue;
+		}
 		const Ripple& ripple = mRipples[i];
 		float distance = len(ripple.origin - p.point);
 //		float innerFactor = (distance / (ripple.band + sinf(ripple.age)));
 //		float value = sinf(((1 + ripple.band) * 32) * ripple.age) * (1 - ((distance * distance) / mLayoutMax[0]));
 		
-		float value = sinf((20 * (0.1 + ripple.band)) * (-ripple.cycle + distance)) * ripple.intensity;
+		float value = sinf((20 * (0.1 + ripple.band)) * (-ripple.cycle + distance)) * (ripple.intensity / distance);
 		
 //		value *= (1 - (distance / mLayoutMax[0]));
 		
@@ -137,20 +175,10 @@ void PulseEffect::shader(Vec3& rgb, const PixelInfo &p) const
 		rgb[2] += contribution[2];
 //		break;
 	}
-
-/*
-	float xPos = p.point[0] / mLayoutMax[0];
-	float yPos = 1 - (p.point[1] / mLayoutMax[1]);
-	
-//	xPos = xPos == 0 ? 0 : ((M_E + log(xPos)) / M_E);
-//	yPos = yPos == 0 ? 0 : ((M_E + log(yPos)) / M_E);
-	
-	int magIndex = floor(xPos * mBallistics.size());
-	float intensity = mBallistics[magIndex];
-//	intensity = (2 + log(intensity)) / 2;
-	hsv2rgb(rgb, magIndex / (float)mBallistics.size() / 2.0, 1.0, (intensity * 50) - yPos);
 */
 	
+	rgb[0] = mEnergyDiff;
+	rgb[1] = mHighFreqContent;
 }
 
 json PulseEffect::getState()
@@ -164,11 +192,21 @@ json PulseEffect::getState()
 
 void PulseEffect::setState(json state)
 {
-	
+	json parameters = state["parameters"];
+	mVisibleBandRange.first = parameters[0]["value"][0];
+	mVisibleBandRange.second = parameters[0]["value"][1];
 }
 
 json PulseEffect::getParameters()
 {
-	return json::array();
+	return {
+		{
+			{ "name", "Visible Band Range" },
+			{ "type", "range" },
+			{ "valueType", "real" },
+			{ "range", { 0, 1 } },
+			{ "value", { mVisibleBandRange.first, mVisibleBandRange.second } }
+		}
+	};
 }
 

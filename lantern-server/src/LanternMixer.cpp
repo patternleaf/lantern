@@ -26,3 +26,4 @@ int LanternMixer::add(LanternEffect *effect, float fader)
 	cout << "mixer adding effect " << effect->getId() << endl;
 	return EffectMixer::add(effect, fader);
 }
+

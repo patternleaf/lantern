@@ -15,7 +15,7 @@ using namespace std;
 DripEffect::DripEffect()
 : mSpeed(1), mCycle(0), mColor(0.3, 0.5, 0.9), mOrigin(0, 0, 0)
 {
-	
+	EffectRegistry::shared()->registerFactory(getFactory());
 }
 
 
@@ -36,6 +36,11 @@ void DripEffect::shader(Vec3& rgb, const PixelInfo &p) const
 	rgb[2] = mColor[2] * wave;
 }
 
+EffectRegistry::EffectFactory DripEffect::getFactory()
+{
+	return EffectRegistry::EffectFactory("drip", []() { return new DripEffect(); });
+}
+
 
 json DripEffect::getState()
 {
@@ -53,7 +58,7 @@ void DripEffect::setState(json state)
 	auto origins = parameters[0]["value"];
 	mOrigin = JsonConversions::fromJson<Vec3>(origins[0]);
 	mColor = JsonConversions::fromJson<Vec3>(parameters[1]["value"]);
-	mSpeed = parameters[2]["real"];	
+	mSpeed = parameters[2]["value"];	
 }
 
 json DripEffect::getParameters()

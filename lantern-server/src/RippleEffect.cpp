@@ -26,6 +26,8 @@ RippleEffect::RippleEffect()
 		mRippleOrigins.push_back(Vec3(rand() / (float)RAND_MAX, rand() / (float)RAND_MAX, 0));
 		//std::cout << mRippleOrigins[i][0] << ", " << mRippleOrigins[i][1] << std::endl;
 	}
+	
+	EffectRegistry::shared()->registerFactory(getFactory());
 }
 
 
@@ -79,6 +81,11 @@ void RippleEffect::postProcess(const Vec3& rgb, const PixelInfo& p)
 //	std::cout << rgb[0] << ", " << mMaxDistance << std::endl;
 }
 
+EffectRegistry::EffectFactory RippleEffect::getFactory()
+{
+	return EffectRegistry::EffectFactory("ripple", []() { return new RippleEffect(); });
+}
+
 json RippleEffect::getState()
 {
 	return {
@@ -92,7 +99,7 @@ void RippleEffect::setState(json state)
 {
 	json parameters = state["parameters"];
 
-	mSpeed = parameters[0]["real"];
+	mSpeed = parameters[0]["value"];
 
 	mRippleOrigins.clear();
 	

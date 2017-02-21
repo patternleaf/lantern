@@ -26,6 +26,8 @@ public:
 	void setState(nlohmann::json state);
 	nlohmann::json getParameters();
 	
+	EffectRegistry::EffectFactory getFactory();
+	
 private:
 
 	typedef std::chrono::system_clock::duration time_duration;
@@ -46,8 +48,11 @@ private:
 	
 	Vec3 mLayoutMax;
 	std::pair<float, float> mSpectrumRange;
+	float mEnergyDiff;
+	float mHighFreqContent;
 	std::vector<std::pair<float, bool>> mBallistics;
 	std::vector<Ripple> mRipples;
+	std::pair<float, float> mVisibleBandRange;
 
 };
 

@@ -14,15 +14,18 @@
 #include "lib/effect.h"
 #include "EffectParameter.hpp"
 #include "JsonConversions.hpp"
+#include "EffectRegistry.hpp"
 
 class LanternEffect : public Effect {
 public:
 	LanternEffect();
-	~LanternEffect();
+	virtual ~LanternEffect();
 
 	virtual nlohmann::json getState() = 0;
 	virtual void setState(nlohmann::json state) = 0;
 	virtual nlohmann::json getParameters() = 0;
+	
+	virtual EffectRegistry::EffectFactory getFactory() = 0;
 	
 	void cacheStateUpdate(nlohmann::json state);
 	virtual void beginFrame(const FrameInfo &f);
