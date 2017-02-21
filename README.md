@@ -29,6 +29,7 @@ The main things I wanted were:
 - ???? the future is unknown -- other forms of interactivity?
 - effects and mixer remote-controllable with realtime feedback 
   from iOS devices
+- low(-ish) cost
 
 I also was on a self-imposed deadline to show off a prototype 
 at a get-together in early February 2017. I was very pleased to make
