@@ -72,28 +72,25 @@ straightforward [Gist](https://github.com/adamstark/Gist/).
 The actual audio visualization is currently really boring so there's
 a lot of work to do there. 
 
-<table width="75%">
+<table width="100%">
 	<tr>
 		<td>
 				<img src="/images/getting-started.jpg?raw=true" width="100%" title="Getting started ..."/>
-				<p>The shelves themselves are from Closet Maid brand from Home Depot.</p>
+				<p>The shelves are Closet Maid brand from Home Depot.</p>
 		</td>
-	</tr>
-</table>
-
-<table width="100%">
-	<tr>
-		<td width="33%">
+		<td>
 				<img src="/images/messy.jpg?raw=true" width="100%" title="Messy!"/>
 				<p>Messy!</p>
 		</td>
-		<td width="33%">
+	</tr>
+	<tr>
+		<td>
 				<img src="/images/soldering.jpg?raw=true" width="100%" title="Lots of soldering!"/>
 				<p>Lots of soldering!</p>
 		</td>
-		<td width="33%">
+		<td>
 				<img src="/images/power-and-pi.jpg?raw=true" width="100%" title="Less messy ..."/>
-				<p>Slightly less messy ...</p>
+				<p>Slightly less messy.</p>
 		</td>
 	</tr>
 </table>
