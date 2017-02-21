@@ -9,25 +9,15 @@
 import Foundation
 import UIKit
 import HGCircularSlider
-//import HGCircularSlider
 
 class RealParameterView: ParameterView {
 	var label: UILabel!
 	var slider: CircularSlider!
 	var numberFormatter: NumberFormatter!
 	
-	init(parameter: RealParameter) {
+	override init(parameter: EffectParameter) {
 	
 		label = UILabel(frame: CGRect(x: 380, y: 70, width: 200, height: 200))
-		slider = CircularSlider(frame: CGRect(x: 20, y: 80, width: 200, height: 200))
-		slider.backgroundColor = UIColor.clear
-		slider.diskColor = UIColor.clear
-		slider.diskFillColor = Style.Color.light
-		slider.trackColor = Style.Color.mid
-		slider.trackFillColor = Style.Color.highlight
-		slider.endThumbStrokeColor = Style.Color.mid
-		slider.endThumbStrokeHighlightedColor = Style.Color.highlight
-		slider.lineWidth = 5
 	
 		label.textColor = Style.Color.highlight
 		label.font = Style.Font.bigControl
@@ -40,18 +30,17 @@ class RealParameterView: ParameterView {
 	
 		super.init(parameter: parameter)
 	
-		parameter.rangeEnd.asDriver().asObservable().subscribe(onNext: { (value: Float) -> Void in
-			self.slider.maximumValue = CGFloat(value)
-		}).addDisposableTo(disposeBag)
-		
-		parameter.rangeStart.asDriver().asObservable().subscribe(onNext: { (value: Float) -> Void in
-			self.slider.minimumValue = CGFloat(value)
-		}).addDisposableTo(disposeBag)
-		
-		parameter.real.asDriver().asObservable().subscribe(onNext: { (value: Float) -> Void in
-			self.slider.endPointValue = CGFloat(value)
-			self.label.text = self.numberFormatter.string(from: NSNumber(value: value))
-		}).addDisposableTo(disposeBag)
+		slider = createSlider(with: CGRect(x: 20, y: 80, width: 200, height: 200))
+		slider.backgroundColor = UIColor.clear
+		slider.diskColor = UIColor.clear
+		slider.diskFillColor = Style.Color.light
+		slider.trackColor = Style.Color.mid
+		slider.trackFillColor = Style.Color.highlight
+		slider.endThumbStrokeColor = Style.Color.mid
+		slider.endThumbStrokeHighlightedColor = Style.Color.highlight
+		slider.lineWidth = 5
+	
+		observeParameter(parameter)
 
 		slider.addTarget(self, action: #selector(sliderDidChange), for: .valueChanged)
 	
@@ -83,8 +72,29 @@ class RealParameterView: ParameterView {
 		return 300
 	}
 	
+	func createSlider(with rect: CGRect) -> CircularSlider {
+		return CircularSlider(frame: rect)
+	}
+	
+	func observeParameter(_ parameter: EffectParameter) {
+		if let parameter = parameter as? RealParameter {
+			parameter.rangeEnd.asDriver().asObservable().subscribe(onNext: { (value: Float) -> Void in
+				self.slider.maximumValue = CGFloat(value)
+			}).addDisposableTo(disposeBag)
+			
+			parameter.rangeStart.asDriver().asObservable().subscribe(onNext: { (value: Float) -> Void in
+				self.slider.minimumValue = CGFloat(value)
+			}).addDisposableTo(disposeBag)
+			
+			parameter.value.asDriver().asObservable().subscribe(onNext: { (value: Float) -> Void in
+				self.slider.endPointValue = CGFloat(value)
+				self.label.text = self.numberFormatter.string(from: NSNumber(value: value))
+			}).addDisposableTo(disposeBag)
+		}
+	}
+	
 	func sliderDidChange() {
-		(parameter as! RealParameter).real.value = Float(slider.endPointValue)
+		(parameter as! RealParameter).value.value = Float(slider.endPointValue)
 		LanternClient.current.sendEffect(parameter.effect)
 	}
 }

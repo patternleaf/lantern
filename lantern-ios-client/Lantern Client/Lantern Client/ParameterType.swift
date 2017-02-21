@@ -13,6 +13,7 @@ enum ParameterType: String {
 	case real = "real"
 	case points = "points"
 	case color = "color"
+	case range = "range"
 	
 	static func create(json: JSON, effect: Effect) throws -> EffectParameter {
 		let typeString = try json.getString(at: "type")
@@ -21,6 +22,7 @@ enum ParameterType: String {
 			case .real: return try RealParameter(json: json, effect: effect)
 			case .points: return try PointsParameter(json: json, effect: effect)
 			case .color: return try ColorParameter(json: json, effect: effect)
+			case .range: return try RangeParameter(json: json, effect: effect)
 			}
 		}
 		throw Model.ErrorType.unknownParameterType(typeString)

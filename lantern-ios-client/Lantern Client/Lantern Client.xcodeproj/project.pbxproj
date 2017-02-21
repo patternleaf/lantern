@@ -17,6 +17,7 @@
 		070495A51E4D867600270BA9 /* HSBColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070495A41E4D867600270BA9 /* HSBColorPicker.swift */; };
 		070BC8781E4FE234006F02FE /* CGAffineTransformExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070BC8761E4FE234006F02FE /* CGAffineTransformExtensions.swift */; };
 		070BC8791E4FE234006F02FE /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070BC8771E4FE234006F02FE /* CGVector+Extensions.swift */; };
+		0735C4A31E5B7E3F0092AFEE /* RangeParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0735C4A21E5B7E3F0092AFEE /* RangeParameterView.swift */; };
 		079EDE341E4FB09800D3DE22 /* LanternSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079EDE331E4FB09800D3DE22 /* LanternSplitViewController.swift */; };
 		07A97B1D1E4555B200034474 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B1C1E4555B200034474 /* AppDelegate.swift */; };
 		07A97B1F1E4555B200034474 /* MixerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A97B1E1E4555B200034474 /* MixerViewController.swift */; };
@@ -48,6 +49,7 @@
 		070495A41E4D867600270BA9 /* HSBColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HSBColorPicker.swift; sourceTree = "<group>"; };
 		070BC8761E4FE234006F02FE /* CGAffineTransformExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGAffineTransformExtensions.swift; sourceTree = "<group>"; };
 		070BC8771E4FE234006F02FE /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
+		0735C4A21E5B7E3F0092AFEE /* RangeParameterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeParameterView.swift; sourceTree = "<group>"; };
 		079EDE331E4FB09800D3DE22 /* LanternSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanternSplitViewController.swift; sourceTree = "<group>"; };
 		07A97B191E4555B200034474 /* Lantern Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lantern Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07A97B1C1E4555B200034474 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				070495821E4BECA000270BA9 /* ColorParameterView.swift */,
 				070495841E4BECA900270BA9 /* RealParameterView.swift */,
 				0704958C1E4CB0CE00270BA9 /* PointsParameterView.swift */,
+				0735C4A21E5B7E3F0092AFEE /* RangeParameterView.swift */,
 			);
 			name = ParameterViews;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				07A97B491E49138B00034474 /* Observable.swift in Sources */,
 				0704958B1E4CAD2C00270BA9 /* ParameterView.swift in Sources */,
 				07A97B441E48FEC100034474 /* LanternClient.swift in Sources */,
+				0735C4A31E5B7E3F0092AFEE /* RangeParameterView.swift in Sources */,
 				07A97B1D1E4555B200034474 /* AppDelegate.swift in Sources */,
 				07A97B321E45578000034474 /* MixerView.swift in Sources */,
 				070495A51E4D867600270BA9 /* HSBColorPicker.swift in Sources */,

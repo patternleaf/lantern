@@ -121,7 +121,7 @@ class PointsParameter: EffectParameter {
 }
 
 class RealParameter: EffectParameter {
-	var real = Variable<Float>(0)
+	var value = Variable<Float>(0)
 	var rangeStart = Variable<Float>(0)
 	var rangeEnd = Variable<Float>(0)
 	
@@ -130,7 +130,7 @@ class RealParameter: EffectParameter {
 	}
 	
 	required init(json: JSON, effect: Effect) throws {
-		real.value = Float(try json.getDouble(at: "value"))
+		value.value = Float(try json.getDouble(at: "value"))
 		rangeStart.value = Float(try json.getDouble(at: "range", 0))
 		rangeEnd.value = Float(try json.getDouble(at: "range", 1))
 		try super.init(json: json, effect: effect)
@@ -138,14 +138,14 @@ class RealParameter: EffectParameter {
 	
 	override func update(json: JSON) throws {
 		try super.update(json: json)
-		real.value = Float(try json.getDouble(at: "value"))
+		value.value = Float(try json.getDouble(at: "value"))
 		rangeStart.value = Float(try json.getDouble(at: "range", 0))
 		rangeEnd.value = Float(try json.getDouble(at: "range", 1))
 	}
 	
 	override func toJSON() -> JSON {
 		var serialized = try! super.toJSON().getDictionary()
-		serialized["real"] = .double(Double(real.value))
+		serialized["value"] = .double(Double(value.value))
 		serialized["range"] = .array([
 			.double(Double(rangeStart.value)),
 			.double(Double(rangeEnd.value))
@@ -153,3 +153,44 @@ class RealParameter: EffectParameter {
 		return .dictionary(serialized)
 	}
 }
+
+class RangeParameter : EffectParameter {
+	var startValue = Variable<Float>(0)
+	var endValue = Variable<Float>(0)
+	var rangeStart = Variable<Float>(0)
+	var rangeEnd = Variable<Float>(0)
+	
+	required init(json: JSON) throws {
+		fatalError("init(json:) has not been implemented")
+	}
+	
+	required init(json: JSON, effect: Effect) throws {
+		startValue.value = Float(try json.getDouble(at: "value", 0))
+		endValue.value = Float(try json.getDouble(at: "value", 1))
+		rangeStart.value = Float(try json.getDouble(at: "range", 0))
+		rangeEnd.value = Float(try json.getDouble(at: "range", 1))
+		try super.init(json: json, effect: effect)
+	}
+	
+	override func update(json: JSON) throws {
+		try super.update(json: json)
+		startValue.value = Float(try json.getDouble(at: "value", 0))
+		endValue.value = Float(try json.getDouble(at: "value", 1))
+		rangeStart.value = Float(try json.getDouble(at: "range", 0))
+		rangeEnd.value = Float(try json.getDouble(at: "range", 1))
+	}
+	
+	override func toJSON() -> JSON {
+		var serialized = try! super.toJSON().getDictionary()
+		serialized["value"] = .array([
+			.double(Double(startValue.value)),
+			.double(Double(endValue.value))
+		])
+		serialized["range"] = .array([
+			.double(Double(rangeStart.value)),
+			.double(Double(rangeEnd.value))
+		])
+		return .dictionary(serialized)
+	}
+}
+

@@ -44,7 +44,7 @@ class Mixer : Model {
 							toAdd.append(newChannel)
 						}
 						catch {
-							print("Error creating channel: \(error.localizedDescription)")
+							print("Error creating channel: \(error.localizedDescription), \((try? incomingChannel.serializeString()))")
 						}
 					}
 				}

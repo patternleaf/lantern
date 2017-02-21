@@ -163,6 +163,7 @@ class EffectViewController: UIViewController {
 			case .color: return ColorParameterView(parameter: parameter as! ColorParameter)
 			case .real: return RealParameterView(parameter: parameter as! RealParameter)
 			case .points: return PointsParameterView(parameter: parameter as! PointsParameter)
+			case .range: return RangeParameterView(parameter: parameter as! RangeParameter)
 			}
 		}
 		return nil
