@@ -2,7 +2,7 @@
 
 ![Animated gif of lantern in action.](/images/lantern-gif.gif?raw=true)
 
-lantern is a home WS2812 LED installation. It consists of:
+lantern is an interactive, audio-reactive home WS2812 LED installation. It consists of:
 
 - a few stackable shelving units
 - 336 WS2812 LEDs with some custom mounting/wiring hardware
@@ -25,11 +25,14 @@ The main things I wanted were:
 - keep things modular and well-decoupled for reuse happiness, 
   both physically and in software
 - ???? the future is unknown -- other forms of interactivity?
-- effects and mixer remote-controllable from iOS devices
+- effects and mixer remote-controllable with realtime feedback 
+  from iOS devices
 
 I also was on a self-imposed deadline to show off a prototype 
 at a get-together in early February 2017. I was very pleased to make
 the deadline!
+
+![Current iOS client interface.](/images/ipad-interface.png?raw=true "Control views are dynamic; bound to server state.")
 
 ## Technical Bits / Open-Source Love
 
