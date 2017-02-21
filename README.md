@@ -76,6 +76,7 @@ a lot of work to do there.
 <img src="/images/power-and-pi.jpg?raw=true" align="left" width="28%" title="Less messy ..."/>
 <img src="/images/soldering.jpg?raw=true" align="left" width="28%" title="Lots of soldering!"/>
 
+<br>
 
 ## TODO / Known Issues
 
@@ -92,8 +93,6 @@ a lot of work to do there.
 - optimization of client/server synchronization
 - .gitignore/repo cruft cleanup
 - better documentation, both technically and of project
-
-![Strip mounting and connections.](/strips.jpg?raw=true "Strip mounts and connections.")
 
 ## Wish List
 
