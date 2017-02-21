@@ -19,6 +19,8 @@ a known crash and a totally crap audio reactive effect.
 
 The main things I wanted were:
 
+<img src="/images/ipad-interface.png?raw=true" align="right" width="20%" alt="Current iOS client interface."/>
+
 - simple warm mood/back-lighting for the shelves
 - more colorful lighting effects when desired
 - audio-reactive installation/music visualizations for parties
@@ -32,9 +34,9 @@ I also was on a self-imposed deadline to show off a prototype
 at a get-together in early February 2017. I was very pleased to make
 the deadline!
 
-![Current iOS client interface.](/images/ipad-interface.png?raw=true "Control views are dynamic; bound to server state.")
-
 ## Technical Bits / Open-Source Love
+
+<img src="/images/strips.jpg?raw=true" align="right" width="20%" alt="Mounting hardware and connections."/>
 
 The server should build on ~~OS X~~ macOS and recent versions of 
 Raspbian, though there is a fair bit of set-up required there. 
@@ -85,6 +87,8 @@ a lot of work to do there. Speaking of todos:
 - optimization of client/server synchronization
 - .gitignore/repo cruft cleanup
 - better documentation, both technically and of project
+
+![Strip mounting and connections.](/strips.jpg?raw=true "Strip mounts and connections.")
 
 ## Wish List
 
