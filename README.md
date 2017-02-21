@@ -72,11 +72,23 @@ straightforward [Gist](https://github.com/adamstark/Gist/).
 The actual audio visualization is currently really boring so there's
 a lot of work to do there. 
 
-<img src="/images/messy.jpg?raw=true" align="left" width="28%" title="Messy!"/>
-<img src="/images/power-and-pi.jpg?raw=true" align="left" width="28%" title="Less messy ..."/>
-<img src="/images/soldering.jpg?raw=true" align="left" width="28%" title="Lots of soldering!"/>
+<table border="0">
+	<tr>
+		<td>
+				<img src="/images/messy.jpg?raw=true" title="Messy!"/>
+				<p>Messy!</p>
+		</td>
+		<td>
+				<img src="/images/power-and-pi.jpg?raw=true" title="Less messy ..."/>
+				<p>Less messy ...</p>
+		</td>
+		<td>
+				<img src="/images/soldering.jpg?raw=true" title="Lots of soldering!"/>
+				<p>Lots of soldering!</p>
+		</td>
+	</tr>
+</table>
 
----
 
 ## TODO / Known Issues
 
