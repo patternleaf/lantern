@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <map>
+#include <functional>
 
 class LanternEffect;
 class EffectParameter;

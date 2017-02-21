@@ -49,6 +49,10 @@ void EffectRegistry::registerFactory(EffectFactory factory)
 	if (mFactories.count(factory.first) == 0) {
 		mFactories.insert(factory);
 	}
+	else {
+		cerr << "error: attempt to register an effect factory \"";
+		cerr << factory.first << "\" that is already registered." << endl;
+	}
 }
 
 
