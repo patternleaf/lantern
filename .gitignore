@@ -57,3 +57,4 @@ xcuserdata/
 *.xccheckout
 *.xcscmblueprint
 xcuserdatad/
+.DS_Store
