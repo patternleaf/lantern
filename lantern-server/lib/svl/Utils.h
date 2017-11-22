@@ -37,7 +37,9 @@ inline Double vl_rand()
 { return(rand() / (RAND_MAX + 1.0)); }
 #endif
 
-#if !defined __CMATH__ && !defined _GLIBCXX_CMATH
+// Lantern-specific change: the _LIBCPP_MATH_H check is probably the wrong way
+// to prevent a compiler error.
+#if !defined __CMATH__ && !defined _GLIBCXX_CMATH && !defined _LIBCPP_MATH_H
 
 // GNU's complex.h defines its own abs(double)
 #ifdef VL_HAS_ABSF

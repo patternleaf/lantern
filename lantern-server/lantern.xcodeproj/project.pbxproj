@@ -91,7 +91,7 @@
 		07A97AED1E45305000034474 /* LanternMixer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LanternMixer.cpp; path = ../src/LanternMixer.cpp; sourceTree = "<group>"; };
 		07A97AEE1E45305000034474 /* LanternMixer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LanternMixer.hpp; path = ../src/LanternMixer.hpp; sourceTree = "<group>"; };
 		07E673EE1E2D63950040ECD3 /* lantern-server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "lantern-server"; sourceTree = BUILT_PRODUCTS_DIR; };
-		07E673F11E2D63950040ECD3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../src/main.cpp; sourceTree = "<group>"; };
+		07E673F11E2D63950040ECD3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		07E673F91E2D63C10040ECD3 /* brightness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = brightness.h; sourceTree = "<group>"; };
 		07E673FA1E2D63C10040ECD3 /* color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
 		07E673FB1E2D63C10040ECD3 /* effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = effect.h; sourceTree = "<group>"; };
@@ -256,7 +256,8 @@
 				0704959E1E4D740D00270BA9 /* glass.png */,
 				0704959F1E4D740D00270BA9 /* sky.png */,
 			);
-			path = data;
+			name = data;
+			path = ../data;
 			sourceTree = "<group>";
 		};
 		070BC87D1E50A963006F02FE /* raop */ = {
@@ -360,7 +361,7 @@
 				07A97AEE1E45305000034474 /* LanternMixer.hpp */,
 			);
 			name = "lantern-server";
-			path = lantern;
+			path = src;
 			sourceTree = "<group>";
 		};
 		07E673F81E2D63C10040ECD3 /* lib */ = {
@@ -932,6 +933,7 @@
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DUSE_KISS_FFT",
+					"-std=c++11",
 				);
 				OTHER_LDFLAGS = (
 					"-lssl",
@@ -966,6 +968,7 @@
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DUSE_KISS_FFT",
+					"-std=c++11",
 				);
 				OTHER_LDFLAGS = (
 					"-lssl",
