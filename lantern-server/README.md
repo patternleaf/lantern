@@ -47,6 +47,7 @@ On macOS you may need (using [Homebrew](https://brew.sh)):
 brew install autoconf
 brew install automake
 brew install libtool
+brew install boost
 ```
 
 Whether on macOS or linux, cd to the project directory and
@@ -64,6 +65,7 @@ Next, build and install:
 
 FFTW is not included as a submodule. You'll have to download it and
 install it by hand. Something like:
+
 
 ```
 curl -o fftw-3.3.6-pl1.tar.gz http://fftw.org/fftw-3.3.6-pl1.tar.gz

@@ -2,15 +2,24 @@
   "name": "lantern-web-client",
   "version": "0.1.0",
   "private": true,
+  "devDependencies": {
+    "cycle-scripts": "2.1.0"
+  },
   "dependencies": {
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "react-scripts": "1.0.17"
+    "@cycle/dom": "18.3.0",
+    "@cycle/isolate": "^3.2.0",
+    "@cycle/run": "3.3.0",
+    "cycle-onionify": "^4.0.0",
+    "xstream": "11.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "cycle-scripts start",
+    "test": "cycle-scripts test",
+    "build": "cycle-scripts build",
+    "eject": "cycle-scripts eject"
+  },
+  "cca": {
+    "language": "javascript",
+    "streamLib": "xstream"
   }
 }

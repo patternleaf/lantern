@@ -1,8 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import {run} from '@cycle/run'
+import {makeDOMDriver} from '@cycle/dom'
+import App from './app'
+import makeWebsocketDriver from './drivers/websocket-driver'
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+const main = App
+
+const drivers = {
+  DOM: makeDOMDriver('#root'),
+  server: makeWebsocketDriver('ws://localhost:9002')
+}
+
+run(main, drivers)
