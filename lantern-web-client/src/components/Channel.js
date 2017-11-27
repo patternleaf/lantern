@@ -1,14 +1,16 @@
 import xs from 'xstream'
 // import isolate from '@cycle/isolate'
 import {div, li, h2, input, button} from '@cycle/dom';
+import AsyncFader from './AsyncFader'
 
 function renderSlider(serverFader, requestedFader) {
-    return div('.slider', [
-        div(`server: ${serverFader}, requested: ${requestedFader}`),
-        input('.slider-input', {
-            attrs: { type: 'range', min: 0, max: 1, step: 0.01, value: serverFader }
-        })
-    ]);
+    return (
+        <div className="slider">
+            <div>server: {serverFader}, requested: {requestedFader}</div>
+            <input className="slider-input" type="range" min="0" max="1" step="0.01" value={serverFader}/>
+            
+        </div>
+    )
 }
 
 function intent(domSource) {
@@ -16,6 +18,7 @@ function intent(domSource) {
 }
 
 function model(action$) {
+    /*
     const faderReducer$ = action$.map(action => {
         // console.log('fader reducer def')
         return (prevState) => {
@@ -28,37 +31,39 @@ function model(action$) {
     })
     return faderReducer$
     return xs.merge(faderReducer$)
+    */
 }
 
-function view(state$) {
-    return state$.map(state => {
-        // console.log('channel', state.channelIndex, 'state', state)
-        return li('.channel', [
-            h2(state.effect.name),
-            renderSlider(state.fader, state.requestedFader)
-        ])
-    })
-    
+function view(state$, faderSinks) {
+    return xs.combine(state$, faderSinks.DOM).map(([state, faderVDOM]) => {
+        return (
+            <li className="channel">
+                <h2>{state.effect.name}</h2>
+                {faderVDOM}
+            </li>
+        )
+    })   
 }
 
 export default function(sources) {
     const state$ = sources.onion.state$
     const action$ = intent(sources.DOM)
-    const reducer$ = model(action$)
-    const vdom$ = view(state$)
-
-    const serverSink$ = xs.combine(state$, action$).map(([state, action]) => {
-        console.log('server sink', state.channelIndex, state.requestedFader)
-        return {
-            command: 'setFader',
-            channel: state.channelIndex,
-            value: state.requestedFader
-        }
-    })
+    // const reducer$ = model(action$)
+    const faderSinks = AsyncFader(sources)
+    const vdom$ = view(state$, faderSinks)
+    
+    // const serverSink$ = xs.combine(state$, action$).map(([state, action]) => {
+    //     // console.log('server sink', state.channelIndex, state.requestedFader)
+    //     return {
+    //         command: 'setFader',
+    //         channel: state.channelIndex,
+    //         value: state.requestedFader
+    //     }
+    // })
 
     return {
         DOM: vdom$,
-        onion: reducer$,
-        server: serverSink$
+        onion: faderSinks.onion,
+        server: faderSinks.server
     }
 }

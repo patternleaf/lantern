@@ -3,23 +3,38 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "cycle-scripts": "2.1.0"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "chalk": "^2.1.0",
+    "cross-spawn": "^5.1.0",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "fs-extra": "^4.0.2",
+    "html-webpack-plugin": "^2.30.1",
+    "inquirer": "^3.3.0",
+    "jest": "^21.2.1",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "react-dev-utils": "^4.1.0",
+    "snabbdom-pragma": "^2.5.0",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
   },
   "dependencies": {
     "@cycle/dom": "18.3.0",
+    "@cycle/http": "^14.8.0",
     "@cycle/isolate": "^3.2.0",
     "@cycle/run": "3.3.0",
     "cycle-onionify": "^4.0.0",
     "xstream": "11.0.0"
   },
   "scripts": {
-    "start": "cycle-scripts start",
-    "test": "cycle-scripts test",
-    "build": "cycle-scripts build",
-    "eject": "cycle-scripts eject"
-  },
-  "cca": {
-    "language": "javascript",
-    "streamLib": "xstream"
+    "start": "node scripts/start.js",
+    "test": "node scripts/test.js",
+    "build": "node scripts/build.js"
   }
 }

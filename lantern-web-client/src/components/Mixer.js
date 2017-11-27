@@ -29,10 +29,12 @@ function model(actions, sources) {
 
 function view(state$, channelDOM$) {
     return xs.combine(state$, channelDOM$).map(([mixerState, channelVNodes]) => {
-        return div('.server-state', [
-            button('.request-state', 'Request State'),
-            channelVNodes
-        ])
+        return (
+            <div className="server-state">
+                <button className="request-state">Request State</button>
+                {channelVNodes}
+            </div>
+        )
     })
     // return state$.map(state => {
     //     // console.log('hi there', state)
@@ -54,7 +56,7 @@ function ChannelList(sources) {
         collectSinks: instances => {
             return {
                 onion: instances.pickMerge('onion'),
-                DOM: instances.pickCombine('DOM').map(itemVNodes => (ul(itemVNodes))),
+                DOM: instances.pickCombine('DOM').map(itemVNodes => (ul('.channels', itemVNodes))),
                 server: instances.pickMerge('server')
             }
         }

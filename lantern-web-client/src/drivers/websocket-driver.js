@@ -10,7 +10,8 @@ export default function(url) {
                 if (typeof outgoing === 'string') {
                     connection.send(outgoing);
                 }
-                else {
+                else if (outgoing) {
+                    console.log('outgoing', outgoing)
                     connection.send(JSON.stringify(outgoing));
                 }
             },
