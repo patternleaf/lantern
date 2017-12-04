@@ -1,35 +1,62 @@
 
+
+@channel-height: 42px;
+@knob-size: 20px;
+@half-knob-size: @knob-size / 2;
+@track-height: 3px;
+@remote-level-height: 6px;
+@remote-level-color: rgb(226, 184, 107);
+
 ul.channels {
     padding: 0;
     list-style: none;
 }
 
 li.channel {
-    border: 1px solid gray;
+    margin: 1em 0 0 0;
     width: 100%;
-
     h2 {
-        padding: 0 0 0 0.5em;
+        padding: 0;
+        margin: 0;
         font-size: 1.2em;
+        color: #777;
     }
 }
 
 .async-fader {
     width: 100%;
-    height: 42px;
+    height: @channel-height;
     position: relative;
-    background: #888;
+    background: #bbb;
 
     .knob {
-        width: 20px;
-        height: 20px;
-        border-radius: 8px;
-        background: #444;
+        width: @knob-size;
+        height: @knob-size;
+        transform: translate(-@half-knob-size, 0);
+        border-radius: 10px;
+        background: rgb(141, 141, 190);
+        border: 1px solid rgb(109, 109, 139);
         position: absolute;
-        top: 12;
+        top: (@channel-height / 2) - (@knob-size / 2);
     }
+
+    .track {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: (@channel-height / 2) - (@track-height / 2);
+        height: @track-height;
+        background: #444;
+        //border-bottom: 1px solid #777;
+    }
+
     .remote-level {
-        height:20px;
-        background: #777;
+        position:absolute;
+        left: 0;
+        top: (@channel-height / 2) - (@remote-level-height / 2);
+        height: @remote-level-height;
+        background: @remote-level-color;
+        opacity: 0.6;
+        box-shadow: 0 0 5px @remote-level-color;
     }
 }

@@ -1,17 +1,35 @@
 import xs from 'xstream'
 import {adapt} from '@cycle/run/lib/adapt';
+import buffer from 'xstream/extra/buffer'
+import dropUntil from 'xstream/extra/dropUntil'
 
 export default function(url) {
     let connection = new WebSocket(url);
 
+    const isOpen$ = xs.createWithMemory({
+        start: listener => {
+            connection.onopen = e => {
+                listener.next()
+            }
+        },
+        stop: () => {
+        }
+    })
+
     function driver(outgoing$) {
-        outgoing$.addListener({
+        
+        const bufferedUntilOpen$ = outgoing$.compose(buffer(isOpen$)).take(1).map(bufferedEvents => { 
+            return xs.fromArray(bufferedEvents);
+        }).flatten()
+        const outgoingAfterOpen$ = outgoing$.compose(dropUntil(isOpen$))
+
+        xs.merge(bufferedUntilOpen$, outgoingAfterOpen$).addListener({
             next: outgoing => {
                 if (typeof outgoing === 'string') {
                     connection.send(outgoing);
                 }
                 else if (outgoing) {
-                    console.log('outgoing', outgoing)
+                    // console.log('outgoing', outgoing)
                     connection.send(JSON.stringify(outgoing));
                 }
             },
@@ -22,6 +40,7 @@ export default function(url) {
         const incoming$ = xs.create({
             start: listener => {
                 connection.onmessage = msg => {
+                    console.log('incoming', JSON.parse(msg.data))
                     listener.next(JSON.parse(msg.data));
                 };
                 connection.onerror = error => {

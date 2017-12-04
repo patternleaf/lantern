@@ -14,10 +14,17 @@ function intent(domSource) {
 
 function model(actions, sources) {
     const initMixerReducer$ = xs.of(() => { return { channels: [] } })
-    const mixerReducer$ = sources.server.map(state => { return (prevState) => {
+    const mixerReducer$ = xs.combine(sources.server).map(([serverState, channelSink]) => { return (prevState) => {
+        console.log('mixer reducer returning', {
+            ...serverState,
+            channels: serverState.channels.map((channel, i) => ({
+                ...channel,
+                channelIndex: i
+            }))
+        })
         return {
-            ...state,
-            channels: state.channels.map((channel, i) => ({
+            ...serverState,
+            channels: serverState.channels.map((channel, i) => ({
                 ...channel,
                 channelIndex: i
             }))
@@ -36,16 +43,6 @@ function view(state$, channelDOM$) {
             </div>
         )
     })
-    // return state$.map(state => {
-    //     // console.log('hi there', state)
-    //     return div('.server-state', [
-    //         button('.request-state', 'Request State'),
-    //         // ul('.channels', state.channels.map((channel, i) => {
-    //         //     return (div(`#effect-${channel.effect.id}.effect-key-${channel.effectKey}`, channel.effect.name))
-    //         // }))
-    //         channelSinks.DOM
-    //     ])
-    // })
 }
 
 function ChannelList(sources) {
@@ -71,9 +68,11 @@ export default function(sources) {
     const actions = intent(sources.DOM)
     const mixerReducer$ = model(actions, sources)
 
+    const initialRequest$ = xs.of({ command: 'sendState' })
+
     return {
         onion: xs.merge(mixerReducer$, channelSinks.onion),
         DOM: view(sources.onion.state$, channelSinks.DOM),
-        server: xs.merge(actions.requests$, channelSinks.server)
+        server: xs.merge(initialRequest$, actions.requests$, channelSinks.server)
     }
 }
