@@ -8,6 +8,9 @@ import {div, li, h2, input, button} from '@cycle/dom';
 let mouseMove$, mouseUpOut$
 
 const between = (start, end) => source => start.mapTo(source.endWhen(end)).flatten()
+const betweenInclusive = (start, end) => (source) => {
+    return start.map(downEvt => xs.merge(xs.of(downEvt), source.endWhen(end), end.take(1))).flatten()
+}
 
 function bindEventStreams(domSource, selector) {
     const element$ = domSource.select(selector).elements().map(([element]) => element).compose(dropRepeats())
@@ -24,9 +27,10 @@ function bindEventStreams(domSource, selector) {
             left: element.offsetLeft
          }
     })
-    const drag$ = mouseMove$.compose(between(mouseDown$, mouseUpOut$))
+    const drag$ = mouseMove$.compose(betweenInclusive(mouseDown$, mouseUpOut$))
     return xs.combine(drag$, dimensions$).map(([dragEvent, dimensions]) => {
         return {
+            eventType: dragEvent.type,
             x: dragEvent.clientX,
             y: dragEvent.clientY,
             elementXNrm: Math.min(1.0, Math.max(0.0, (dragEvent.clientX - dimensions.left) / (dimensions.width))),
@@ -38,21 +42,25 @@ function bindEventStreams(domSource, selector) {
 
 function intent(domSource) {
     const drag$ = bindEventStreams(domSource, '.async-fader')
-    return drag$.map(drag => ({ requestedFader: drag.elementXNrm }))
+    return drag$.map(drag => {
+        return { 
+            requestedFader: drag.elementXNrm,
+            isWriting: drag.eventType === 'mousemove'
+        }
+    })
 }
 
-function model(action$, initialServerFader$) {    
-    const reducer$ = xs.combine(action$, initialServerFader$).map(([action, initialFader]) => (prevState) => {
-        let requestedFader = action.requestedFader || prevState.requestedFader || initialFader
-
-        if (prevState.channelIndex === 0) {
-            console.log('[FADER REDUCER  ]   action', action, 'prevState', prevState, 'initialFader', initialFader)
-            console.log('[FADER REDUCER  ]   *********** requested fader', requestedFader)
+function model(action$, initialServerFader$) {
+    const reducer$ = xs.combine(action$, initialServerFader$).map(([action, initialServerFader]) => (prevState) => {
+        let requestedFader = prevState.fader || initialServerFader
+        if (action.isWriting && action.requestedFader) {
+            requestedFader = action.requestedFader
         }
-        
+
         return ({
             ...prevState,
-            requestedFader: requestedFader
+            requestedFader: requestedFader,
+            isWriting: action.isWriting
         })
     })
 
@@ -63,8 +71,6 @@ function view(state$) {
     return state$.map(state => {
         const remoteWidth = (state.fader * 100).toFixed(3)
         const knobLeft = (state.requestedFader * 100).toFixed(3)
-        if (state.channelIndex === 0)
-            console.log(`[view ${state.channelIndex}   ] ----> requested: ${state.requestedFader} server: ${state.fader}`)
         return (
             <div className="async-fader">
                 <div className="track"></div>
@@ -86,8 +92,7 @@ export default function(sources) {
     const vdom$ = view(state$)
 
     const faderSink$ = state$.map(state => {
-        if (state.channelIndex === 0) console.log('[fader server sink]  channel 0 state', state)
-        const shouldSend = !!(state.fader && state.requestedFader && (Math.abs(state.requestedFader - state.fader) > 0.001))
+        const shouldSend = !!(state.isWriting && (state.fader !== undefined) && (state.requestedFader !== undefined) && (Math.abs(state.requestedFader - state.fader) > 0.001))
         if (shouldSend) {
             return {
                 command: 'setFader',
@@ -97,12 +102,9 @@ export default function(sources) {
         }
     })
 
-    const requestSink$ = faderSink$.mapTo({ command: 'sendState' })
-    const serverSink$ = xs.merge(faderSink$, requestSink$.compose(throttle(60)))
-
     return {
         DOM: vdom$,
         onion: reducer$,
-        server: serverSink$
+        server: faderSink$
     }
 }

@@ -6,9 +6,12 @@ import './styles/main.less'
 
 const main = App
 
+// const serverUrl = 'ws://localhost:9002'
+const serverUrl = 'ws://10.0.0.191:9002'
+
 const drivers = {
   DOM: makeDOMDriver('#root'),
-  server: makeWebsocketDriver('ws://localhost:9002')
+  server: makeWebsocketDriver(serverUrl)
 }
 
 run(main, drivers)

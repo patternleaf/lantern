@@ -13,13 +13,13 @@ ul.channels {
 }
 
 li.channel {
-    margin: 1em 0 0 0;
+    margin: 1.5em 0 0 0;
     width: 100%;
     h2 {
         padding: 0;
         margin: 0;
         font-size: 1.2em;
-        color: #777;
+        color: #ddd;
     }
 }
 
@@ -27,15 +27,15 @@ li.channel {
     width: 100%;
     height: @channel-height;
     position: relative;
-    background: #bbb;
+    // background: #333;
 
     .knob {
         width: @knob-size;
         height: @knob-size;
         transform: translate(-@half-knob-size, 0);
         border-radius: 10px;
-        background: rgb(141, 141, 190);
-        border: 1px solid rgb(109, 109, 139);
+        background: rgb(167, 167, 224);
+        border: 1px solid rgb(70, 70, 112);
         position: absolute;
         top: (@channel-height / 2) - (@knob-size / 2);
     }
@@ -46,7 +46,7 @@ li.channel {
         left: 0;
         top: (@channel-height / 2) - (@track-height / 2);
         height: @track-height;
-        background: #444;
+        background: #222;
         //border-bottom: 1px solid #777;
     }
 

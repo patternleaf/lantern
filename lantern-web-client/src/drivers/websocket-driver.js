@@ -37,10 +37,12 @@ export default function(url) {
             complete: () => {},
         });
 
-        const incoming$ = xs.create({
+        const incoming$ = xs.createWithMemory({
             start: listener => {
                 connection.onmessage = msg => {
-                    console.log('incoming', JSON.parse(msg.data))
+                    // console.log('incoming', JSON.parse(msg.data))
+                    // const blah = JSON.parse(msg.data)
+                    // listener.next({ channels: [blah.channels[0]] })
                     listener.next(JSON.parse(msg.data));
                 };
                 connection.onerror = error => {

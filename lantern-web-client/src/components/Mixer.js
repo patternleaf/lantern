@@ -4,7 +4,7 @@ import {div, ul, button} from '@cycle/dom';
 import Channel from './Channel'
 import { makeCollection } from 'cycle-onionify';
 import isolate from '@cycle/isolate';
-
+import throttle from 'xstream/extra/throttle'
 
 function intent(domSource) {
     return {
@@ -15,20 +15,22 @@ function intent(domSource) {
 function model(actions, sources) {
     const initMixerReducer$ = xs.of(() => { return { channels: [] } })
     const mixerReducer$ = xs.combine(sources.server).map(([serverState, channelSink]) => { return (prevState) => {
-        console.log('mixer reducer returning', {
-            ...serverState,
-            channels: serverState.channels.map((channel, i) => ({
-                ...channel,
+        const channels = serverState.channels.map((serverChannel, i) => { 
+            let prevStateChannel = {}
+            if (prevState.channels && prevState.channels[i]) {
+                prevStateChannel = prevState.channels[i]
+            }
+            return {
+                ...prevStateChannel,
+                ...serverChannel,
                 channelIndex: i
-            }))
+            }
         })
-        return {
+        const result = {
             ...serverState,
-            channels: serverState.channels.map((channel, i) => ({
-                ...channel,
-                channelIndex: i
-            }))
+            channels
         }
+        return result
     }})
     const reducer$ = xs.merge(initMixerReducer$, mixerReducer$)
     return reducer$
@@ -38,7 +40,7 @@ function view(state$, channelDOM$) {
     return xs.combine(state$, channelDOM$).map(([mixerState, channelVNodes]) => {
         return (
             <div className="server-state">
-                <button className="request-state">Request State</button>
+                {/* <button className="request-state">Request State</button> */}
                 {channelVNodes}
             </div>
         )
@@ -67,12 +69,15 @@ export default function(sources) {
     const channelSinks = isolate(ChannelList, 'channels')(sources)
     const actions = intent(sources.DOM)
     const mixerReducer$ = model(actions, sources)
-
+    const vdom$ = view(sources.onion.state$, channelSinks.DOM)
     const initialRequest$ = xs.of({ command: 'sendState' })
+
+    const sendState$ = channelSinks.server.mapTo({ command: 'sendState' }).compose(throttle(60))
+    const serverSink$ = xs.merge(initialRequest$, actions.requests$, channelSinks.server, sendState$)
 
     return {
         onion: xs.merge(mixerReducer$, channelSinks.onion),
-        DOM: view(sources.onion.state$, channelSinks.DOM),
-        server: xs.merge(initialRequest$, actions.requests$, channelSinks.server)
+        DOM: vdom$,
+        server: serverSink$
     }
 }
