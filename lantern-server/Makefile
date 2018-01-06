@@ -20,7 +20,7 @@ all: $(appname)
 
 LDLIBS += -pthread -lfftw3
 
-LDFLAGS += -luuid -lboost_system -lssl -lcrypto -lshairplay
+LDFLAGS += -luuid -lboost_system -lboost_filesystem -lssl -lcrypto -lshairplay
 
 $(appname): $(objects)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $(appname) $(objects) $(LDLIBS)

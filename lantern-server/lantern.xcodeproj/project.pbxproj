@@ -36,6 +36,7 @@
 		07E6742C1E2D7D690040ECD3 /* LampEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E6742A1E2D7D690040ECD3 /* LampEffect.cpp */; };
 		07E674311E2DD78F0040ECD3 /* RippleEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E6742F1E2DD78F0040ECD3 /* RippleEffect.cpp */; };
 		07E674A91E2F0ECD0040ECD3 /* LanternServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E674A71E2F0ECD0040ECD3 /* LanternServer.cpp */; };
+		E568121320016A7800E4C29C /* LanternHttpServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E568121120016A7800E4C29C /* LanternHttpServer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -236,6 +237,8 @@
 		07E674A61E2F0D560040ECD3 /* version.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = version.hpp; sourceTree = "<group>"; };
 		07E674A71E2F0ECD0040ECD3 /* LanternServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LanternServer.cpp; path = ../src/LanternServer.cpp; sourceTree = "<group>"; };
 		07E674A81E2F0ECD0040ECD3 /* LanternServer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LanternServer.hpp; path = ../src/LanternServer.hpp; sourceTree = "<group>"; };
+		E568121120016A7800E4C29C /* LanternHttpServer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LanternHttpServer.cpp; sourceTree = "<group>"; };
+		E568121220016A7800E4C29C /* LanternHttpServer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LanternHttpServer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,6 +356,8 @@
 				07E6742E1E2D8DE80040ECD3 /* Mode.h */,
 				07E674A71E2F0ECD0040ECD3 /* LanternServer.cpp */,
 				07E674A81E2F0ECD0040ECD3 /* LanternServer.hpp */,
+				E568121120016A7800E4C29C /* LanternHttpServer.cpp */,
+				E568121220016A7800E4C29C /* LanternHttpServer.hpp */,
 				0789DE0C1E3814A2006F4C65 /* LanternState.cpp */,
 				0789DE0D1E3814A2006F4C65 /* LanternState.hpp */,
 				0789DE121E395F82006F4C65 /* JsonConversions.cpp */,
@@ -781,7 +786,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#mkdir -p $BUILT_PRODUCTS_DIR/data\ncp -R $PROJECT_DIR/data $BUILT_PRODUCTS_DIR/data";
+			shellScript = "echo \"cp -R $PROJECT_DIR/data $BUILT_PRODUCTS_DIR/data\"\ncp -R $PROJECT_DIR/data $BUILT_PRODUCTS_DIR/data\necho \"mkdir -p $BUILT_PRODUCTS_DIR/data/http-docs\"\nmkdir -p $BUILT_PRODUCTS_DIR/data/http-docs\necho \"cp -R $PROJECT_DIR/../lantern-web-client/build/* $BUILT_PRODUCTS_DIR/data/http-docs\"\ncp -R $PROJECT_DIR/../lantern-web-client/build/* $BUILT_PRODUCTS_DIR/data/http-docs";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -790,6 +795,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E568121320016A7800E4C29C /* LanternHttpServer.cpp in Sources */,
 				0704959B1E4D704D00270BA9 /* RingsEffect.cpp in Sources */,
 				07E674241E2D63C10040ECD3 /* README.md in Sources */,
 				07E674A91E2F0ECD0040ECD3 /* LanternServer.cpp in Sources */,
@@ -940,6 +946,7 @@
 					"-lcrypto",
 					"-lboost_system",
 					"-lshairplay",
+					"-lboost_filesystem",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -975,6 +982,7 @@
 					"-lcrypto",
 					"-lboost_system",
 					"-lshairplay",
+					"-lboost_filesystem",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";

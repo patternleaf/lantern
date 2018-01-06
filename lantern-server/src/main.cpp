@@ -26,6 +26,7 @@
 
 #include "LanternState.hpp"
 #include "LanternServer.hpp"
+#include "LanternHttpServer.hpp"
 #include "LanternMixer.hpp"
 
 
@@ -39,6 +40,8 @@ int main(int argc, char **argv)
 	LanternMixer mixer;
 	EffectRunner runner;
 	LanternServer server;
+	
+	LanternHttpServer httpServer;
 	
 	RaopService::shared()->expose("lantern");
 	AudioService::shared();
