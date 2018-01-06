@@ -5,6 +5,8 @@ CXXFLAGS := -std=c++11 -I. -I./lib -I./lib/websocketpp -I./lib/shairplay/include
 
 CXXFLAGS += -DUSE_FFTW
 
+CXXFLAGS += -g
+
 srcfiles := $(shell find ./src -name "*.cpp")
 
 srcfiles += $(shell find ./lib/Gist/src/core -name "*.cpp")
