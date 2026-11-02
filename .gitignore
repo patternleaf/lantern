@@ -58,3 +58,4 @@ xcuserdata/
 *.xcscmblueprint
 xcuserdatad/
 .DS_Store
+fftw-*

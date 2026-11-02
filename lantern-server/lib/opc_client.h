@@ -28,6 +28,7 @@
 #pragma once
 
 #include <vector>
+#include <string>
 #include <stdint.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -86,6 +87,10 @@ public:
 private:
     int fd;
     struct sockaddr_in address;
+    bool resolved;
+    std::string host;
+    int port;
+    bool lookupAddress();
     bool connectSocket();
     void closeSocket();
 };
@@ -99,6 +104,8 @@ private:
 inline OPCClient::OPCClient()
 {
     fd = -1;
+    resolved = false;
+    port = 0;
     memset(&address, 0, sizeof address);
 }
 
@@ -119,33 +126,53 @@ inline bool OPCClient::resolve(const char *hostport, int defaultPort)
 {
     fd = -1;
 
-    char *host = strdup(hostport);
-    char *colon = strchr(host, ':');
-    int port = defaultPort;
-    bool success = false;
+    char *hostCopy = strdup(hostport);
+    char *colon = strchr(hostCopy, ':');
+    port = defaultPort;
 
     if (colon) {
         *colon = '\0';
         port = strtol(colon + 1, 0, 10);
     }
 
-    if (port) {
-        struct addrinfo *addr;
-        getaddrinfo(*host ? host : "localhost", 0, 0, &addr);
+    host = *hostCopy ? hostCopy : "localhost";
+    free(hostCopy);
 
-        for (struct addrinfo *i = addr; i; i = i->ai_next) {
-            if (i->ai_family == PF_INET) {
-                memcpy(&address, i->ai_addr, sizeof address);
-                address.sin_port = htons(port);
-                success = true;
-                break;
-            }
-        }
-        freeaddrinfo(addr);
+    return lookupAddress();
+}
+
+inline bool OPCClient::lookupAddress()
+{
+    resolved = false;
+
+    if (!port) {
+        return false;
     }
 
-    free(host);
-    return success;
+    // Ask for IPv4 explicitly. With null hints, glibc defaults to AI_ADDRCONFIG,
+    // which returns no IPv4 address for "localhost" until a non-loopback interface
+    // has one -- e.g. when we're launched from rc.local before wifi is up.
+    struct addrinfo hints;
+    memset(&hints, 0, sizeof hints);
+    hints.ai_family = AF_INET;
+    hints.ai_socktype = SOCK_STREAM;
+
+    struct addrinfo *addr = 0;
+    if (getaddrinfo(host.c_str(), 0, &hints, &addr) != 0) {
+        return false;
+    }
+
+    for (struct addrinfo *i = addr; i; i = i->ai_next) {
+        if (i->ai_family == PF_INET) {
+            memcpy(&address, i->ai_addr, sizeof address);
+            address.sin_port = htons(port);
+            resolved = true;
+            break;
+        }
+    }
+    freeaddrinfo(addr);
+
+    return resolved;
 }
 
 inline bool OPCClient::isConnected()
@@ -184,6 +211,11 @@ inline bool OPCClient::write(const std::vector<uint8_t> &data)
 
 inline bool OPCClient::connectSocket()
 {
+    // If the initial lookup failed, keep retrying rather than connecting to 0.0.0.0:0 forever.
+    if (!resolved && !lookupAddress()) {
+        return false;
+    }
+
     fd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 
     if (connect(fd, (struct sockaddr*) &address, sizeof address) < 0) {

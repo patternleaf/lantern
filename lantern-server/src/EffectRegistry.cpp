@@ -6,6 +6,7 @@
 //  Copyright © 2017 patternleaf LLC. All rights reserved.
 //
 
+#include <functional>
 #include "EffectRegistry.hpp"
 #include "LanternEffect.hpp"
 #include "EffectParameter.hpp"

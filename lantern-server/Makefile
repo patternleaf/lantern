@@ -5,6 +5,8 @@ CXXFLAGS := -std=c++11 -I. -I./lib -I./lib/websocketpp -I./lib/shairplay/include
 
 CXXFLAGS += -DUSE_FFTW
 
+CXXFLAGS += -g
+
 srcfiles := $(shell find ./src -name "*.cpp")
 
 srcfiles += $(shell find ./lib/Gist/src/core -name "*.cpp")
@@ -20,7 +22,7 @@ all: $(appname)
 
 LDLIBS += -pthread -lfftw3
 
-LDFLAGS += -luuid -lboost_system -lssl -lcrypto -lshairplay
+LDFLAGS += -luuid -lboost_system -lboost_filesystem -lssl -lcrypto -lshairplay
 
 $(appname): $(objects)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $(appname) $(objects) $(LDLIBS)

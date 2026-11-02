@@ -9,6 +9,9 @@
 //  Copyright © 2017 patternleaf LLC. All rights reserved.
 //
 
+// for Gist's size_t
+#include <sys/types.h>
+
 #include "AudioService.hpp"
 #include "Gist.h"
 

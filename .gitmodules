@@ -7,3 +7,6 @@
 [submodule "lantern-server/lib/Gist"]
 	path = lantern-server/lib/Gist
 	url = https://github.com/patternleaf/Gist.git
+[submodule "lantern-server/lib/Simple-Web-Server"]
+	path = lantern-server/lib/Simple-Web-Server
+	url = https://github.com/eidheim/Simple-Web-Server.git

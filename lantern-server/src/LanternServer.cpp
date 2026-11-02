@@ -135,6 +135,7 @@ void LanternServer::serverThreadFunc(void* ctx)
 		);
 		
 		// Listen on port 9002
+        std::cout << "Websocket server listening on port " << server->mPort << std::endl;
 		server->mWSServer.listen(server->mPort);
 		
 		// Start the server accept loop
