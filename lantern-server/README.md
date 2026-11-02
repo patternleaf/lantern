@@ -14,6 +14,9 @@ lantern exposes a websocket server on port 9002. It accepts commands
 to change mixer levels, effects parameters, and broadcast current
 state.
 
+It also serves static files from `data/http-docs` over HTTP on port
+8080, intended for a browser-based client (not yet written).
+
 ### Airplay Server
 
 lantern uses [shairplay](https://github.com/juhovh/shairplay) to 
@@ -41,18 +44,6 @@ sudo apt-get install libltdl-dev libao-dev libavahi-compat-libdnssd-dev
 sudo apt-get install avahi-daemon
 ```
 
-To build the web client assets, you'll need to install a 
-recent version of node. For the RPi maybe something like:
-
-```
-curl -sL https://deb.nodesource.com/setup_9.x | sudo bash -
-sudo apt-get install nodejs -y
-```
-
-Note that the web client is *served* from the main server
-process, and not from a separate node process. Just using
-node and npm to build the web app.
-
 On macOS you may need (using [Homebrew](https://brew.sh)):
 
 ```
@@ -60,7 +51,6 @@ brew install autoconf
 brew install automake
 brew install libtool
 brew install boost
-brew install npm
 ```
 
 Whether on macOS or linux, cd to the project directory and
